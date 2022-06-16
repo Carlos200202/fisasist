@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Citas;
+use App\Models\Pacientes;
 use Illuminate\Http\Request;
 
-class CitasController extends Controller
+class PacientesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,6 @@ class CitasController extends Controller
     public function index()
     {
         //
-        return view('event.index');
     }
 
     /**
@@ -37,69 +36,50 @@ class CitasController extends Controller
     public function store(Request $request)
     {
         //
-        request()->validate(Citas::$rules); //$request->all()
-        $citas =  Citas::create($request->validate([
-                'document' => "required",
-                'name' => "required",
-                'description' => "required",
-                'resourceId' => "required",
-                'start' => "required",
-                'end' => "required",
-            ])
-        );
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Citas  $citas
+     * @param  \App\Models\Pacientes  $pacientes
      * @return \Illuminate\Http\Response
      */
-    public function show(Citas $citas)
+    public function show(Pacientes $pacientes)
     {
         //
-        $citas = Citas::all();
-        return response()->json($citas);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Citas  $citas
+     * @param  \App\Models\Pacientes  $pacientes
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Pacientes $pacientes)
     {
         //
-        // $citas = Citas::find($id);
-        // return response()->json($citas);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Citas  $citas
+     * @param  \App\Models\Pacientes  $pacientes
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Citas $citas)
+    public function update(Request $request, Pacientes $pacientes)
     {
         //
-        request()->validate(Citas::$rules);
-        $citas->update($request->all());
-        return response()->json($citas);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Citas  $citas
+     * @param  \App\Models\Pacientes  $pacientes
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Pacientes $pacientes)
     {
         //
-        $citas = Citas::find($id)->delete();
-        return response()->json($citas);
     }
 }

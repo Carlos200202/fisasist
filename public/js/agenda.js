@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
     let form = document.getElementById("form");
+    let formView = document.getElementById("formView");
     var calendarEl = document.getElementById("agenda");
     var calendar = new FullCalendar.Calendar(calendarEl, {
         schedulerLicenseKey: "CC-Attribution-NonCommercial-NoDerivatives",
         locale: "es",
         initialView: "resourceTimeGrid", //vista inicial
-        editable: true,
         slotMinTime: "06:00:00", //comienzo del horario de citas
         slotMaxTime: "19:00:00", //fin del horario de citas
         allDaySlot: false, //quita la opcion de agendar todo el dia
@@ -21,10 +21,19 @@ document.addEventListener("DOMContentLoaded", function () {
         eventStartEditable: true, //Permite que las horas de inicio de los eventos se puedan editar arrastrando
         nowIndicator: true, //deja una linea mostrando la hora actual
         eventOverlap: false,
+        editable: true, // allow event dragging
+        eventResourceEditable: true,
+        timeZone: "local",
+        buttonText: {
+            today: "Hoy",
+            month: "Mes",
+            list: "lista",
+            resourceTimeGrid: "Agendar",
+        },
         headerToolbar: {
             left: "title",
-            center: "addEventButton",
-            right: "prev,next today",
+            center: "",
+            right: "prev,next today,resourceTimeGrid,dayGridMonth,listDay",
         }, //modifica el header del resource
         slotLabelFormat: {
             hour: "2-digit",
@@ -38,47 +47,166 @@ document.addEventListener("DOMContentLoaded", function () {
         }, //este se visualizara de la misma manera pero en el titulo del evento creado en fullcalendar
         // eventContent: renderEventContent, //permite agregar una imagen o icono
         resources: resource,
-        events: "/cita/ver-cita",
-        eventDragStart: (event, jsEvent, ui, view) => {
-            console.log("eventDragStart");
-        },
+        events: "/citas/ver-cita",
         dateClick: (info) => {
-            $("#event").modal("show");
+            form.reset();
+            form.start.value = info.dateStr;
+            form.end.value = info.dateStr;
+            form.resourceId.value = info.resource._resource.id;
+            var actual = new Date();
+            // console.log("info date: " + info.date);
+            // console.log("actual: " + actual);
+            if (info.date >= actual) {
+                $("#event").modal("show");
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "No se puede solicitar una cita en una fecha vencida",
+                });
+            }
+        },
+        eventDrop: (el, event) => {
+            // var actual = new Date();
+            // console.log("info date: " + info.date);
+            // console.log("actual: " + actual);
+            // if (info.date >= actual) {
+            //     Swal.fire({
+            //         icon: "error",
+            //         title: "Error",
+            //         text: "No se puede solicitar una cita en una fecha vencida",
+            //     });
+            // } else {
+                
+            // }
+            console.log(el)
+        },
+        eventClick: (info) => {
+
+            var event = info.event;
+            console.log(event);
+            formView.document.value = info.event.extendedProps.document;
+            formView.name.value = info.event.extendedProps.name;
+            formView.description.value = info.event.extendedProps.description;
+            formView.id.value = info.event.id;
+            calendar.refetchEvents();
+
+            document
+                .getElementById("btnEliminar")
+                .addEventListener("click", function () {
+                    const swalWithBootstrapButtons = Swal.mixin({
+                        customClass: {
+                            confirmButton: "btn btn-success",
+                            cancelButton: "btn btn-danger",
+                        },
+                        buttonsStyling: false,
+                    });
+
+                    swalWithBootstrapButtons
+                        .fire({
+                            title: "Quieres eliminar este registro?",
+                            text: "Estas apunto de eliminar una cita!",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonText: "Eliminar",
+                            cancelButtonText: "Cancelar",
+                            reverseButtons: true,
+                        })
+                        .then((result) => {
+                            if(result.isConfirmed){
+                                axios
+                                    .post("/citas/borrar-cita/" + info.event.id)
+                                    .then((respuesta) => {
+                                        respuesta.data.id;
+                                        calendar.refetchEvents();
+                                        $("#eventView").modal("hide");
+                                        swalWithBootstrapButtons.fire(
+                                            "Eliminado!",
+                                            "El registro ha sido eliminado.",
+                                            "success"
+                                        );
+                                    })
+                                    .catch((error) => {
+                                        if(error.response){
+                                            console.log(error.response.data);
+                                        }
+                                    });
+                            }else if(result.dismiss === Swal.DismissReason.cancel){
+                                swalWithBootstrapButtons.fire(
+                                    "Cancelado",
+                                    "No eliminaste el registro",
+                                    "error"
+                                );
+                            }
+                        });
+                });
+
+            axios
+                .post("/citas/editar-cita/" + info.event.id)
+                .then((respuesta) => {
+                    respuesta.data.id;
+                    $("#eventView").modal("show");
+                })
+                .catch((error) => {
+                    if (error.response) {
+                        console.log(error.response.data);
+                    }
+                });
+        },
+        eventContent: (info) => {
+            return {
+                html: `
+                <div class="content-event">
+                    <img
+                    class="image-event"
+                    src=""
+                    alt=""
+                    />
+                    <div
+                    class="box-event"
+                    style="backgroundColor: "
+                    ></div>
+                    <img
+                    class="flag-event"
+                    src="https://w7.pngwing.com/pngs/602/741/png-transparent-triangle-rectangle-red-triangular-flag-angle-flag-rectangle-thumbnail.png"
+                    alt=""
+                    />
+                </div>`,
+            };
         },
     });
     calendar.render();
-    document.getElementById("btnGuardar").addEventListener("click", function(){
-        const data = new FormData(form);
-        axios.post("/cita/agendar", data)
-        .then((reply) => {
-            $("#event").modal("hide")
-        })
-        .catch(
-            error => {
-                if(error){
-                    console.log(error)
+    document
+        .getElementById("btnGuardar")
+        .addEventListener("click", function () {
+            sendData("/citas/agendar");
+        });
+    // document
+    //     .getElementById("btnModificar")
+    //     .addEventListener("click", function () {
+    //         sendData("/citas/agendar");
+    //     });
+    function sendData(url) {
+        const datos = new FormData(form);
+        axios
+            .post(url, datos)
+            .then((response) => {
+                calendar.refetchEvents();
+                $("#event").modal("hide");
+                Swal.fire({
+                    icon: "success",
+                    title: "Enviado",
+                    text: "Cita registrada",
+                });
+            })
+            .catch((error) => {
+                if (error.response) {
+                    calendar.refetchEvents();
+                    console.log(error.response.data);
                 }
-            }
-        )
-    });
+            });
+    }
 });
-
-// const renderEventContent = (info, event, element) => {
-//     return(
-//       `<div class="content-event">
-//             <img class="image-event" src="" alt="" />
-//             <div
-//                 class="box-event"
-//                 style="backgroundColor: info.event.extendedProps.colorBox"
-//             ></div>
-//             <img
-//                 class="flag-event"
-//                 src="https://w7.pngwing.com/pngs/602/741/png-transparent-triangle-rectangle-red-triangular-flag-angle-flag-rectangle-thumbnail.png"
-//                 alt=""
-//             />
-//       </div>`
-//     )
-// }
 
 let resource = [
     {
@@ -128,7 +256,7 @@ let resource = [
     },
     {
         id: "10",
-        title: "CER8",
+        title: "CER9",
         eventBackgroundColor: "#FFDA9E",
     },
     {

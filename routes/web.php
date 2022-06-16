@@ -21,8 +21,14 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/cita', [App\Http\Controllers\CitasController::class, 'index']);
+Route::get('/citas', [App\Http\Controllers\CitasController::class, 'index']);
 
-Route::post('/cita/agendar', [App\Http\Controllers\CitasController::class, 'store']);
+Route::post('/citas/agendar', [App\Http\Controllers\CitasController::class, 'store']);
 
-Route::get('/cita/ver-cita', [App\Http\Controllers\CitasController::class, 'show']);
+Route::post('/citas/editar-cita/{id}', [App\Http\Controllers\CitasController::class, 'edit']);
+
+Route::post('/citas/actualizar-cita/{citas}', [App\Http\Controllers\CitasController::class, 'update']);
+
+Route::post('/citas/borrar-cita/{id}', [App\Http\Controllers\CitasController::class, 'destroy'])->name('borrar-cita.destroy');
+
+Route::get('/citas/ver-cita', [App\Http\Controllers\CitasController::class, 'show']);
