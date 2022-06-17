@@ -46,7 +46,7 @@
     },
     {
         id: "10",
-        title: "CER8",
+        title: "CER9",
         eventBackgroundColor: "#FFDA9E",
     },
     {
@@ -184,4 +184,4 @@
         id: "38",
         title: "COM5",
     },
-]
+];

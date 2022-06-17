@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     let form = document.getElementById("form");
     let formView = document.getElementById("formView");
+    let formUpdate = document.getElementById("formUpdate");
     var calendarEl = document.getElementById("agenda");
     var calendar = new FullCalendar.Calendar(calendarEl, {
         schedulerLicenseKey: "CC-Attribution-NonCommercial-NoDerivatives",
@@ -50,11 +51,14 @@ document.addEventListener("DOMContentLoaded", function () {
         events: "/citas/ver-cita",
         dateClick: (info) => {
             form.reset();
-            form.start.value = info.dateStr;
-            form.end.value = info.dateStr;
+            let cadena = info.dateStr;
+            let date = cadena.substring(0, 19);
+            // console.log("time: ", date);
+            form.start.value = date;
+            form.end.value = date;
             form.resourceId.value = info.resource._resource.id;
             var actual = new Date();
-            // console.log("info date: " + info.date);
+            // console.log(info);
             // console.log("actual: " + actual);
             if (info.date >= actual) {
                 $("#event").modal("show");
@@ -66,20 +70,42 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             }
         },
-        eventDrop: (el, event) => {
+        eventDrop: (info) => {
             // var actual = new Date();
-            // console.log("info date: " + info.date);
-            // console.log("actual: " + actual);
-            // if (info.date >= actual) {
+            // let cadena = info.event.startStr;
+            // let date = cadena.substring(0, 19);
+            // // console.log(info.event.id);
+            // console.log(info);
+            // if (date >= actual) {
+                
+            // } else {
             //     Swal.fire({
             //         icon: "error",
             //         title: "Error",
             //         text: "No se puede solicitar una cita en una fecha vencida",
             //     });
-            // } else {
-                
             // }
-            console.log(el)
+            // formUpdate.resourceId.value = info.event._def.resourceIds[0];
+            // axios
+            //     .post("/citas/actualizar-cita/" + info.event.id, formUpdate.resourceId.value)
+            //     .then((response) => {
+            //         calendar.refetchEvents();
+            //         // Swal.fire({
+            //         //     icon: "success",
+            //         //     title: "Enviado",
+            //         //     text: "Cita actualizada",
+            //         // });
+            //     })
+            //     .catch((error) => {
+            //         if (error.response) {
+            //             calendar.refetchEvents();
+            //             Swal.fire({
+            //                 icon: "error",
+            //                 title: "Error",
+            //                 text: "No se pudo actualizar la cita",
+            //             });
+            //         }
+            //     });
         },
         eventClick: (info) => {
 
@@ -89,8 +115,41 @@ document.addEventListener("DOMContentLoaded", function () {
             formView.name.value = info.event.extendedProps.name;
             formView.description.value = info.event.extendedProps.description;
             formView.id.value = info.event.id;
-            calendar.refetchEvents();
 
+            let cadena = info.event.startStr;
+            let date = cadena.substring(0, 19);
+            formUpdate.document.value = info.event.extendedProps.document;
+            formUpdate.name.value = info.event.extendedProps.name;
+            formUpdate.description.value = info.event.extendedProps.description;
+            formUpdate.resourceId.value = info.event._def.resourceIds[0];
+            formUpdate.start.value = date;
+            formUpdate.end.value = date;
+            document
+                .getElementById("btnActualizar")
+                .addEventListener("click", function () {
+                const datosUpdate = new FormData(formUpdate);
+                axios
+                    .post("/citas/actualizar-cita/" + info.event.id, datosUpdate)
+                    .then((response) => {
+                        calendar.refetchEvents();
+                        $("#eventActualizar").modal("hide");
+                        // Swal.fire({
+                        //     icon: "success",
+                        //     title: "Enviado",
+                        //     text: "Cita actualizada",
+                        // });
+                    })
+                    .catch((error) => {
+                        if (error.response) {
+                            calendar.refetchEvents();
+                            Swal.fire({
+                                icon: "error",
+                                title: "Error",
+                                text: "No se pudo actualizar la cita",
+                            });
+                        }
+                    });
+                });
             document
                 .getElementById("btnEliminar")
                 .addEventListener("click", function () {
@@ -181,11 +240,13 @@ document.addEventListener("DOMContentLoaded", function () {
         .addEventListener("click", function () {
             sendData("/citas/agendar");
         });
-    // document
-    //     .getElementById("btnModificar")
-    //     .addEventListener("click", function () {
-    //         sendData("/citas/agendar");
-    //     });
+    document
+        .getElementById("btnModificar")
+        .addEventListener("click", function () {
+            $("#eventView").modal("hide");
+            $("#eventActualizar").modal("show");
+        });
+    
     function sendData(url) {
         const datos = new FormData(form);
         axios
@@ -202,7 +263,11 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch((error) => {
                 if (error.response) {
                     calendar.refetchEvents();
-                    console.log(error.response.data);
+                    Swal.fire({
+                        icon: "error",
+                        title: "Error",
+                        text: "No se puedo agendar la cita",
+                    });
                 }
             });
     }

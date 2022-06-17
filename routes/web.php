@@ -21,7 +21,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/citas', [App\Http\Controllers\CitasController::class, 'index']);
+Route::get('/citas', [App\Http\Controllers\CitasController::class, 'index'])->name('citas');
 
 Route::post('/citas/agendar', [App\Http\Controllers\CitasController::class, 'store']);
 

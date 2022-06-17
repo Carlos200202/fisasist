@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Citas;
 use Illuminate\Http\Request;
+use App\Http\Controllers\BD;
 
 class CitasController extends Controller
 {
