@@ -71,46 +71,36 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         },
         eventDrop: (info) => {
-            // var actual = new Date();
-            // let cadena = info.event.startStr;
-            // let date = cadena.substring(0, 19);
-            // // console.log(info.event.id);
-            // console.log(info);
-            // if (date >= actual) {
-                
-            // } else {
-            //     Swal.fire({
-            //         icon: "error",
-            //         title: "Error",
-            //         text: "No se puede solicitar una cita en una fecha vencida",
-            //     });
-            // }
-            // formUpdate.resourceId.value = info.event._def.resourceIds[0];
-            // axios
-            //     .post("/citas/actualizar-cita/" + info.event.id, formUpdate.resourceId.value)
-            //     .then((response) => {
-            //         calendar.refetchEvents();
-            //         // Swal.fire({
-            //         //     icon: "success",
-            //         //     title: "Enviado",
-            //         //     text: "Cita actualizada",
-            //         // });
-            //     })
-            //     .catch((error) => {
-            //         if (error.response) {
-            //             calendar.refetchEvents();
-            //             Swal.fire({
-            //                 icon: "error",
-            //                 title: "Error",
-            //                 text: "No se pudo actualizar la cita",
-            //             });
-            //         }
-            //     });
+            let cadena = info.event.startStr;
+            let date = cadena.substring(0, 19);
+                axios
+                    .post("/citas/actualizar-cita/" + info.event.id, {
+                        resourceId: info.event._def.resourceIds[0],
+                        start: date,
+                        end: date
+                    })
+                    .then((response) => {
+                        calendar.refetchEvents();
+                        Swal.fire({
+                            icon: "success",
+                            title: "Enviado",
+                            text: "Cita actualizada",
+                        });
+                    })
+                    .catch((error) => {
+                        if (error.response) {
+                            calendar.refetchEvents();
+                            Swal.fire({
+                                icon: "error",
+                                title: "Error",
+                                text: "No se pudo actualizar la cita",
+                            });
+                        }
+                    });
         },
         eventClick: (info) => {
-
+            
             var event = info.event;
-            console.log(event);
             formView.document.value = info.event.extendedProps.document;
             formView.name.value = info.event.extendedProps.name;
             formView.description.value = info.event.extendedProps.description;
@@ -122,8 +112,6 @@ document.addEventListener("DOMContentLoaded", function () {
             formUpdate.name.value = info.event.extendedProps.name;
             formUpdate.description.value = info.event.extendedProps.description;
             formUpdate.resourceId.value = info.event._def.resourceIds[0];
-            formUpdate.start.value = date;
-            formUpdate.end.value = date;
             document
                 .getElementById("btnActualizar")
                 .addEventListener("click", function () {
@@ -133,11 +121,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     .then((response) => {
                         calendar.refetchEvents();
                         $("#eventActualizar").modal("hide");
-                        // Swal.fire({
-                        //     icon: "success",
-                        //     title: "Enviado",
-                        //     text: "Cita actualizada",
-                        // });
+                        Swal.fire({
+                            icon: "success",
+                            title: "Enviado",
+                            text: "Cita actualizada",
+                        });
                     })
                     .catch((error) => {
                         if (error.response) {

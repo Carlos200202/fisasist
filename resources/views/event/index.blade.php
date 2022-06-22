@@ -202,16 +202,6 @@
                             <label for="resourceId" class="form-label">Espacio</label>
                             <input type="text" class="form-control" name="resourceId" id="resourceId" rows="2" required>
                         </div>
-                        <div class="mb-3">
-                            <label for="start" class="form-label">inicio</label>
-                            <input type="text" class="form-control" name="start" id="start" aria-describedby="helpId"
-                                placeholder="" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="end" class="form-label">fin</label>
-                            <input type="text" class="form-control" name="end" id="end" aria-describedby="helpId"
-                                placeholder="" required>
-                        </div>
 
                     </form>
                 </div>

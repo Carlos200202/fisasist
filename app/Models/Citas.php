@@ -9,7 +9,7 @@ class Citas extends Model
 {
     use HasFactory;
 
-    static $rules = ['document'=>'required','name'=>'required','description'=>'required','resourceId'=>'required','start'=>'required','end'=>'required',];
+    static $rules = ['document','name','description','resourceId','start','end',];
 
     protected $fillable = ['document', 'name', 'description', 'resourceId', 'start', 'end'];
 }
