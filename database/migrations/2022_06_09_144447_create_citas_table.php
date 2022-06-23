@@ -15,9 +15,12 @@ return new class extends Migration
     {
         Schema::create('citas', function (Blueprint $table) {
             $table->id();
-            $table->string("document", 10);
-            $table->string("name");
+            $table->string("pat_document", 10);
+            $table->string("pat_firstname");
+            $table->string("pat_lastname");
+            $table->string("fist_name");
             $table->text("description");
+            $table->string("flag_img");
             $table->string("resourceId");
             $table->dateTime("start");
             $table->dateTime("end");

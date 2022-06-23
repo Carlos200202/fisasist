@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('pacientes', function (Blueprint $table) {
             $table->id();
+            $table->string('pat_firstname');
+            $table->string('pat_lastname');
+            $table->string('pat_document');
+            $table->string('pat_ages');
             $table->timestamps();
         });
     }

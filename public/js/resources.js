@@ -185,3 +185,22 @@
         title: "COM5",
     },
 ];
+
+room18: {
+    schedid: "1482498",
+    patient: "120560",
+    patfirst: "MARIA ",
+    patlast: "CARVAJAL",
+    proc: "7",
+    tipovis: "NC",
+    procname: "RODILLA, PIERNA, TOBILLO Y PIE",
+    fiste: "1234892382",
+    fistename: "JUAN PABLO",
+    fisthexcolor: "008080",
+    Bandera: '<img src="1-tsp.png" height="15";>',
+    Riesgo: "Riesgo Bajo",
+    level: "COMPLEJIDAD BAJA",
+    iconColor: "paciente_cbaja.png",
+    levelcolor: "B3B3FF",
+    room: "18", 
+}

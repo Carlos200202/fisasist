@@ -97,32 +97,56 @@
                 <div class="modal-body">
                     <form id="form">
                         {!! csrf_field() !!}
-                        <div class="mb-3">
-                            <label for="document" class="form-label">Documento</label>
-                            <input type="number" class="form-control" name="document" id="document"
+                        <div class="mb-1">
+                            <label for="pat_document" class="form-label">Documento</label>
+                            <input type="number" class="form-control form-control-sm" name="pat_document" id="pat_document"
                                 aria-describedby="helpId" placeholder="" required>
                         </div>
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" name="name" id="name" aria-describedby="helpId"
+                        <div class="mb-1">
+                            <label for="pat_firstname" class="form-label">Nombre</label>
+                            <input type="text" class="form-control form-control-sm" name="pat_firstname" id="pat_firstname" aria-describedby="helpId"
                                 placeholder="" required>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-1">
+                            <label for="pat_lastname" class="form-label">Apellido</label>
+                            <input type="text" class="form-control form-control-sm" name="pat_lastname" id="pat_lastname" aria-describedby="helpId"
+                                placeholder="" required>
+                        </div>
+                        <div class="mb-1">
+                            <label for="fist_name" class="form-label">Fisioterapeuta</label>
+                            <select class="form-select form-select-sm" id="fist_name" name="fist_name" aria-label=".form-select-sm example">
+                                <option selected disabled>Seleccionar</option>
+                                <option>Bob Dylan</option>
+                                <option>Freddie Mercury</option>
+                                <option>David Bowie</option>
+                            </select>
+                        </div>
+                        <div class="mb-1">
                             <label for="description" class="form-label">Descripcion</label>
-                            <textarea class="form-control" name="description" id="description" rows="2" required></textarea>
+                            <textarea class="form-control form-control-sm" name="description" id="description" rows="2" required></textarea>
                         </div>
-                        <div class="mb-2 noneValue">
+                        <div class="mb-1 noneValue">
                             <label for="resourceId" class="form-label">Espacio</label>
-                            <input type="text" class="form-control" name="resourceId" id="resourceId" rows="2">
+                            <input type="text" class="form-control form-control-sm" name="resourceId" id="resourceId" rows="2">
                         </div>
-                        <div class="mb-3 noneValue">
+                        
+                        <div class="mb-1">
+                            <label for="flag_img" class="form-label">Riesgo</label>
+                            <select class="form-select form-select-sm" name="flag_img" id="flag_img" aria-label=".form-select-sm example">
+                                <option selected disabled>Seleccionar</option>
+                                <option value="cdn-icons-png.flaticon.com/512/395/395841.png">Alto</option>
+                                <option value="cdn-icons-png.flaticon.com/512/148/148880.png">Intermedio</option>
+                                <option value="cdn-icons-png.flaticon.com/512/2107/2107961.png">Bajo</option>
+                            </select>
+                        </div>
+                        <div class="mb-1 noneValue">
                             <label for="start" class="form-label">inicio</label>
-                            <input type="text" class="form-control" name="start" id="start" aria-describedby="helpId"
+                            <input type="text" class="form-control form-control-sm" name="start" id="start" aria-describedby="helpId"
                                 placeholder="" required>
                         </div>
-                        <div class="mb-3 noneValue">
+                        <div class="mb-1 noneValue">
                             <label for="end" class="form-label">fin</label>
-                            <input type="text" class="form-control" name="end" id="end" aria-describedby="helpId"
+                            <input type="text" class="form-control form-control-sm" name="end" id="end" aria-describedby="helpId"
                                 placeholder="" required>
                         </div>
 
@@ -146,23 +170,28 @@
                 <div class="modal-body">
                     <form id="formView">
                         {!! csrf_field() !!}
-                        <div class="mb-3 inputId">
-                        <label for="id" class="form-label">id</label>
-                        <input type="text" class="form-control" name="id" id="id" aria-describedby="helpId" placeholder="" disabled>
-                      </div>
-                        <div class="mb-3">
-                            <label for="document" class="form-label">Documento</label>
-                            <input type="number" class="form-control" name="document" id="document"
-                                aria-describedby="helpId" placeholder="" disabled>
+                        <div class="mb-1 inputId">
+                            <label for="id" class="form-label">id</label>
+                            <input type="text" class="form-control  form-select-sm" name="id" id="id" aria-describedby="helpId" placeholder="" disabled>
                         </div>
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" name="name" id="name" aria-describedby="helpId"
+                        <div class="mb-1">
+                            <label for="pat_document" class="form-label">Documento</label>
+                            <input type="number" class="form-control form-control-sm" name="pat_document" id="pat_document"
+                                aria-describedby="helpId" placeholder="" required disabled>
+                        </div>
+                        <div class="mb-1">
+                            <label for="pat_firstname" class="form-label">Nombre</label>
+                            <input type="text" class="form-control form-select-sm" name="pat_firstname" id="pat_firstname" aria-describedby="helpId"
                                 placeholder="" disabled>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-1">
+                            <label for="pat_lastname" class="form-label">Apellido</label>
+                            <input type="text" class="form-control form-control-sm" name="pat_lastname" id="pat_lastname" aria-describedby="helpId"
+                                placeholder="" disabled>
+                        </div>
+                        <div class="mb-1">
                             <label for="description" class="form-label">Descripcion</label>
-                            <textarea class="form-control" name="description" id="description" rows="2" disabled></textarea>
+                            <textarea class="form-control form-select-sm" name="description" id="description" rows="2" disabled></textarea>
                         </div>
                     </form>
                 </div>
@@ -178,29 +207,29 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Agendar Cita</h5>
+                    <h5 class="modal-title">Editar Cita</h5>
                     <button type="button" onclick="window.location='/citas'" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="formUpdate">
                         {!! csrf_field() !!}
                         <div class="mb-3">
-                            <label for="document" class="form-label">Documento</label>
-                            <input type="number" class="form-control" name="document" id="document"
+                            <label for="pat_document" class="form-label">Documento</label>
+                            <input type="number" class="form-control form-select-sm" name="pat_document" id="pat_document"
                                 aria-describedby="helpId" placeholder="" required>
                         </div>
                         <div class="mb-3">
-                            <label for="name" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" name="name" id="name" aria-describedby="helpId"
+                            <label for="pat_firstname" class="form-label">Nombre</label>
+                            <input type="text" class="form-control form-select-sm" name="pat_firstname" id="pat_firstname" aria-describedby="helpId"
                                 placeholder="" required>
                         </div>
                         <div class="mb-3">
                             <label for="description" class="form-label">Descripcion</label>
-                            <textarea class="form-control" name="description" id="description" rows="2" required></textarea>
+                            <textarea class="form-control form-select-sm" name="description" id="description" rows="2" required></textarea>
                         </div>
                         <div class="mb-2 noneValue">
                             <label for="resourceId" class="form-label">Espacio</label>
-                            <input type="text" class="form-control" name="resourceId" id="resourceId" rows="2" required>
+                            <input type="text" class="form-control form-select-sm" name="resourceId" id="resourceId" rows="2" required>
                         </div>
 
                     </form>

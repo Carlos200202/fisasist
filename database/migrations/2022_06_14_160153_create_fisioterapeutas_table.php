@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('fisioterapeutas', function (Blueprint $table) {
             $table->id();
+            $table->string('fiste_id');
+            $table->string('fiste_name');
+            $table->string('fiste_hexcolor');
             $table->timestamps();
         });
     }

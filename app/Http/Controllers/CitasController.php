@@ -40,10 +40,13 @@ class CitasController extends Controller
         //
         request()->validate(Citas::$rules); //$request->all()
         $citas =  Citas::create($request->validate([
-                'document' => "required",
-                'name' => "required",
+                'pat_document' => "required",
+                'pat_firstname' => "required",
+                'pat_lastname' => "required",
                 'description' => "required",
+                'fist_name' => "required",
                 'resourceId' => "required",
+                'flag_img' => "required",
                 'start' => "required",
                 'end' => "required",
             ])

@@ -101,15 +101,16 @@ document.addEventListener("DOMContentLoaded", function () {
         eventClick: (info) => {
             
             var event = info.event;
-            formView.document.value = info.event.extendedProps.document;
-            formView.name.value = info.event.extendedProps.name;
+            formView.pat_document.value = info.event.extendedProps.pat_document;
+            formView.pat_firstname.value = info.event.extendedProps.pat_firstname;
+            formView.pat_lastname.value = info.event.extendedProps.pat_lastname;
             formView.description.value = info.event.extendedProps.description;
             formView.id.value = info.event.id;
 
             let cadena = info.event.startStr;
             let date = cadena.substring(0, 19);
-            formUpdate.document.value = info.event.extendedProps.document;
-            formUpdate.name.value = info.event.extendedProps.name;
+            formUpdate.pat_document.value = info.event.extendedProps.pat_document;
+            formUpdate.pat_firstname.value = info.event.extendedProps.pat_firstname;
             formUpdate.description.value = info.event.extendedProps.description;
             formUpdate.resourceId.value = info.event._def.resourceIds[0];
             document
@@ -201,6 +202,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
         },
         eventContent: (info) => {
+            switch (info.event.extendedProps.fist_name) {
+                case 'Freddie Mercury':
+                    color = '#FFFF33'
+                break;
+                case 'David Bowie':
+                    color = '#CCC'
+                break;
+                case 'Freddie Mercury':
+                    color = '#000'
+                break;
+            
+            }
             return {
                 html: `
                 <div class="content-event">
@@ -211,11 +224,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     />
                     <div
                     class="box-event"
-                    style="backgroundColor: "
+                    style="background-color: ${color} "
                     ></div>
                     <img
                     class="flag-event"
-                    src="https://w7.pngwing.com/pngs/602/741/png-transparent-triangle-rectangle-red-triangular-flag-angle-flag-rectangle-thumbnail.png"
+                    src="https://${info.event.extendedProps.flag_img}"
                     alt=""
                     />
                 </div>`,
