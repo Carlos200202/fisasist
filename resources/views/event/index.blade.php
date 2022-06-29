@@ -160,38 +160,38 @@
     </div>
     <!-- Modal -->
     <div class="modal fade" id="eventView" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
-        aria-hidden="true">
+        aria-hidden="false">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Vista de la Cita</h5>
-                    <button type="button" id="btnClose" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" id="btnClose" onclick="window.location='/citas'" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="formView">
                         {!! csrf_field() !!}
                         <div class="mb-1 inputId">
                             <label for="id" class="form-label">id</label>
-                            <input type="text" class="form-control  form-select-sm" name="id" id="id" aria-describedby="helpId" placeholder="" disabled>
+                            <input type="text" class="form-control  form-select-sm" name="id" id="id" aria-describedby="helpId" placeholder="">
                         </div>
                         <div class="mb-1">
                             <label for="pat_document" class="form-label">Documento</label>
                             <input type="number" class="form-control form-control-sm" name="pat_document" id="pat_document"
-                                aria-describedby="helpId" placeholder="" required disabled>
+                                aria-describedby="helpId" placeholder="" required>
                         </div>
                         <div class="mb-1">
                             <label for="pat_firstname" class="form-label">Nombre</label>
                             <input type="text" class="form-control form-select-sm" name="pat_firstname" id="pat_firstname" aria-describedby="helpId"
-                                placeholder="" disabled>
+                                placeholder="">
                         </div>
                         <div class="mb-1">
                             <label for="pat_lastname" class="form-label">Apellido</label>
                             <input type="text" class="form-control form-control-sm" name="pat_lastname" id="pat_lastname" aria-describedby="helpId"
-                                placeholder="" disabled>
+                                placeholder="">
                         </div>
                         <div class="mb-1">
                             <label for="description" class="form-label">Descripcion</label>
-                            <textarea class="form-control form-select-sm" name="description" id="description" rows="2" disabled></textarea>
+                            <textarea class="form-control form-select-sm" name="description" id="description" rows="2"></textarea>
                         </div>
                     </form>
                 </div>
@@ -203,7 +203,7 @@
         </div>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="eventActualizar" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal fade" id="eventUpdate" tabindex="-1">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

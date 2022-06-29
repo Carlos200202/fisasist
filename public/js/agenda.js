@@ -99,14 +99,29 @@ document.addEventListener("DOMContentLoaded", function () {
                     });
         },
         eventClick: (info) => {
-            
+            $('#eventView').modal({backdrop: 'static', keyboard: false})
+            $('#eventUpdate').modal({backdrop: 'static', keyboard: false})
             var event = info.event;
             formView.pat_document.value = info.event.extendedProps.pat_document;
             formView.pat_firstname.value = info.event.extendedProps.pat_firstname;
             formView.pat_lastname.value = info.event.extendedProps.pat_lastname;
             formView.description.value = info.event.extendedProps.description;
             formView.id.value = info.event.id;
-
+            // document
+            //     .getElementById("btnActualizar")
+            //     .addEventListener("click", function () {
+            //         $.ajax({
+            //             url: 'http://localhost:8000/citas/actualizar-cita/' + info.event.id,
+            //             data: {
+            //                 pat_document = info.event.extendedProps.pat_document,
+            //                 pat_firstname = info.event.extendedProps.pat_firstname,
+            //                 description = info.event.extendedProps.description,
+            //                 resourceId = info.event._def.resourceIds[0],
+            //                 type: 'update'
+            //             },
+            //             type: "POST",
+            //         });
+            //     });
             let cadena = info.event.startStr;
             let date = cadena.substring(0, 19);
             formUpdate.pat_document.value = info.event.extendedProps.pat_document;
@@ -120,13 +135,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 axios
                     .post("/citas/actualizar-cita/" + info.event.id, datosUpdate)
                     .then((response) => {
+                            $("#eventUpdate").modal("hide");
                         calendar.refetchEvents();
-                        $("#eventActualizar").modal("hide");
                         Swal.fire({
                             icon: "success",
                             title: "Enviado",
                             text: "Cita actualizada",
+                            showConfirmButton: false
                         });
+                        window.location.href = '/citas'
                     })
                     .catch((error) => {
                         if (error.response) {
@@ -202,15 +219,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
         },
         eventContent: (info) => {
+            let color;
             switch (info.event.extendedProps.fist_name) {
                 case 'Freddie Mercury':
                     color = '#FFFF33'
                 break;
                 case 'David Bowie':
-                    color = '#CCC'
+                    color = 'red'
                 break;
-                case 'Freddie Mercury':
-                    color = '#000'
+                case 'Bob Dylan':
+                    color = 'blue'
                 break;
             
             }
@@ -229,7 +247,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <img
                     class="flag-event"
                     src="https://${info.event.extendedProps.flag_img}"
-                    alt=""
+                    alt="flag"
                     />
                 </div>`,
             };
@@ -245,7 +263,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .getElementById("btnModificar")
         .addEventListener("click", function () {
             $("#eventView").modal("hide");
-            $("#eventActualizar").modal("show");
+            $("#eventUpdate").modal("show");
         });
     
     function sendData(url) {

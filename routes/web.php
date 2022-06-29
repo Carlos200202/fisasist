@@ -27,7 +27,7 @@ Route::post('/citas/agendar', [App\Http\Controllers\CitasController::class, 'sto
 
 Route::post('/citas/editar-cita/{id}', [App\Http\Controllers\CitasController::class, 'edit']);
 
-Route::post('/citas/actualizar-cita/{citas}', [App\Http\Controllers\CitasController::class, 'update']);
+Route::post('/citas/actualizar-cita/{citas}', [App\Http\Controllers\CitasController::class, 'update'])->name('citas.update');
 
 Route::post('/citas/borrar-cita/{id}', [App\Http\Controllers\CitasController::class, 'destroy'])->name('borrar-cita.destroy');
 

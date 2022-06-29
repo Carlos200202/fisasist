@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Citas;
 use Illuminate\Http\Request;
-use App\Http\Controllers\BD;
+use Illuminate\Support\Facades\DB;
 
 class CitasController extends Controller
 {
@@ -13,10 +13,18 @@ class CitasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        return view('event.index');
+        $search = trim($request->get('search'));
+        $citas = DB::table('citas')
+        ->select('id', 'pat_document', 'pat_firstname', 'pat_lastname', 'start', 'fist_name')
+        ->where('pat_document', 'LIKE', '%'.$search.'%')
+        ->orWhere('pat_firstname', 'LIKE', '%'.$search.'%')
+        ->orWhere('pat_lastname', 'LIKE', '%'.$search.'%')
+        ->orderBy('start', 'asc');
+        // dd($search);
+        return view('event.index', compact('citas', 'search'));
     }
 
     /**
@@ -75,8 +83,8 @@ class CitasController extends Controller
     public function edit($id)
     {
         //
-        // $citas = Citas::find($id);
-        // return response()->json($citas);
+        $citas = Citas::find($id);
+        return response()->json($citas);
     }
 
     /**

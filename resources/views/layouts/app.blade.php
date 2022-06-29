@@ -64,7 +64,14 @@
                             <a href="{{ url('/citas') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Citas</a>
                         </li>
                     </ul>
-
+                    @if(Route::is('citas') )
+                        <form action="{{ route('citas') }}" method="GET">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Buscar" aria-label="Buscador" aria-describedby="button-addon2" value="{{ $search }}">
+                                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Button</button>
+                            </div>
+                        </form>
+                    @endif
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->

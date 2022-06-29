@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Fisioterapeutas extends Model
 {
     use HasFactory;
+
 }
