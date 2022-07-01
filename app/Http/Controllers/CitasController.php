@@ -16,15 +16,7 @@ class CitasController extends Controller
     public function index(Request $request)
     {
         //
-        $search = trim($request->get('search'));
-        $citas = DB::table('citas')
-        ->select('id', 'pat_document', 'pat_firstname', 'pat_lastname', 'start', 'fist_name')
-        ->where('pat_document', 'LIKE', '%'.$search.'%')
-        ->orWhere('pat_firstname', 'LIKE', '%'.$search.'%')
-        ->orWhere('pat_lastname', 'LIKE', '%'.$search.'%')
-        ->orderBy('start', 'asc');
-        // dd($search);
-        return view('event.index', compact('citas', 'search'));
+        return view('event.index');
     }
 
     /**
