@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pacientes;
+use App\Models\Paciente;
 use Illuminate\Http\Request;
 
 class PacientesController extends Controller
@@ -15,6 +15,7 @@ class PacientesController extends Controller
     public function index()
     {
         //
+        return view('event.index');
     }
 
     /**
@@ -41,10 +42,10 @@ class PacientesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Pacientes  $pacientes
+     * @param  \App\Models\Paciente  $paciente
      * @return \Illuminate\Http\Response
      */
-    public function show(Pacientes $pacientes)
+    public function show(Paciente $paciente)
     {
         //
     }
@@ -55,7 +56,7 @@ class PacientesController extends Controller
      * @param  \App\Models\Pacientes  $pacientes
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pacientes $pacientes)
+    public function edit(Paciente $paciente)
     {
         //
     }
@@ -64,10 +65,10 @@ class PacientesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Pacientes  $pacientes
+     * @param  \App\Models\Paciente  $paciente
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pacientes $pacientes)
+    public function update(Request $request, Paciente $paciente)
     {
         //
     }
@@ -75,11 +76,25 @@ class PacientesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Pacientes  $pacientes
+     * @param  \App\Models\Paciente  $paciente
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pacientes $pacientes)
+    public function destroy(Paciente $paciente)
     {
         //
+    }
+
+    public function autocompletePat(Request $request)
+    {
+        $term = $request->get('term');
+        $querys = Paciente::where('pat_document', 'LIKE', '%'.$term.'%')->get();
+        $data = [];
+        foreach ($querys as $querys){
+            $data[] = [
+                'label' => $querys->pat_document,
+                'value' => $querys->id
+            ];
+        }
+        return $data;
     }
 }

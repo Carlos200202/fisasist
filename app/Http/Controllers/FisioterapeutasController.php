@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Fisioterapeutas;
+use App\Models\Fisioterapeuta;
 use Illuminate\Http\Request;
 
 class FisioterapeutasController extends Controller
@@ -41,10 +41,10 @@ class FisioterapeutasController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Fisioterapeutas  $fisioterapeutas
+     * @param  \App\Models\Fisioterapeuta  $fisioterapeuta
      * @return \Illuminate\Http\Response
      */
-    public function show(Fisioterapeutas $fisioterapeutas)
+    public function show(Fisioterapeuta $fisioterapeuta)
     {
         //
     }
@@ -52,10 +52,10 @@ class FisioterapeutasController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Fisioterapeutas  $fisioterapeutas
+     * @param  \App\Models\Fisioterapeuta  $fisioterapeuta
      * @return \Illuminate\Http\Response
      */
-    public function edit(Fisioterapeutas $fisioterapeutas)
+    public function edit(Fisioterapeuta $fisioterapeutas)
     {
         //
     }
@@ -64,10 +64,10 @@ class FisioterapeutasController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Fisioterapeutas  $fisioterapeutas
+     * @param  \App\Models\Fisioterapeuta  $fisioterapeuta
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Fisioterapeutas $fisioterapeutas)
+    public function update(Request $request, Fisioterapeuta $fisioterapeuta)
     {
         //
     }
@@ -75,10 +75,10 @@ class FisioterapeutasController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Fisioterapeutas  $fisioterapeutas
+     * @param  \App\Models\Fisioterapeuta  $fisioterapeuta
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Fisioterapeutas $fisioterapeutas)
+    public function destroy(Fisioterapeuta $fisioterapeuta)
     {
         //
     }

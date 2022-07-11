@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Citas;
+use App\Models\Cita;
+use App\Models\Fisioterapeuta;
+use App\Models\Paciente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -16,7 +18,10 @@ class CitasController extends Controller
     public function index(Request $request)
     {
         //
-        return view('event.index');
+
+        $fisioterapeutas = Fisioterapeuta::all();
+
+        return view('event.index')->with(compact('fisioterapeutas'));
     }
 
     /**
@@ -38,13 +43,11 @@ class CitasController extends Controller
     public function store(Request $request)
     {
         //
-        request()->validate(Citas::$rules); //$request->all()
-        $citas =  Citas::create($request->validate([
-                'pat_document' => "required",
-                'pat_firstname' => "required",
-                'pat_lastname' => "required",
+        request()->validate(Cita::$rules); //$request->all()
+        $citas =  Cita::create($request->validate([
+                'paciente_id' => "required",
                 'description' => "required",
-                'fist_name' => "required",
+                'fisioterapeuta_id' => "required",
                 'resourceId' => "required",
                 'flag_img' => "required",
                 'start' => "required",
@@ -56,42 +59,54 @@ class CitasController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Citas  $citas
+     * @param  \App\Models\Cita  $citas
      * @return \Illuminate\Http\Response
      */
-    public function show(Citas $citas)
+    public function show(Cita $cita)
     {
-        //
-        $citas = Citas::all();
+        $sql = 'SELECT * FROM citas';
+        $citas = DB::select($sql);
         return response()->json($citas);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Citas  $citas
+     * @param  \App\Models\Cita  $citas
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         //
-        $citas = Citas::find($id);
-        return response()->json($citas);
+        $citas = Cita::findOrFail($id);
+        $fisioterapeutas = Fisioterapeuta::all();
+        $fiste = DB::select('select `fisioterapeutas`.`fiste_name` from `citas` inner join `fisioterapeutas` on `citas`.`fisioterapeuta_id` = `fisioterapeutas`.`id`');
+        // dd($fiste);
+        return view('event.edit', compact('citas', 'fisioterapeutas', 'fiste'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Citas  $citas
+     * @param  \App\Models\Cita  $citas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Citas $citas)
+    public function update(Request $request, $id)
     {
         //
-        request()->validate(Citas::$rules);
-        $citas->update($request->all());
-        return response()->json($citas);
+        // request()->validate(Cita::$rules);
+        // $cita->update($request->all());
+        // dd(response()->json($cita));
+        // return response()->json($cita);
+        $cita = Cita::find($id);
+        $cita->name = $request->input('fisioterapeuta_id');
+        $cita->email = $request->input('description');
+        // $cita->course = $request->input('course');
+        // $cita->section = $request->input('section');
+        $cita->save();
+        return redirect('/citas')->with('success', 'Cita updated.');
+        // return redirect()->back()->with('status','Student Updated Successfully');
     }
 
     /**
@@ -103,7 +118,7 @@ class CitasController extends Controller
     public function destroy($id)
     {
         //
-        $citas = Citas::find($id)->delete();
-        return response()->json($citas);
+        $cita = Cita::find($id)->delete();
+        return response()->json($cita);
     }
 }

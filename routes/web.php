@@ -25,10 +25,16 @@ Route::get('/citas', [App\Http\Controllers\CitasController::class, 'index'])->na
 
 Route::post('/citas/agendar', [App\Http\Controllers\CitasController::class, 'store']);
 
-Route::post('/citas/editar-cita/{id}', [App\Http\Controllers\CitasController::class, 'edit']);
+Route::get('/citas/editar-cita/{id}', [App\Http\Controllers\CitasController::class, 'edit'])->name('event.edit');
 
-Route::post('/citas/actualizar-cita/{citas}', [App\Http\Controllers\CitasController::class, 'update'])->name('citas.update');
+// Route::post('/citas/actualizar-cita/{id}', [App\Http\Controllers\CitasController::class, 'update'])->name('citas.update');
 
-Route::post('/citas/borrar-cita/{id}', [App\Http\Controllers\CitasController::class, 'destroy'])->name('borrar-cita.destroy');
+// Route::post('/citas/borrar-cita/{id}', [App\Http\Controllers\CitasController::class, 'destroy'])->name('borrar-cita.destroy');
 
 Route::get('/citas/ver-cita', [App\Http\Controllers\CitasController::class, 'show']);
+
+// pruebas
+
+// Route::get('/prueba', [App\Http\Controllers\PacientesController::class, 'index']);
+
+Route::get('/citas/autocomplete', [App\Http\Controllers\PacientesController::class, 'autocompletePat'])->name('index.autocompletePat');

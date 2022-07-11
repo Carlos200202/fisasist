@@ -15,10 +15,14 @@ return new class extends Migration
     {
         Schema::create('citas', function (Blueprint $table) {
             $table->id();
-            $table->string("pat_document", 10);
-            $table->string("pat_firstname");
-            $table->string("pat_lastname");
-            $table->string("fist_name");
+            $table->unsignedBigInteger('paciente_id');
+            $table->foreign('paciente_id')
+                ->references('id')
+                ->on('pacientes');
+            $table->unsignedBigInteger('fisioterapeuta_id');
+            $table->foreign('fisioterapeuta_id')
+                ->references('id')
+                ->on('fisioterapeutas');
             $table->text("description");
             $table->string("flag_img");
             $table->string("resourceId");
