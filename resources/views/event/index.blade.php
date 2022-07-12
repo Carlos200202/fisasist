@@ -141,7 +141,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success"  id="btnGuardar">Guardar</button>
+                    <button type="submit" class="btn btn-success btn.sm"  id="btnGuardar">Guardar</button>
                 </div>
             </div>
         </div>
@@ -153,7 +153,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Vista de la Cita</h5>
-                    <button type="button" id="btnClose" onclick="window.location='/citas'" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" id="btnClose" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="formView">
@@ -177,11 +177,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary btn-sm" id="btnEditar">Editar</button>
-                    <button type="button" class="btn btn-danger" id="btnEliminar">Eliminar</button>
+                    <button type="button" class="btn btn-danger btn-sm" id="btnEliminar">Eliminar</button>
                 </div>
             </div>
         </div>
     </div>
-    
-       
 @endsection

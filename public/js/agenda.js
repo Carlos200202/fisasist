@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
         slotDuration: "1:00", //duracion de cada evento en la tabla (quita la opcion de media hora que trae por defecto)
         selectable: true, //se puede visualizar como se seleciona una casilla
         selectMirror: false,
+        themeSystem: "bootstrap5",
         eventStartEditable: true, //Permite que las horas de inicio de los eventos se puedan editar arrastrando
         nowIndicator: true, //deja una linea mostrando la hora actual
         eventOverlap: false,
@@ -54,13 +55,10 @@ document.addEventListener("DOMContentLoaded", function () {
             form.reset();
             let cadena = info.dateStr;
             let date = cadena.substring(0, 19);
-            // console.log("time: ", date);
             form.start.value = date;
             form.end.value = date;
             form.resourceId.value = info.resource._resource.id;
             var actual = new Date();
-            // console.log(info);
-            // console.log("actual: " + actual);
             if (info.date >= actual) {
                 $("#event").modal("show");
             } else {
@@ -74,9 +72,8 @@ document.addEventListener("DOMContentLoaded", function () {
         eventDrop: (info) => {
             let cadena = info.event.startStr;
             let date = cadena.substring(0, 19);
-            console.log(date + '' + info.event._def.resourceIds[0])
                 axios
-                    .post("/citas/actualizar-cita/" + info.event.id, {
+                    .post("/citas/actualizar-drop/" + info.event.id, {
                         resourceId: info.event._def.resourceIds[0],
                         start: date,
                         end: date
@@ -101,49 +98,12 @@ document.addEventListener("DOMContentLoaded", function () {
                     });
         },
         eventClick: (info) => {
-            $('#eventView').modal({backdrop: 'static', keyboard: false})
-            $('#eventUpdate').modal({backdrop: 'static', keyboard: false})
-            // var event = info.event;
-            // console.log(event.extendedProps.paciente_id)
+            console.log(info.event.extendedProps)
             formView.paciente_id.value = info.event.extendedProps.paciente_id;
             formView.fisioterapeuta_id.value = info.event.extendedProps.fisioterapeuta_id;
             formView.description.value = info.event.extendedProps.description;
             formView.id.value = info.event.id;
 
-            // let cadena = info.event.startStr;
-            // let date = cadena.substring(0, 19);
-            // formUpdate.paciente_id.value = info.event.extendedProps.paciente_id;
-            // formUpdate.fisioterapeuta_id.value = info.event.extendedProps.fisioterapeuta_id;
-            // formUpdate.description.value = info.event.extendedProps.description;
-            // formUpdate.resourceId.value = info.event._def.resourceIds[0];
-            // document
-            //     .getElementById("btnActualizar")
-            //     .addEventListener("click", function () {
-            //     const datosUpdate = new FormData(formUpdate);
-            //     axios
-            //         .post("/citas/actualizar-cita/" + info.event.id, datosUpdate)
-            //         .then((response) => {
-            //                 $("#eventUpdate").modal("hide");
-            //             calendar.refetchEvents();
-            //             Swal.fire({
-            //                 icon: "success",
-            //                 title: "Enviado",
-            //                 text: "Cita actualizada",
-            //                 showConfirmButton: false
-            //             });
-            //             window.location.href = '/citas'
-            //         })
-            //         .catch((error) => {
-            //             if (error.response) {
-            //                 calendar.refetchEvents();
-            //                 Swal.fire({
-            //                     icon: "error",
-            //                     title: "Error",
-            //                     text: "No se pudo actualizar la cita",
-            //                 });
-            //             }
-            //         });
-            //     });
             document
                 .getElementById("btnEliminar")
                 .addEventListener("click", function () {
@@ -224,7 +184,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     />
                     <div
                     class="box-event"
-                    style="background-color: "
+                    style="background-color: ${info.event.extendedProps.fiste_hexcolor}"
                     ></div>
                     <img
                     class="flag-event"
@@ -240,12 +200,6 @@ document.addEventListener("DOMContentLoaded", function () {
         .getElementById("btnGuardar")
         .addEventListener("click", function () {
             sendData("/citas/agendar");
-        });
-    document
-        .getElementById("btnModificar")
-        .addEventListener("click", function () {
-            $("#eventView").modal("hide");
-            $("#eventUpdate").modal("show");
         });
         
     function sendData(url) {
@@ -275,6 +229,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+            
+            
 
 let resource = [
     {

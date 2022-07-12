@@ -20,8 +20,10 @@ class CitasController extends Controller
         //
 
         $fisioterapeutas = Fisioterapeuta::all();
-
-        return view('event.index')->with(compact('fisioterapeutas'));
+        $citas = Cita::all();
+        $fiste = DB::select('select `fisioterapeutas`.`id`, `fisioterapeutas`.`fiste_name`  from `citas` inner join `fisioterapeutas` on '.$citas[0]->fisioterapeuta_id.' = `fisioterapeutas`.`id`');
+        // dd($fiste);
+        return view('event.index')->with(compact('fisioterapeutas', 'fiste'));
     }
 
     /**
@@ -64,8 +66,10 @@ class CitasController extends Controller
      */
     public function show(Cita $cita)
     {
-        $sql = 'SELECT * FROM citas';
+        // $sql = 'SELECT * FROM citas';
+        $sql = 'SELECT fisioterapeutas.fiste_id, fisioterapeutas.fiste_name, fisioterapeutas.fiste_hexcolor, citas.id, citas.paciente_id, citas.fisioterapeuta_id, citas.description, citas.flag_img, citas.resourceId, citas.start, citas.end FROM citas INNER JOIN fisioterapeutas';
         $citas = DB::select($sql);
+        // dd($citas);
         return response()->json($citas);
     }
 
@@ -80,8 +84,9 @@ class CitasController extends Controller
         //
         $citas = Cita::findOrFail($id);
         $fisioterapeutas = Fisioterapeuta::all();
-        $fiste = DB::select('select `fisioterapeutas`.`fiste_name` from `citas` inner join `fisioterapeutas` on `citas`.`fisioterapeuta_id` = `fisioterapeutas`.`id`');
+        $fiste = DB::select('select `fisioterapeutas`.`id`, `fisioterapeutas`.`fiste_name`  from `citas` inner join `fisioterapeutas` on '.$citas->fisioterapeuta_id.' = `fisioterapeutas`.`id`');
         // dd($fiste);
+
         return view('event.edit', compact('citas', 'fisioterapeutas', 'fiste'));
     }
 
@@ -95,18 +100,25 @@ class CitasController extends Controller
     public function update(Request $request, $id)
     {
         //
-        // request()->validate(Cita::$rules);
-        // $cita->update($request->all());
-        // dd(response()->json($cita));
-        // return response()->json($cita);
-        $cita = Cita::find($id);
-        $cita->name = $request->input('fisioterapeuta_id');
-        $cita->email = $request->input('description');
-        // $cita->course = $request->input('course');
-        // $cita->section = $request->input('section');
-        $cita->save();
-        return redirect('/citas')->with('success', 'Cita updated.');
-        // return redirect()->back()->with('status','Student Updated Successfully');
+        $citas = Cita::find($id);
+        $this->validate($request, [
+            'fisioterapeuta_id' => 'required',
+            'description' => 'required'
+        ]);
+    
+        $input = $request->all();
+    
+        $citas->fill($input)->save();
+        $citas->save();
+        return redirect()->route('citas');
+    }
+    public function updateDrop(Request $request, $id)
+    {
+        //
+        $citas = Cita::find($id);
+        $cita = $request->all();
+        $citas->fill($cita);
+        $citas->save();
     }
 
     /**

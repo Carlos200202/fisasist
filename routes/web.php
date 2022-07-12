@@ -27,7 +27,9 @@ Route::post('/citas/agendar', [App\Http\Controllers\CitasController::class, 'sto
 
 Route::get('/citas/editar-cita/{id}', [App\Http\Controllers\CitasController::class, 'edit'])->name('event.edit');
 
-// Route::post('/citas/actualizar-cita/{id}', [App\Http\Controllers\CitasController::class, 'update'])->name('citas.update');
+Route::post('/citas/actualizar-cita/{id}', [App\Http\Controllers\CitasController::class, 'update'])->name('event.update');
+
+Route::post('/citas/actualizar-drop/{id}', [App\Http\Controllers\CitasController::class, 'updateDrop']);
 
 // Route::post('/citas/borrar-cita/{id}', [App\Http\Controllers\CitasController::class, 'destroy'])->name('borrar-cita.destroy');
 
