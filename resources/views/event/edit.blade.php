@@ -5,7 +5,6 @@
     <div class="card" style="width: 50%; margin-top: 5%;">
         <div class="card-body">
             <form  action="{{ route('event.update', $citas->id) }}" method="POST"> 
-                {{-- @method('PosT')  --}}
                 @csrf
                 <div class="mb-1">
                     <label for="fisioterapeuta_id" class="form-label">Fisioterapeuta</label>
@@ -16,6 +15,15 @@
                         @foreach ($fisioterapeutas as $fiste)
                             <option value="{{ $fiste->id }}">{{ $fiste->fiste_name }}</option>
                         @endforeach
+                    </select>
+                </div>
+                <div class="mb-1">
+                    <label for="flag_img" class="form-label">Riesgo</label>
+                    <select class="form-select form-select-sm" name="flag_img" id="flag_img" aria-label=".form-select-sm example">
+                        <option selected disabled>Seleccionar</option>
+                        <option value="cdn-icons-png.flaticon.com/512/395/395841.png">Alto</option>
+                        <option value="cdn-icons-png.flaticon.com/512/148/148880.png">Intermedio</option>
+                        <option value="cdn-icons-png.flaticon.com/512/2107/2107961.png">Bajo</option>
                     </select>
                 </div>
                 <div class="mb-3">

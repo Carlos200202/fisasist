@@ -22,7 +22,7 @@ class CitasController extends Controller
         $fisioterapeutas = Fisioterapeuta::all();
         $citas = Cita::all();
         $fiste = DB::select('select `fisioterapeutas`.`id`, `fisioterapeutas`.`fiste_name`  from `citas` inner join `fisioterapeutas` on '.$citas[0]->fisioterapeuta_id.' = `fisioterapeutas`.`id`');
-        // dd($fiste);
+        // dd($pacientes);
         return view('event.index')->with(compact('fisioterapeutas', 'fiste'));
     }
 
@@ -48,7 +48,7 @@ class CitasController extends Controller
         request()->validate(Cita::$rules); //$request->all()
         $citas =  Cita::create($request->validate([
                 'paciente_id' => "required",
-                'description' => "required",
+                'descriptio' => "required",
                 'fisioterapeuta_id' => "required",
                 'resourceId' => "required",
                 'flag_img' => "required",
@@ -67,7 +67,12 @@ class CitasController extends Controller
     public function show(Cita $cita)
     {
         // $sql = 'SELECT * FROM citas';
-        $sql = 'SELECT fisioterapeutas.fiste_id, fisioterapeutas.fiste_name, fisioterapeutas.fiste_hexcolor, citas.id, citas.paciente_id, citas.fisioterapeuta_id, citas.description, citas.flag_img, citas.resourceId, citas.start, citas.end FROM citas INNER JOIN fisioterapeutas';
+        $sql = 'SELECT pacientes.pat_firstname, pacientes.pat_lastname, pacientes.pat_document, 
+        fisioterapeutas.fiste_id, fisioterapeutas.fiste_name, fisioterapeutas.fiste_hexcolor, 
+        citas.id, citas.paciente_id, citas.fisioterapeuta_id, citas.description, citas.flag_img, 
+        citas.resourceId, citas.start, citas.end, citas.id as id_citas, citas.start as date_start FROM citas INNER JOIN pacientes 
+        ON citas.paciente_id = pacientes.id INNER JOIN fisioterapeutas  ON 
+        citas.fisioterapeuta_id = fisioterapeutas.id';
         $citas = DB::select($sql);
         // dd($citas);
         return response()->json($citas);
@@ -131,6 +136,7 @@ class CitasController extends Controller
     {
         //
         $cita = Cita::find($id)->delete();
+        dd($cita);
         return response()->json($cita);
     }
 }

@@ -117,7 +117,6 @@
                             <label for="resourceId" class="form-label">Espacio</label>
                             <input type="text" class="form-control form-control-sm" name="resourceId" id="resourceId" rows="2">
                         </div>
-                        
                         <div class="mb-1">
                             <label for="flag_img" class="form-label">Riesgo</label>
                             <select class="form-select form-select-sm" name="flag_img" id="flag_img" aria-label=".form-select-sm example">
@@ -152,26 +151,41 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Vista de la Cita</h5>
+                    <h5 class="modal-title">Cita</h5>
                     <button type="button" id="btnClose" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="formView">
                         {!! csrf_field() !!}
                         <div class="mb-1 inputId">
-                            <input type="hidden" class="form-control  form-select-sm" value="" name="id" id="id" aria-describedby="helpId" placeholder="">
+                            <input type="hidden" class="form-control  form-select-sm" value="" name="id" id="id" aria-describedby="helpId" disabled>
                         </div>
-                        <div class="mb-1 inputId">
-                            <label for="paciente_id" class="form-label">paciente</label>
-                            <input type="text" class="form-control  form-select-sm" name="paciente_id" id="paciente_id" aria-describedby="helpId" placeholder="">
+                        <div class="">
+                            <div class="d-flex justify-content-between" style="margin: 0">
+                                <div class="mb-1 col-4">
+                                    <label for="pat_document" class="form-label">Documento</label>
+                                    <input type="text" class="form-control  form-select-sm" name="pat_document" id="pat_document" aria-describedby="helpId" disabled>
+                                </div>
+                                <div class="mb-1 col-3">
+                                    <label for="pat_firstname" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control  form-select-sm" name="pat_firstname" id="pat_firstname" aria-describedby="helpId" disabled>
+                                </div>
+                                <div class="mb-1 col-3">
+                                    <label for="pat_lastname" class="form-label">Apellido</label>
+                                    <input type="text" class="form-control  form-select-sm" name="pat_lastname" id="pat_lastname" aria-describedby="helpId" disabled>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-sm" id="btnEditarPaciente">editar paciente</button>
                         </div>
-                        <div class="mb-1 inputId">
-                            <label for="fisioterapeuta_id" class="form-label">fisioterapeuta</label>
-                            <input type="text" class="form-control  form-select-sm" name="fisioterapeuta_id" id="fisioterapeuta_id" aria-describedby="helpId" placeholder="">
+                        
+                        
+                        <div class="mb-1 col-3">
+                            <label for="fiste_name" class="form-label">Fisioterapeuta</label>
+                            <input type="text" class="form-control  form-select-sm" name="fiste_name" id="fiste_name" aria-describedby="helpId" disabled>
                         </div>
                         <div class="mb-1">
-                            <label for="description" class="form-label">Descripcion</label>
-                            <textarea class="form-control form-select-sm" name="description" id="description" rows="2"></textarea>
+                            <label for="description" class="form-label">Observaciones</label>
+                            <textarea class="form-control form-select-sm" name="description" id="description" rows="2" disabled></textarea>
                         </div>
                     </form>
                 </div>

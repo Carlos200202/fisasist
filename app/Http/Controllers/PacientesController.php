@@ -56,9 +56,13 @@ class PacientesController extends Controller
      * @param  \App\Models\Pacientes  $pacientes
      * @return \Illuminate\Http\Response
      */
-    public function edit(Paciente $paciente)
+    public function edit(Paciente $paciente, $id)
     {
         //
+        $paciente = Paciente::findOrFail($id);
+        // dd($fiste);
+
+        return view('pacientes.edit');
     }
 
     /**

@@ -23,6 +23,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/citas', [App\Http\Controllers\CitasController::class, 'index'])->name('citas');
 
+Route::get('/paciente/editar-paciente/{pat_document}', [App\Http\Controllers\CitasController::class, 'edit'])->name('pacientes.edit');
+
 Route::post('/citas/agendar', [App\Http\Controllers\CitasController::class, 'store']);
 
 Route::get('/citas/editar-cita/{id}', [App\Http\Controllers\CitasController::class, 'edit'])->name('event.edit');

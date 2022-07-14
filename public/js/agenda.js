@@ -26,6 +26,19 @@ document.addEventListener("DOMContentLoaded", function () {
         editable: true, // allow event dragging
         eventResourceEditable: true,
         timeZone: "local",
+        dayMaxEvents: true,
+        eventMouseover: function(event, jsEvent, view) {
+            $('.fc-event-inner', this).append('<div id=\"'+event.id+'\" class=\"hover-end\">'+$.fullCalendar.formatDate(event.end, 'h:mmt')+'</div>');
+        },
+        eventMouseover: function (info, event, jsEvent) {
+            $(info.el).popover({
+                title: title,
+                placement:'top',
+                trigger : 'hover',
+                content: startTime + " to " + endTime + " " + location,
+                container:'body'
+            }).popover('show');
+        },
         buttonText: {
             today: "Hoy",
             month: "Mes",
@@ -70,6 +83,8 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         },
         eventDrop: (info) => {
+            
+            console.log(info)
             let cadena = info.event.startStr;
             let date = cadena.substring(0, 19);
                 axios
@@ -99,8 +114,11 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         eventClick: (info) => {
             console.log(info.event.extendedProps)
-            formView.paciente_id.value = info.event.extendedProps.paciente_id;
-            formView.fisioterapeuta_id.value = info.event.extendedProps.fisioterapeuta_id;
+            formView.pat_document.value = info.event.extendedProps.pat_document;
+            formView.pat_firstname.value = info.event.extendedProps.pat_firstname;
+            formView.pat_lastname.value = info.event.extendedProps.pat_lastname;
+
+            formView.fiste_name.value = info.event.extendedProps.fiste_name;
             formView.description.value = info.event.extendedProps.description;
             formView.id.value = info.event.id;
 
@@ -109,8 +127,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 .addEventListener("click", function () {
                     const swalWithBootstrapButtons = Swal.mixin({
                         customClass: {
-                            confirmButton: "btn btn-success",
-                            cancelButton: "btn btn-danger",
+                            confirmButton: "btn btn-danger",
+                            cancelButton: "btn btn-primary",
                         },
                         buttonsStyling: false,
                     });
@@ -159,21 +177,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     .addEventListener("click", function () {
                         window.location = `/citas/editar-cita/${info.event.id}`;
                     });
+                document
+                    .getElementById("btnEditarPaciente")
+                    .addEventListener("click", function () {
+                        window.location = `/paciente/editar-paciente/${info.event.extendedProps.pat_document}`;
+                    });
         },
         eventContent: (info) => {
-            // let color;
-            // switch (info.event.extendedProps.fist_name) {
-            //     case 'Freddie Mercury':
-            //         color = '#FFFF33'
-            //     break;
-            //     case 'David Bowie':
-            //         color = 'red'
-            //     break;
-            //     case 'Bob Dylan':
-            //         color = 'blue'
-            //     break;
-            
-            // }
             return {
                 html: `
                 <div class="content-event">
