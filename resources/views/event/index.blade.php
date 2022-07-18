@@ -90,7 +90,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Agendar Cita</h5>
+                    <h5 class="modal-title">Agendar</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -110,7 +110,7 @@
                             </select>
                         </div>
                         <div class="mb-1">
-                            <label for="description" class="form-label">Descripcion</label>
+                            <label for="description" class="form-label">Observaciones</label>
                             <textarea class="form-control form-control-sm" name="description" id="description" rows="2" required></textarea>
                         </div>
                         <div class="mb-1 noneValue">
@@ -175,7 +175,7 @@
                                     <input type="text" class="form-control  form-select-sm" name="pat_lastname" id="pat_lastname" aria-describedby="helpId" disabled>
                                 </div>
                             </div>
-                            <button class="btn btn-primary btn-sm" id="btnEditarPaciente">editar paciente</button>
+                            <button type="button" class="btn btn-primary btn-sm" id="btnEditarPaciente">editar <i class='bx bxs-user-rectangle'></i></button>
                         </div>
                         
                         
@@ -190,8 +190,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary btn-sm" id="btnEditar">Editar</button>
-                    <button type="button" class="btn btn-danger btn-sm" id="btnEliminar">Eliminar</button>
+                    <button type="button" class="btn btn-primary btn-sm" id="btnEditar"><i class='bx bx-edit'></i></button>
+                    <button type="button" class="btn btn-danger btn-sm" id="btnEliminar"><i class='bx bxs-trash'></i></button>
                 </div>
             </div>
         </div>

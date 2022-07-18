@@ -19,11 +19,19 @@ Route::get('/', function () {
 
 Auth::routes();
 
+// url's principales
+ 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/citas', [App\Http\Controllers\CitasController::class, 'index'])->name('citas');
 
-Route::get('/paciente/editar-paciente/{pat_document}', [App\Http\Controllers\CitasController::class, 'edit'])->name('pacientes.edit');
+//url's pacientes
+
+Route::get('/paciente/{id}/editar-paciente', [App\Http\Controllers\PacientesController::class, 'edit'])->name('pacientes.edit-paciente');
+
+Route::post('/paciente/actualizar-paciente/{id}', [App\Http\Controllers\PacientesController::class, 'update'])->name('pacientes.update');
+
+//url's citas
 
 Route::post('/citas/agendar', [App\Http\Controllers\CitasController::class, 'store']);
 
@@ -33,12 +41,10 @@ Route::post('/citas/actualizar-cita/{id}', [App\Http\Controllers\CitasController
 
 Route::post('/citas/actualizar-drop/{id}', [App\Http\Controllers\CitasController::class, 'updateDrop']);
 
-// Route::post('/citas/borrar-cita/{id}', [App\Http\Controllers\CitasController::class, 'destroy'])->name('borrar-cita.destroy');
+Route::post('/citas/borrar-cita/{id}', [App\Http\Controllers\CitasController::class, 'destroy'])->name('borrar-cita.destroy');
 
 Route::get('/citas/ver-cita', [App\Http\Controllers\CitasController::class, 'show']);
 
 // pruebas
 
-// Route::get('/prueba', [App\Http\Controllers\PacientesController::class, 'index']);
-
-Route::get('/citas/autocomplete', [App\Http\Controllers\PacientesController::class, 'autocompletePat'])->name('index.autocompletePat');
+// Route::get('/citas/autocomplete', [App\Http\Controllers\PacientesController::class, 'autocompletePat'])->name('index.autocompletePat');

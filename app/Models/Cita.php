@@ -11,7 +11,7 @@ class Cita extends Model
 
     static $rules = ['paciente_id','fisioterapeuta_id','flag_img','description','resourceId','start','end',];
 
-    protected $fillable = ['flag_img','description','resourceId','start','end','fisioterapeuta_id','paciente_id','start','end'];
+    protected $fillable = ['flag_img','description','resourceId','start','end','fisioterapeuta_id','paciente_id'];
 
     public function fisioterapeuta(){
         return $this->belongsToMany(Fisioterapeuta::class);

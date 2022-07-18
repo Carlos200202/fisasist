@@ -133,8 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         buttonsStyling: false,
                     });
 
-                    swalWithBootstrapButtons
-                        .fire({
+                    swalWithBootstrapButtons.fire({
                             title: "Quieres eliminar este registro?",
                             text: "Estas apunto de eliminar una cita!",
                             icon: "warning",
@@ -180,7 +179,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 document
                     .getElementById("btnEditarPaciente")
                     .addEventListener("click", function () {
-                        window.location = `/paciente/editar-paciente/${info.event.extendedProps.pat_document}`;
+                        window.location = `/paciente/${info.event.extendedProps.paciente_id}/editar-paciente`;
                     });
         },
         eventContent: (info) => {

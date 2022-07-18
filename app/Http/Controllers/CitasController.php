@@ -45,10 +45,10 @@ class CitasController extends Controller
     public function store(Request $request)
     {
         //
-        request()->validate(Cita::$rules); //$request->all()
+        request()->validate(Cita::$rules);
         $citas =  Cita::create($request->validate([
                 'paciente_id' => "required",
-                'descriptio' => "required",
+                'description' => "required",
                 'fisioterapeuta_id' => "required",
                 'resourceId' => "required",
                 'flag_img' => "required",
@@ -135,8 +135,10 @@ class CitasController extends Controller
     public function destroy($id)
     {
         //
-        $cita = Cita::find($id)->delete();
-        dd($cita);
+        // $cita = Cita::find($id)->delete();
+        // dd($cita);
+        $cita = DB::statement('DELETE FROM `citas` WHERE `citas`.`id` ='.$id);
+        
         return response()->json($cita);
     }
 }

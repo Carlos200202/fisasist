@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Paciente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class PacientesController extends Controller
 {
@@ -60,9 +61,7 @@ class PacientesController extends Controller
     {
         //
         $paciente = Paciente::findOrFail($id);
-        // dd($fiste);
-
-        return view('pacientes.edit');
+        return view('pacientes.edit-paciente', compact('paciente'));
     }
 
     /**
@@ -72,9 +71,20 @@ class PacientesController extends Controller
      * @param  \App\Models\Paciente  $paciente
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Paciente $paciente)
+    public function update(Request $request, $id)
     {
         //
+        $paciente = Paciente::find($id);
+        $request->validate([
+            'pat_firstname' => 'required',
+            'pat_lastname' => 'required',
+            'pat_document' => 'required',
+            'pat_ages' => 'required',
+        ]);
+        $paciente->update($request->all());
+
+        return redirect()->route('citas')
+            ->with('success','Paciente updated successfully');
     }
 
     /**
