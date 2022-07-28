@@ -8,8 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Paciente extends Model
 {
     use HasFactory;
-    protected $fillable = ['pat_firstname', 'pat_lastname', 'pat_document', 'pat_ages', 'cita_id']; // 'cita_id'
+    protected $fillable = ['pat_firstname', 'pat_lastname', 'pat_document', 'pat_ages', 'cita_id'];
     public function cita(){
         return $this->belongsToMany(Cita::class);
+    }
+    public function entidad(){
+        return $this->hasMany(Entidad::class);
     }
 }

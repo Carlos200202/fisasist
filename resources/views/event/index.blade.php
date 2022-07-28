@@ -8,7 +8,6 @@
         a {
             text-decoration: none;
         }
-
         .fc-col-header-cell-cushion {
             font-size: 10px;
         }
@@ -77,8 +76,11 @@
             justify-content: space-around !important;
             margin: 1.25em 70px 0 !important;
         }
-        .noneValue{
+        .noneValue {
             display: none
+        }
+        textarea {
+            resize: none;
         }
     </style>
 
@@ -94,6 +96,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    
                     <form id="form">
                         {!! csrf_field() !!}
                         <div class="mb-1">
@@ -190,7 +193,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary btn-sm" id="btnEditar"><i class='bx bx-edit'></i></button>
+                    <button type="button" class="btn btn-primary btn-sm" id="btnEditar" aria-label="editar"><i class='bx bx-edit'></i></button>
                     <button type="button" class="btn btn-danger btn-sm" id="btnEliminar"><i class='bx bxs-trash'></i></button>
                 </div>
             </div>
