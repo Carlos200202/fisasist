@@ -1,4 +1,4 @@
- @extends('layouts.app')
+@extends('layouts.app')
 
 @section('content')
 <style>
@@ -85,17 +85,19 @@
 .login {
 	width: 320px;
 	padding: 30px;
-	padding-top: 156px;
+	padding-top: 86px;
 }
 
 .login__field {
-	padding: 20px 0px;	
+	padding: 10px 0px;	
 	position: relative;	
+	display: flex;
+	align-items: center
 }
 
 .login__icon {
 	position: absolute;
-	top: 30px;
+	left: 5px;
 	color: #7875B5;
 }
 
@@ -105,7 +107,7 @@
 	background: none;
 	padding: 10px;
 	padding-left: 24px;
-	font-weight: 700;
+	font-weight: 400;
 	width: 75%;
 	transition: .2s;
     border-radius: 20px;
@@ -126,7 +128,7 @@
 	border-radius: 26px;
 	border: 1px solid #D4D3E8;
 	text-transform: uppercase;
-	font-weight: 700;
+	font-weight: 400;
 	display: flex;
 	align-items: center;
 	width: 100%;
@@ -147,6 +149,9 @@
 	font-size: 24px;
 	margin-left: auto;
 	color: #7875B5;
+}
+button span{
+	font-weight: 700
 }
 </style>
 {{--<div class="container">
@@ -221,11 +226,19 @@
                 @csrf
 				<div class="login__field">
 					<i class="login__icon fas fa-user"></i>
-					<input type="text" class="login__input" placeholder="User name / Email">
+					<input type="text" class="login__input" placeholder="Name User">
+				</div>
+				<div class="login__field">
+					<i class="login__icon fas fa-at"></i>
+					<input type="email" class="login__input" placeholder="Email">
 				</div>
 				<div class="login__field">
 					<i class="login__icon fas fa-lock"></i>
 					<input type="password" class="login__input" placeholder="Password">
+				</div>
+				<div class="login__field">
+					<i class="login__icon fas fa-lock"></i>
+					<input type="password" class="login__input" placeholder="Confirm Password">
 				</div>
 				<button class="button login__submit">
 					<span class="button__text">Log In Now</span>

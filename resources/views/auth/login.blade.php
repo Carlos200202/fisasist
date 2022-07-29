@@ -89,13 +89,15 @@
 }
 
 .login__field {
-	padding: 20px 0px;	
+	padding: 10px 0px;	
 	position: relative;	
+	display: flex;
+	align-items: center	
 }
 
 .login__icon {
 	position: absolute;
-	top: 30px;
+	left: 5px;
 	color: #7875B5;
 }
 
