@@ -53,6 +53,12 @@
         html::-webkit-scrollbar-thumb{
             background: white;
         }
+        .navbar-nav{
+            align-items: center
+        }
+        a#navbarDropdown.nav-link.dropdown-toggle::after{
+            display: none
+        }
     </style>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -73,6 +79,18 @@
                             <li>
                                 <a href="{{ url('/citas') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Citas</a>
                             </li>
+                            @if (Auth::user()->role == "admin")
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        Administrador
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" >
+                                            Hola
+                                        </a>
+                                    </div>
+                                </li>
+                            @endif
                         </ul>
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ms-auto">
