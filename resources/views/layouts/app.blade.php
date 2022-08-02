@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Fisasist</title>
+    <title>Fisasist - {{ Auth::user()->role }}: {{ Auth::user()->name }}</title>
 
     <!-- Scripts -->
     <link href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css' rel='stylesheet'>
@@ -76,8 +76,20 @@
                     @else
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav me-auto">
-                            <li>
-                                <a href="{{ url('/citas') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Citas</a>
+                            <li class="nav-item">
+                                <a href="{{ url('/citas') }}" class="nav-link">Citas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Fisioterapeutas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Pacientes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Medicos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Empresas</a>
                             </li>
                             @if (Auth::user()->role == "admin")
                                 <li class="nav-item dropdown">
@@ -128,8 +140,6 @@
                             @endguest
                         </ul>
                     @endif
-                    
-                    
                 </div>
             </div>
         </nav>
