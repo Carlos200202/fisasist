@@ -7,7 +7,12 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Fisasist - {{ Auth::user()->role }}: {{ Auth::user()->name }}</title>
+    <title>Fisasist @if (Auth::check())
+        - {{ Auth::user()->role }}: {{ Auth::user()->name }}
+    @else
+        
+    @endif
+    </title>
 
     <!-- Scripts -->
     <link href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css' rel='stylesheet'>
@@ -79,17 +84,93 @@
                             <li class="nav-item">
                                 <a href="{{ url('/citas') }}" class="nav-link">Citas</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="">Fisioterapeutas</a>
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Fisioterapeutas
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" >
+                                        Hola
+                                    </a>
+                                    <a class="dropdown-item" >
+                                        Hola
+                                    </a>
+                                    <a class="dropdown-item" >
+                                        Hola
+                                    </a>
+                                    <a class="dropdown-item" >
+                                        Hola
+                                    </a>
+                                    <a class="dropdown-item" >
+                                        Hola
+                                    </a>
+                                </div>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="">Pacientes</a>
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Pacientes
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" >
+                                        Hola
+                                    </a>
+                                    <a class="dropdown-item" >
+                                        Hola
+                                    </a>
+                                    <a class="dropdown-item" >
+                                        Hola
+                                    </a>
+                                    <a class="dropdown-item" >
+                                        Hola
+                                    </a>
+                                    <a class="dropdown-item" >
+                                        Hola
+                                    </a>
+                                </div>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="">Medicos</a>
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Medicos
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" >
+                                        Hola
+                                    </a>
+                                    <a class="dropdown-item" >
+                                        Hola
+                                    </a>
+                                    <a class="dropdown-item" >
+                                        Hola
+                                    </a>
+                                    <a class="dropdown-item" >
+                                        Hola
+                                    </a>
+                                    <a class="dropdown-item" >
+                                        Hola
+                                    </a>
+                                </div>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="">Empresas</a>
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Empresas
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" >
+                                        Hola
+                                    </a>
+                                    <a class="dropdown-item" >
+                                        Hola
+                                    </a>
+                                    <a class="dropdown-item" >
+                                        Hola
+                                    </a>
+                                    <a class="dropdown-item" >
+                                        Hola
+                                    </a>
+                                    <a class="dropdown-item" >
+                                        Hola
+                                    </a>
+                                </div>
                             </li>
                             @if (Auth::user()->role == "admin")
                                 <li class="nav-item dropdown">
@@ -97,6 +178,18 @@
                                         Administrador
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" >
+                                            Hola
+                                        </a>
+                                        <a class="dropdown-item" >
+                                            Hola
+                                        </a>
+                                        <a class="dropdown-item" >
+                                            Hola
+                                        </a>
+                                        <a class="dropdown-item" >
+                                            Hola
+                                        </a>
                                         <a class="dropdown-item" >
                                             Hola
                                         </a>
