@@ -1,7 +1,7 @@
+
 document.addEventListener("DOMContentLoaded", function () {
     let form = document.getElementById("form");
     let formView = document.getElementById("formView");
-    let formUpdate = document.getElementById("formUpdate");
     var calendarEl = document.getElementById("agenda");
     var calendar = new FullCalendar.Calendar(calendarEl, {
         schedulerLicenseKey: "CC-Attribution-NonCommercial-NoDerivatives",
@@ -27,18 +27,19 @@ document.addEventListener("DOMContentLoaded", function () {
         eventResourceEditable: true,
         timeZone: "local",
         dayMaxEvents: true,
-        eventMouseover: function(event, jsEvent, view) {
-            $('.fc-event-inner', this).append('<div id=\"'+event.id+'\" class=\"hover-end\">'+$.fullCalendar.formatDate(event.end, 'h:mmt')+'</div>');
-        },
-        eventMouseover: function (info, event, jsEvent) {
-            $(info.el).popover({
-                title: title,
-                placement:'top',
-                trigger : 'hover',
-                content: startTime + " to " + endTime + " " + location,
-                container:'body'
-            }).popover('show');
-        },
+        lazyFetching: true,
+        loading: ( isLoading ) => {
+            let timerInterval
+            Swal.fire({
+            title: 'Cargando...',
+            html: 'espere un momento por favor.',
+            timer: 1000,
+            didOpen: () => {
+                Swal.showLoading()
+                const b = Swal.getHtmlContainer().querySelector('b')
+            }
+            })
+        }, 
         buttonText: {
             today: "Hoy",
             month: "Mes",
@@ -182,7 +183,21 @@ document.addEventListener("DOMContentLoaded", function () {
                         window.location = `/paciente/${info.event.extendedProps.paciente_id}/editar-paciente`;
                     });
         },
+        eventMouseEnter: ( info ) => {
+            $(".fc-event-main").tooltip({
+                title: `${info.event.extendedProps.pat_firstname} ${info.event.extendedProps.pat_lastname} 
+                <br> fisioterapeuta: ${info.event.extendedProps.fiste_name}`,
+                container: 'body',
+                delay: { "show": 50, "hide": 50 }
+            });
+        },
         eventContent: (info) => {
+            // var tooltip = new Tooltip(info.el, {
+            //     title: info.event.name,
+            //     placement: 'top',
+            //     trigger: 'hover',
+            //     container: 'body'
+            // });
             return {
                 html: `
                 <div class="content-event">
