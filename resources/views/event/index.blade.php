@@ -88,6 +88,26 @@
         <div class="" id="agenda"></div>
     </div>
     <!-- Modal -->
+    
+    <div class="modal fade" id="completeSearch" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Buscar</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('busqueda') }}" method="GET" id="formDocumet">
+                        <div class="mb-1">
+                            <input type="number" class="form-control form-control-sm" name="pat_document" id="pat_document"
+                                aria-describedby="helpId" placeholder="Documento" pattern="[0-9]{10}">
+                        </div>
+                        <button type="submit" id="btnBuscar" class="btn btn-primary btn-sm">buscar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade" id="event" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -96,13 +116,18 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    
                     <form id="form">
                         {!! csrf_field() !!}
-                        <div class="mb-1">
-                            <input type="number" class="form-control form-control-sm" name="paciente_id" id="paciente_id"
-                                aria-describedby="helpId" placeholder="">
-                        </div>
+                        {{-- @foreach ($paciente as $pat)
+                            <h1>{{ $pat->pat_document }}</h1>
+                        @endforeach 
+                         @foreach ($paciente as $pat)
+                            <div class="mb-1">
+                                <input type="number" class="form-control form-control-sm" name="paciente_id" id="paciente_id"
+                                    aria-describedby="helpId" placeholder="Documento" pattern="[0-9]{10}" value="{{ $pat->pat_document }}">
+                            </div>
+                         @endforeach --}}
+                        
                         <div class="mb-1">
                             <label for="fisioterapeuta_id" class="form-label">Fisioterapeuta</label>
                             <select class="form-select form-select-sm" id="fisioterapeuta_id" name="fisioterapeuta_id" aria-label=".form-select-sm example">
@@ -143,7 +168,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success btn.sm"  id="btnGuardar">Guardar</button>
+                    <button type="submit" class="btn btn-success btn-sm"  id="btnGuardar">Guardar</button>
                 </div>
             </div>
         </div>

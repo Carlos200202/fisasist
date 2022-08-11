@@ -98,17 +98,5 @@ class PacientesController extends Controller
         //
     }
 
-    public function autocompletePat(Request $request)
-    {
-        $term = $request->get('term');
-        $querys = Paciente::where('pat_document', 'LIKE', '%'.$term.'%')->get();
-        $data = [];
-        foreach ($querys as $querys){
-            $data[] = [
-                'label' => $querys->pat_document,
-                'value' => $querys->id
-            ];
-        }
-        return $data;
-    }
+    
 }

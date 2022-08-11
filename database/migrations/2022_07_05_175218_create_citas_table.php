@@ -23,8 +23,13 @@ return new class extends Migration
             $table->foreign('fisioterapeuta_id')
                 ->references('id')
                 ->on('fisioterapeutas');
-            $table->text("description");
-            $table->string("flag_img");
+            $table->string("type_visit");
+            $table->string("process");
+            $table->string("level");
+            $table->string("contact_name");
+            $table->string("contact_relationship");
+            $table->string("contact_cell_phone");
+            $table->text("observations");
             $table->string("resourceId");
             $table->dateTime("start");
             $table->dateTime("end");

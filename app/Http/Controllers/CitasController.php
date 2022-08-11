@@ -18,12 +18,15 @@ class CitasController extends Controller
     public function index(Request $request)
     {
         //
+        $document = trim($request->get('pat_document'));
+        $paciente = Paciente::where('pat_document', '='. $document)->get();
+        // dd($paciente);
 
         $fisioterapeutas = Fisioterapeuta::all();
         $citas = Cita::all();
         $fiste = DB::select('select `fisioterapeutas`.`id`, `fisioterapeutas`.`fiste_name`  from `citas` inner join `fisioterapeutas` on '.$citas[0]->fisioterapeuta_id.' = `fisioterapeutas`.`id`');
         // dd($pacientes);
-        return view('event.index')->with(compact('fisioterapeutas', 'fiste'));
+        return view('event.index')->with(compact('fisioterapeutas', 'fiste', 'paciente', 'document'));
     }
 
     /**
@@ -140,5 +143,17 @@ class CitasController extends Controller
         $cita = DB::statement('DELETE FROM `citas` WHERE `citas`.`id` ='.$id);
         
         return response()->json($cita);
+    }
+
+    public function busqueda(Request $request)
+    {
+        $document = $request->pat_document;
+        $paciente = Paciente::where('pat_document', '=', $document )->get();
+        $data = [
+            "paciente"=>$paciente,
+        ];
+        dd($paciente);
+        return view('event.index', $data);
+    
     }
 }

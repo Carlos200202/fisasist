@@ -9,10 +9,36 @@ class Cita extends Model
 {
     use HasFactory;
 
-    static $rules = ['paciente_id','fisioterapeuta_id','flag_img','description','resourceId','start','end',];
+    static $rules = [
+        'paciente_id',
+        'fisioterapeuta_id',
+        'type_visit',
+        'process',
+        'level',
+        'processcontact_name',
+        'contact_relationship',
+        'contact_cell_phone',
+        'observations',
+        'resourceId',
+        'start',
+        'end',
+    ];
 
-    protected $fillable = ['flag_img','description','resourceId','start','end','fisioterapeuta_id','paciente_id'];
-
+    protected $fillable = [
+        'paciente_id',
+        'fisioterapeuta_id',
+        'type_visit',
+        'process',
+        'level',
+        'processcontact_name',
+        'contact_relationship',
+        'contact_cell_phone',
+        'observations',
+        'resourceId',
+        'start',
+        'end',
+    ];
+    
     public function fisioterapeuta(){
         return $this->belongsToMany(Fisioterapeuta::class);
     }

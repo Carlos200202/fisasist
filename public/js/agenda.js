@@ -1,4 +1,5 @@
 
+
 document.addEventListener("DOMContentLoaded", function () {
     let form = document.getElementById("form");
     let formView = document.getElementById("formView");
@@ -28,18 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
         timeZone: "local",
         dayMaxEvents: true,
         lazyFetching: true,
-        loading: ( isLoading ) => {
-            let timerInterval
-            Swal.fire({
-            title: 'Cargando...',
-            html: 'espere un momento por favor.',
-            timer: 1000,
-            didOpen: () => {
-                Swal.showLoading()
-                const b = Swal.getHtmlContainer().querySelector('b')
-            }
-            })
-        }, 
         buttonText: {
             today: "Hoy",
             month: "Mes",
@@ -75,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
             var actual = new Date();
             if (info.date >= actual) {
                 $("#event").modal("show");
+                // $("#completeSearch").modal("show");
             } else {
                 Swal.fire({
                     icon: "error",
@@ -183,27 +173,32 @@ document.addEventListener("DOMContentLoaded", function () {
                         window.location = `/paciente/${info.event.extendedProps.paciente_id}/editar-paciente`;
                     });
         },
-        eventMouseEnter: ( info ) => {
-            $(".fc-event-main").tooltip({
-                title: `${info.event.extendedProps.pat_firstname} ${info.event.extendedProps.pat_lastname} 
-                <br> fisioterapeuta: ${info.event.extendedProps.fiste_name}`,
-                container: 'body',
-                delay: { "show": 50, "hide": 50 }
-            });
-        },
+        // eventMouseEnter: ( info, mouseEnterInfo, evento ) => {
+        //     $(".fc-event-main").tooltip({
+        //         title: `paciente: ${info.event.extendedProps.pat_firstname} ${info.event.extendedProps.pat_lastname} 
+        //         fisioterapeuta: ${info.event.extendedProps.fiste_name}`,
+        //         container: 'body',
+        //         delay: { "show": 50, "hide": 50 }
+        //     });
+        //     console.log(info)
+        // },
         eventContent: (info) => {
-            // var tooltip = new Tooltip(info.el, {
-            //     title: info.event.name,
-            //     placement: 'top',
-            //     trigger: 'hover',
-            //     container: 'body'
+        
+            // $(".fc-event-main").tooltip({
+            //     title: `paciente: ${info.event.extendedProps.pat_firstname} ${info.event.extendedProps.pat_lastname} 
+            //     fisioterapeuta: ${info.event.extendedProps.fiste_name}`,
+            //     container: 'body',
+            //     delay: { "show": 50, "hide": 50 }
             // });
             return {
                 html: `
-                <div class="content-event">
-                    <img
-                    class="image-event"
-                    src=""
+                <div class="content-event" data-bs-toggle="tooltip" data-bs-placement="top"
+                data-bs-custom-class="custom-tooltip"
+                data-bs-title="${info.event.extendedProps.pat_firstname}">
+                    
+                    <input type="image"
+                    class="image-event" 
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/OOjs_UI_icon_userAvatar-progressive.svg/1200px-OOjs_UI_icon_userAvatar-progressive.svg.png"
                     alt=""
                     />
                     <div
