@@ -70,12 +70,15 @@ class CitasController extends Controller
     public function show(Cita $cita)
     {
         // $sql = 'SELECT * FROM citas';
-        $sql = 'SELECT pacientes.pat_firstname, pacientes.pat_lastname, pacientes.pat_document, 
-        fisioterapeutas.fiste_id, fisioterapeutas.fiste_name, fisioterapeutas.fiste_hexcolor, 
-        citas.id, citas.paciente_id, citas.fisioterapeuta_id, citas.description, citas.flag_img, 
-        citas.resourceId, citas.start, citas.end, citas.id as id_citas, citas.start as date_start FROM citas INNER JOIN pacientes 
-        ON citas.paciente_id = pacientes.id INNER JOIN fisioterapeutas  ON 
-        citas.fisioterapeuta_id = fisioterapeutas.id';
+        $sql = 'SELECT entidades.entity_name, pacientes.pat_firstname, pacientes.pat_secondname, pacientes.pat_lastname, 
+        pacientes.pat_second_lastname, pacientes.pat_document, pacientes.pat_gender, pacientes.pat_birh_date, 
+        pacientes.pat_entity_id, pacientes.pat_number_policy, pacientes.pat_phone, pacientes.pat_cell_phone, 
+        pacientes.pat_email, fisioterapeutas.fiste_phone, fisioterapeutas.fiste_name, fisioterapeutas.fiste_hexcolor, 
+        citas.id, citas.paciente_id, citas.fisioterapeuta_id, citas.type_visit, citas.process, citas.observations, 
+        citas.level, citas.contact_name, citas.contact_relationship, citas.contact_cell_phone, citas.resourceId, 
+        citas.start, citas.end, citas.id as id_citas, citas.start as date_start FROM citas INNER JOIN pacientes 
+        ON citas.paciente_id = pacientes.id INNER JOIN fisioterapeutas ON citas.fisioterapeuta_id = fisioterapeutas.id 
+        INNER JOIN entidades ON pacientes.pat_entity_id = entidades.id';
         $citas = DB::select($sql);
         // dd($citas);
         return response()->json($citas);
@@ -111,7 +114,7 @@ class CitasController extends Controller
         $citas = Cita::find($id);
         $this->validate($request, [
             'fisioterapeuta_id' => 'required',
-            'description' => 'required'
+            'observations' => 'required'
         ]);
     
         $input = $request->all();
@@ -145,15 +148,15 @@ class CitasController extends Controller
         return response()->json($cita);
     }
 
-    public function busqueda(Request $request)
-    {
-        $document = $request->pat_document;
-        $paciente = Paciente::where('pat_document', '=', $document )->get();
-        $data = [
-            "paciente"=>$paciente,
-        ];
-        dd($paciente);
-        return view('event.index', $data);
+    // public function busqueda(Request $request)
+    // {
+    //     $document = $request->pat_document;
+    //     $paciente = Paciente::where('pat_document', '=', $document )->get();
+    //     $data = [
+    //         "paciente"=>$paciente,
+    //     ];
+    //     dd($paciente);
+    //     return view('event.index', $data);
     
-    }
+    // }
 }
