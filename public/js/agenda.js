@@ -64,7 +64,6 @@ document.addEventListener("DOMContentLoaded", function () {
             var actual = new Date();
             if (info.date >= actual) {
                 $("#event").modal("show");
-                // $("#completeSearch").modal("show");
             } else {
                 Swal.fire({
                     icon: "error",
