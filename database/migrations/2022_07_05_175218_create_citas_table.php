@@ -25,7 +25,6 @@ return new class extends Migration
                 ->on('fisioterapeutas');
             $table->string("type_visit");
             $table->string("process");
-            $table->string("level");
             $table->string("contact_name");
             $table->string("contact_relationship");
             $table->string("contact_cell_phone");

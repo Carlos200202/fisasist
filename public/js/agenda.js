@@ -1,7 +1,6 @@
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    let form = document.getElementById("form");
     let formView = document.getElementById("formView");
     var calendarEl = document.getElementById("agenda");
     var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -54,7 +53,6 @@ document.addEventListener("DOMContentLoaded", function () {
         resources: resource,
         events: "/citas/ver-cita",
         dateClick: (info) => {
-            console.log(info)
             form.reset();
             let cadena = info.dateStr;
             let date = cadena.substring(0, 19);
@@ -73,7 +71,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         },
         eventDrop: (info) => {
-            
             console.log(info)
             let cadena = info.event.startStr;
             let date = cadena.substring(0, 19);
@@ -221,9 +218,32 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         
     function sendData(url) {
-        const datos = new FormData(form);
+        var paciente_id = document.getElementById("paciente_id").value;
+        var fisioterapeuta_id = document.getElementById("fisioterapeuta_id").value;
+        var type_visit = document.getElementById("type_visit").value;
+        var process = document.getElementById("process").value;
+        var contact_name = document.getElementById("contact_name").value;
+        var contact_relationship = document.getElementById("contact_relationship").value;
+        var contact_cell_phone = document.getElementById("contact_cell_phone").value;
+        var observations = document.getElementById("observations").value;
+        var resourceId = document.getElementById("resourceId").value;
+        var start = document.getElementById("start").value;
+        var end = document.getElementById("end").value;
+
         axios
-            .post(url, datos)
+            .post(url, {
+                paciente_id: paciente_id,
+                fisioterapeuta_id: fisioterapeuta_id,
+                type_visit: type_visit,
+                process: process,
+                contact_name: contact_name,
+                contact_relationship: contact_relationship,
+                contact_cell_phone: contact_cell_phone,
+                observations: observations,
+                resourceId: resourceId,
+                start: start,
+                end: end
+            })
             .then((response) => {
                 calendar.refetchEvents();
                 $("#event").modal("hide");

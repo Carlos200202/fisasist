@@ -99,26 +99,6 @@
         <div class="" id="agenda"></div>
     </div>
     <!-- Modal -->
-
-    <div class="modal fade" id="completeSearch" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Buscar</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('busqueda') }}" method="GET" id="formDocumet">
-                        <div class="mb-1">
-                            <input type="number" class="form-control form-control-sm" name="pat_document" id="pat_document"
-                                aria-describedby="helpId" placeholder="Documento" pattern="[0-9]{10}">
-                        </div>
-                        <button type="submit" id="btnBuscar" class="btn btn-primary btn-sm">buscar</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="modal fade" id="event" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -127,61 +107,27 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    {{-- <form id="form">
-                        {!! csrf_field() !!}
-                        ç
-                        
-                        <div class="mb-1">
-                            <label for="fisioterapeuta_id" class="form-label">Fisioterapeuta</label>
-                            <select class="form-select form-select-sm" id="fisioterapeuta_id" name="fisioterapeuta_id" aria-label=".form-select-sm example">
-                                <option selected disabled>Seleccionar</option>
-                                @foreach ($fisioterapeutas as $fiste)
-                                    <option value="{{ $fiste->id }}">{{ $fiste->fiste_name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="mb-1">
-                            <label for="description" class="form-label">Observaciones</label>
-                            <textarea class="form-control form-control-sm" name="description" id="description" rows="2" required></textarea>
-                        </div>
-                        <div class="mb-1 noneValue">
-                            <label for="resourceId" class="form-label">Espacio</label>
-                            <input type="text" class="form-control form-control-sm" name="resourceId" id="resourceId" rows="2">
-                        </div>
-                        <div class="mb-1">
-                            <label for="flag_img" class="form-label">Riesgo</label>
-                            <select class="form-select form-select-sm" name="flag_img" id="flag_img" aria-label=".form-select-sm example">
-                                <option selected disabled>Seleccionar</option>
-                                <option value="cdn-icons-png.flaticon.com/512/395/395841.png">Alto</option>
-                                <option value="cdn-icons-png.flaticon.com/512/148/148880.png">Intermedio</option>
-                                <option value="cdn-icons-png.flaticon.com/512/2107/2107961.png">Bajo</option>
-                            </select>
-                        </div>
-                        <div class="mb-1 noneValue">
-                            <label for="start" class="form-label">inicio</label>
-                            <input type="text" class="form-control form-control-sm" name="start" id="start" aria-describedby="helpId"
-                                placeholder="" required>
-                        </div>
-                        <div class="mb-1 noneValue">
-                            <label for="end" class="form-label">fin</label>
-                            <input type="text" class="form-control form-control-sm" name="end" id="end" aria-describedby="helpId"
-                                placeholder="" required>
-                        </div>
-
-                    </form> --}}
-
-                    <form class="px-md-2" id="form">
+                    <form class="px-md-2" id="form" method="POST">
                         {!! csrf_field() !!}
                         <div class="content d-flex align-items-start">
                             <table class="table" cellspacing="0">
                                 <tbody>
+                                    <tr class="noneValue">
+                                        <th scope="row">
+                                            <h6>Pat id</h6>
+                                        </th>
+                                        <td>
+                                            <input type="number" id="paciente_id" name="paciente_id"
+                                                class="form-control form-control-sm" />
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <th scope="row">
                                             <h6>Documento</h6>
                                         </th>
                                         <td>
                                             <input type="text" id="pat_document" name="pat_document"
-                                                class="form-control form-control-sm" />
+                                            class="form-control form-control-sm" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -227,7 +173,7 @@
                                         <td>
                                             <select class="form-select form-select-sm" id="pat_birth_date"
                                                 name="pat_gender">
-                                                <option value="1" disabled>Gender</option>
+                                                <option value="1" disabled selected>Seleccionar</option>
                                                 <option value="2">Female</option>
                                                 <option value="3">Male</option>
                                                 <option value="4">Other</option>
@@ -288,7 +234,7 @@
                                             <h6>E-mail</h6>
                                         </th>
                                         <td>
-                                            <input type="text" id="pat_email" name="pat_email"
+                                            <input type="email" id="pat_email" name="pat_email"
                                                 class="form-control form-control-sm" />
                                         </td>
                                     </tr>
@@ -299,7 +245,7 @@
                                         <td>
                                             <select class="form-select form-select-sm" id="pat_entity_id"
                                                 name="pat_entity_id">
-                                                <option value="1" disabled>Entidad</option>
+                                                <option value="1" disabled selected>Seleccionar</option>
                                                 <option value="2">Sura</option>
                                                 <option value="3">Fisasist</option>
                                                 <option value="4">Other</option>
@@ -322,7 +268,7 @@
                                         <td>
                                             <select class="form-select form-select-sm" id="pat_medical"
                                                 name="pat_medical">
-                                                <option value="1" disabled selected>Medico</option>
+                                                <option value="1" disabled selected>Seleccionar</option>
                                                 <option value="2">Doctor</option>
                                                 <option value="3">Doctora</option>
                                                 <option value="4">Other</option>
@@ -349,7 +295,7 @@
                                             <h6>Procedimiento</h6>
                                         </th>
                                         <td>
-                                            <select class="form-select form-select-sm" id="level" name="level">
+                                            <select class="form-select form-select-sm" id="process" name="process">
                                                 <option value="1" disabled selected>...</option>
                                                 <option value="2">COLUMNA CERVICAL</option>
                                                 <option value="3">PIERNA</option>
@@ -364,10 +310,10 @@
                                         <td>
                                             <select class="form-select form-select-sm" id="fisioterapeuta_id"
                                                 name="fisioterapeuta_id">
-                                                <option value="1" disabled selected>...</option>
-                                                <option value="2">Carolina Maria Echeverria</option>
-                                                <option value="3">Jessica Quiroga Soto</option>
-                                                <option value="4">Other</option>
+                                                <option selected disabled>Seleccionar</option>
+                                                @foreach ($fisioterapeutas as $fiste)
+                                                    <option value="{{ $fiste->id }}">{{ $fiste->fiste_name }}</option>
+                                                @endforeach
                                             </select>
                                         </td>
                                     </tr>
@@ -377,7 +323,7 @@
                                 <tbody>
                                     <td>
                                         <div class="form-floating">
-                                            <div class="">
+                                            <div>
                                                 <h6>Observaciones</h6>
                                                 <textarea class="form-control" style="resize: none;" name="observations" rows="2" cols="20"
                                                     id="observations"></textarea>
@@ -409,20 +355,20 @@
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <input type="number" id="pat_number_policy" name="pat_number_policy"
+                                                        <input type="text" id="contact_name" name="contact_name"
                                                             class="form-control form-control-sm" />
                                                     </td>
                                                     <td>
                                                         <select class="form-select form-select-sm" id="contact_relationship"
                                                             name="contact_relationship">
-                                                            <option value="1" disabled selected>...</option>
+                                                            <option value="1" disabled selected>Seleccionar</option>
                                                             <option value="2">Esposa</option>
                                                             <option value="3">Hijo</option>
                                                             <option value="4">Other</option>
                                                         </select>
                                                     </td>
                                                     <td>
-                                                        <input type="number" id="pat_number_policy" name="pat_number_policy"
+                                                        <input type="number" id="contact_cell_phone" name="contact_cell_phone"
                                                             class="form-control form-control-sm" />
                                                     </td>
                                                 </tr>
@@ -450,7 +396,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success btn-sm" id="btnGuardar">Guardar</button>
+                    <button type="button" class="btn btn-success btn-sm" id="btnGuardar">Guardar</button>
                 </div>
             </div>
         </div>
@@ -515,4 +461,5 @@
             </div>
         </div>
     </div>
+    
 @endsection
