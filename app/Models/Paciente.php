@@ -15,7 +15,7 @@ class Paciente extends Model
         'pat_second_lastname',
         'pat_document',
         'pat_gender',
-        'pat_birh_date',
+        'pat_birth_date',
         'pat_location',
         'pat_entity_id',
         'pat_number_policy',

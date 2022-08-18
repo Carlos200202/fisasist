@@ -267,7 +267,69 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+// $( "#target" ).submit(function( event ) {
+   
+// });
+var input = document.getElementById("pat_document");
+    input.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        // var btnSearch = document.getElementById("btnSearch");
+        // btnSearch.addEventListener('click', () => {
+            var $value = document.getElementById("pat_document").value;
+            if($value.length >= 8 && $value.length <= 10){
+                $.ajax({
+                    type: "get",
+                    url: '/citas/buscar-documento',
+                    data: { 'pat_document': $value },
+                    success: function(response){
+                        console.log(response.paciente)
+                        $.each(response.paciente, function(key, item, e){
+                            form.paciente_id.value = item.id
+                            form.pat_firstname.value = item.pat_firstname
+                            form.pat_secondname.value = item.pat_secondname
+                            form.pat_lastname.value = item.pat_lastname
+                            form.pat_second_lastname.value = item.pat_second_lastname
+                            form.pat_gender.value = item.pat_gender
+                            form.pat_birth_date.value = item.pat_birth_date
+                            form.pat_firstname.value = item.pat_firstname
+                            form.pat_firstname.value = item.pat_firstname
+                            form.pat_firstname.value = item.pat_firstname
+                            form.pat_firstname.value = item.pat_firstname
+                        })
+                        
+                    }
+                })
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Paciente no encontrado",
+                    text: "Escriba correctamente el documento o registre un nuevo paciente",
+                });
+            }
             
+        // })
+    }
+});
+// $("#pat_document").on('keyup', (e) => {
+    // let $length = $("#pat_document").val().length; //Detectamos los Caracteres del Input
+       
+    // let $value = $('#pat_document').val()
+    // console.log($value)
+    // console.log($length)
+    // if($length >= 8 && $length <= 10){
+        // $.ajax({
+        //     type: "get",
+        //     url: '/citas/buscar-documento',
+        //     data: { 'pat_document': $value },
+        //     success: function(data){
+        //         console.log(data)
+                // $('#content2').html(data)
+        //     }
+        // })
+    // console.log($length)
+//     }
+// })            
             
 
 let resource = [

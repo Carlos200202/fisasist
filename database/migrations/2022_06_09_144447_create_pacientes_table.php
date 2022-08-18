@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('pat_second_lastname', 50)->nullable();
             $table->string('pat_document', 15);
             $table->string('pat_gender', 10);
-            $table->date('pat_birh_date');
+            $table->date('pat_birth_date');
             $table->string('pat_location', 150);
             $table->unsignedBigInteger('pat_entity_id');
             $table->foreign('pat_entity_id')

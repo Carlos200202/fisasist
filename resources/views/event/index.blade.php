@@ -111,7 +111,18 @@
                         {!! csrf_field() !!}
                         <div class="content d-flex align-items-start">
                             <table class="table" cellspacing="0">
+                                <p id="content"></p>
                                 <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            <h6>Documento</h6>
+                                        </th>
+                                        <td>
+                                            <input type="search" id="pat_document" name="pat_document"
+                                            class="form-control form-control-sm" />
+                                        </td>
+                                    </tr>
+
                                     <tr class="noneValue">
                                         <th scope="row">
                                             <h6>Pat id</h6>
@@ -119,15 +130,6 @@
                                         <td>
                                             <input type="number" id="paciente_id" name="paciente_id"
                                                 class="form-control form-control-sm" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">
-                                            <h6>Documento</h6>
-                                        </th>
-                                        <td>
-                                            <input type="text" id="pat_document" name="pat_document"
-                                            class="form-control form-control-sm" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -198,10 +200,14 @@
                                                 name="pat_birth_date" class="form-control form-control-sm " disabled />
                                         </td>
                                     </tr>
+
+
                                 </tbody>
                             </table>
                             <table class="table">
                                 <tbody>
+
+
                                     <tr>
                                         <th scope="row">
                                             <h6>Direccion</h6>
@@ -275,6 +281,8 @@
                                             </select>
                                         </td>
                                     </tr>
+
+
                                 </tbody>
                             </table>
                         </div>
@@ -311,9 +319,9 @@
                                             <select class="form-select form-select-sm" id="fisioterapeuta_id"
                                                 name="fisioterapeuta_id">
                                                 <option selected disabled>Seleccionar</option>
-                                                @foreach ($fisioterapeutas as $fiste)
+                                                {{-- @foreach ($fisioterapeutas as $fiste)
                                                     <option value="{{ $fiste->id }}">{{ $fiste->fiste_name }}</option>
-                                                @endforeach
+                                                @endforeach --}}
                                             </select>
                                         </td>
                                     </tr>

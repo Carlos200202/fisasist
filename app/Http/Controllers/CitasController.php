@@ -75,7 +75,7 @@ class CitasController extends Controller
     {
         // $sql = 'SELECT * FROM citas';
         $sql = 'SELECT entidades.entity_name, pacientes.pat_firstname, pacientes.pat_secondname, pacientes.pat_lastname, 
-        pacientes.pat_second_lastname, pacientes.pat_document, pacientes.pat_gender, pacientes.pat_birh_date, 
+        pacientes.pat_second_lastname, pacientes.pat_document, pacientes.pat_gender, pacientes.pat_birth_date, 
         pacientes.pat_entity_id, pacientes.pat_number_policy, pacientes.pat_phone, pacientes.pat_cell_phone, 
         pacientes.pat_email, fisioterapeutas.fiste_phone, fisioterapeutas.fiste_name, fisioterapeutas.fiste_hexcolor, 
         citas.id, citas.paciente_id, citas.fisioterapeuta_id, citas.type_visit, citas.process, citas.observations,
@@ -156,11 +156,8 @@ class CitasController extends Controller
     {
         $document = $request->pat_document;
         $paciente = Paciente::where('pat_document', '=', $document )->get();
-        $data = [
-            "paciente"=>$paciente,
-        ];
-        dd($paciente);
-        return view('event.index', $data);
+        $data = ["paciente"=>$paciente];
+        return response()->json($data);
     
     }
 }
