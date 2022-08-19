@@ -7,6 +7,7 @@ use App\Models\Fisioterapeuta;
 use App\Models\Paciente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class CitasController extends Controller
 {
@@ -99,9 +100,9 @@ class CitasController extends Controller
         //
         $citas = Cita::findOrFail($id);
         $fisioterapeutas = Fisioterapeuta::all();
-        $fiste = DB::select('select `fisioterapeutas`.`id`, `fisioterapeutas`.`fiste_name`  from `citas` inner join `fisioterapeutas` on '.$citas->fisioterapeuta_id.' = `fisioterapeutas`.`id`');
+        $fiste = DB::select('`fisioterapeutas`.`id`, `fisioterapeutas`.`fiste_name`  from `citas` inner join `fisioterapeutas` on '.$citas->fisioterapeuta_id.' = `fisioterapeutas`.`id`');
         // dd($fiste);
-
+       
         return view('event.edit', compact('citas', 'fisioterapeutas', 'fiste'));
     }
 
@@ -155,9 +156,11 @@ class CitasController extends Controller
     public function busqueda(Request $request)
     {
         $document = $request->pat_document;
-        $paciente = Paciente::where('pat_document', '=', $document )->get();
-        $data = ["paciente"=>$paciente];
+        $paciente = Paciente::where('pat_document', '=', $document)->get();
+        $data = [
+                "paciente"=>$paciente,
+            ];
         return response()->json($data);
-    
+        
     }
 }

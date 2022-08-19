@@ -1,5 +1,3 @@
-
-
 document.addEventListener("DOMContentLoaded", function () {
     let formView = document.getElementById("formView");
     var calendarEl = document.getElementById("agenda");
@@ -71,36 +69,36 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         },
         eventDrop: (info) => {
-            console.log(info)
+            console.log(info);
             let cadena = info.event.startStr;
             let date = cadena.substring(0, 19);
-                axios
-                    .post("/citas/actualizar-drop/" + info.event.id, {
-                        resourceId: info.event._def.resourceIds[0],
-                        start: date,
-                        end: date
-                    })
-                    .then((response) => {
+            axios
+                .post("/citas/actualizar-drop/" + info.event.id, {
+                    resourceId: info.event._def.resourceIds[0],
+                    start: date,
+                    end: date,
+                })
+                .then((response) => {
+                    calendar.refetchEvents();
+                    Swal.fire({
+                        icon: "success",
+                        title: "Enviado",
+                        text: "Cita actualizada",
+                    });
+                })
+                .catch((error) => {
+                    if (error.response) {
                         calendar.refetchEvents();
                         Swal.fire({
-                            icon: "success",
-                            title: "Enviado",
-                            text: "Cita actualizada",
+                            icon: "error",
+                            title: "Error",
+                            text: "No se pudo actualizar la cita",
                         });
-                    })
-                    .catch((error) => {
-                        if (error.response) {
-                            calendar.refetchEvents();
-                            Swal.fire({
-                                icon: "error",
-                                title: "Error",
-                                text: "No se pudo actualizar la cita",
-                            });
-                        }
-                    });
+                    }
+                });
         },
         eventClick: (info) => {
-            console.log(info.event.extendedProps)
+            console.log(info.event.extendedProps);
             formView.pat_document.value = info.event.extendedProps.pat_document;
             formView.pat_firstname.value = info.event.extendedProps.pat_firstname;
             formView.pat_lastname.value = info.event.extendedProps.pat_lastname;
@@ -120,7 +118,8 @@ document.addEventListener("DOMContentLoaded", function () {
                         buttonsStyling: false,
                     });
 
-                    swalWithBootstrapButtons.fire({
+                    swalWithBootstrapButtons
+                        .fire({
                             title: "Quieres eliminar este registro?",
                             text: "Estas apunto de eliminar una cita!",
                             icon: "warning",
@@ -130,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             reverseButtons: true,
                         })
                         .then((result) => {
-                            if(result.isConfirmed){
+                            if (result.isConfirmed) {
                                 axios
                                     .post("/citas/borrar-cita/" + info.event.id)
                                     .then((respuesta) => {
@@ -144,11 +143,13 @@ document.addEventListener("DOMContentLoaded", function () {
                                         );
                                     })
                                     .catch((error) => {
-                                        if(error.response){
+                                        if (error.response) {
                                             console.log(error.response.data);
                                         }
                                     });
-                            }else if(result.dismiss === Swal.DismissReason.cancel){
+                            } else if (
+                                result.dismiss === Swal.DismissReason.cancel
+                            ) {
                                 swalWithBootstrapButtons.fire(
                                     "Cancelado",
                                     "No eliminaste el registro",
@@ -157,21 +158,21 @@ document.addEventListener("DOMContentLoaded", function () {
                             }
                         });
                 });
-                $("#eventView").modal("show");
-                document
-                    .getElementById("btnEditar")
-                    .addEventListener("click", function () {
-                        window.location = `/citas/editar-cita/${info.event.id}`;
-                    });
-                document
-                    .getElementById("btnEditarPaciente")
-                    .addEventListener("click", function () {
-                        window.location = `/paciente/${info.event.extendedProps.paciente_id}/editar-paciente`;
-                    });
+            $("#eventView").modal("show");
+            document
+                .getElementById("btnEditar")
+                .addEventListener("click", function () {
+                    window.location = `/citas/editar-cita/${info.event.id}`;
+                });
+            document
+                .getElementById("btnEditarPaciente")
+                .addEventListener("click", function () {
+                    window.location = `/paciente/${info.event.extendedProps.paciente_id}/editar-paciente`;
+                });
         },
         // eventMouseEnter: ( info, mouseEnterInfo, evento ) => {
         //     $(".fc-event-main").tooltip({
-        //         title: `paciente: ${info.event.extendedProps.pat_firstname} ${info.event.extendedProps.pat_lastname} 
+        //         title: `paciente: ${info.event.extendedProps.pat_firstname} ${info.event.extendedProps.pat_lastname}
         //         fisioterapeuta: ${info.event.extendedProps.fiste_name}`,
         //         container: 'body',
         //         delay: { "show": 50, "hide": 50 }
@@ -179,9 +180,8 @@ document.addEventListener("DOMContentLoaded", function () {
         //     console.log(info)
         // },
         eventContent: (info) => {
-        
             // $(".fc-event-main").tooltip({
-            //     title: `paciente: ${info.event.extendedProps.pat_firstname} ${info.event.extendedProps.pat_lastname} 
+            //     title: `paciente: ${info.event.extendedProps.pat_firstname} ${info.event.extendedProps.pat_lastname}
             //     fisioterapeuta: ${info.event.extendedProps.fiste_name}`,
             //     container: 'body',
             //     delay: { "show": 50, "hide": 50 }
@@ -216,7 +216,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .addEventListener("click", function () {
             sendData("/citas/agendar");
         });
-        
+
     function sendData(url) {
         var paciente_id = document.getElementById("paciente_id").value;
         var fisioterapeuta_id = document.getElementById("fisioterapeuta_id").value;
@@ -242,7 +242,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 observations: observations,
                 resourceId: resourceId,
                 start: start,
-                end: end
+                end: end,
             })
             .then((response) => {
                 calendar.refetchEvents();
@@ -266,71 +266,53 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-
-// $( "#target" ).submit(function( event ) {
-   
-// });
 var input = document.getElementById("pat_document");
-    input.addEventListener("keypress", function(event) {
+input.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
         event.preventDefault();
-        // var btnSearch = document.getElementById("btnSearch");
-        // btnSearch.addEventListener('click', () => {
-            var $value = document.getElementById("pat_document").value;
-            if($value.length >= 8 && $value.length <= 10){
-                $.ajax({
-                    type: "get",
-                    url: '/citas/buscar-documento',
-                    data: { 'pat_document': $value },
-                    success: function(response){
-                        console.log(response.paciente)
-                        $.each(response.paciente, function(key, item, e){
-                            form.paciente_id.value = item.id
-                            form.pat_firstname.value = item.pat_firstname
-                            form.pat_secondname.value = item.pat_secondname
-                            form.pat_lastname.value = item.pat_lastname
-                            form.pat_second_lastname.value = item.pat_second_lastname
-                            form.pat_gender.value = item.pat_gender
-                            form.pat_birth_date.value = item.pat_birth_date
-                            form.pat_firstname.value = item.pat_firstname
-                            form.pat_firstname.value = item.pat_firstname
-                            form.pat_firstname.value = item.pat_firstname
-                            form.pat_firstname.value = item.pat_firstname
-                        })
-                        
+        var $value = document.getElementById("pat_document").value;
+        if ($value.length >= 8 && $value.length <= 10) {
+            $.ajax({
+                type: "get",
+                url: "/citas/buscar-documento",
+                data: { pat_document: $value },
+                success: function (response) {
+                    if(Object.entries(response.paciente).length === 0){
+                        Swal.fire({
+                            icon: "error",
+                            title: "Paciente no encontrado",
+                            text: "Escriba correctamente el documento o registre un nuevo paciente",
+                        });
                     }
-                })
-            } else {
-                Swal.fire({
-                    icon: "error",
-                    title: "Paciente no encontrado",
-                    text: "Escriba correctamente el documento o registre un nuevo paciente",
-                });
-            }
-            
-        // })
+                    $.each(response.paciente, function (key, item, e) {
+                        form.paciente_id.value = item.id;
+                        form.pat_firstname.value = item.pat_firstname;
+                        form.pat_secondname.value = item.pat_secondname;
+                        form.pat_lastname.value = item.pat_lastname;
+                        form.pat_second_lastname.value = item.pat_second_lastname;
+                        form.pat_gender.value = item.pat_gender;
+                        // $('pat_birth_date').val('2020-05-05');
+                        // document.getElementById('pat_birth_date').value = '2020-05-05';
+                        // console.log(form.pat_birth_date.value)
+                        // console.log(moment(item.pat_birth_date).format('DD/MM/YYYY'))
+                        form.pat_location.value = item.pat_location;
+                        form.pat_cell_phone.value = item.pat_cell_phone;
+                        form.pat_phone.value = item.pat_phone;
+                        form.pat_email.value = item.pat_email;
+                        form.pat_entity_id.value = item.pat_entity_id;
+                        form.pat_number_policy.value = item.pat_number_policy;
+                    });
+                },
+            });
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: "Paciente no encontrado",
+                text: "Escriba correctamente el documento o registre un nuevo paciente",
+            });
+        }
     }
 });
-// $("#pat_document").on('keyup', (e) => {
-    // let $length = $("#pat_document").val().length; //Detectamos los Caracteres del Input
-       
-    // let $value = $('#pat_document').val()
-    // console.log($value)
-    // console.log($length)
-    // if($length >= 8 && $length <= 10){
-        // $.ajax({
-        //     type: "get",
-        //     url: '/citas/buscar-documento',
-        //     data: { 'pat_document': $value },
-        //     success: function(data){
-        //         console.log(data)
-                // $('#content2').html(data)
-        //     }
-        // })
-    // console.log($length)
-//     }
-// })            
-            
 
 let resource = [
     {

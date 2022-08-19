@@ -118,7 +118,7 @@
                                             <h6>Documento</h6>
                                         </th>
                                         <td>
-                                            <input type="search" id="pat_document" name="pat_document"
+                                            <input type="text" id="pat_document" name="pat_document"
                                             class="form-control form-control-sm" />
                                         </td>
                                     </tr>
@@ -173,13 +173,7 @@
                                             <h6>Sexo</h6>
                                         </th>
                                         <td>
-                                            <select class="form-select form-select-sm" id="pat_birth_date"
-                                                name="pat_gender">
-                                                <option value="1" disabled selected>Seleccionar</option>
-                                                <option value="2">Female</option>
-                                                <option value="3">Male</option>
-                                                <option value="4">Other</option>
-                                            </select>
+                                            <input type="text" name="pat_gender" id="pat_gender" class="form-control form-control-sm">
                                         </td>
                                     </tr>
                                     <tr>
@@ -249,13 +243,7 @@
                                             <h6>Entidad</h6>
                                         </th>
                                         <td>
-                                            <select class="form-select form-select-sm" id="pat_entity_id"
-                                                name="pat_entity_id">
-                                                <option value="1" disabled selected>Seleccionar</option>
-                                                <option value="2">Sura</option>
-                                                <option value="3">Fisasist</option>
-                                                <option value="4">Other</option>
-                                            </select>
+                                            <input type="text" name="pat_entity_id" id="pat_entity_id" class="form-control form-control-sm">
                                         </td>
                                     </tr>
                                     <tr>
@@ -319,9 +307,9 @@
                                             <select class="form-select form-select-sm" id="fisioterapeuta_id"
                                                 name="fisioterapeuta_id">
                                                 <option selected disabled>Seleccionar</option>
-                                                {{-- @foreach ($fisioterapeutas as $fiste)
+                                                @foreach ($fisioterapeutas as $fiste)
                                                     <option value="{{ $fiste->id }}">{{ $fiste->fiste_name }}</option>
-                                                @endforeach --}}
+                                                @endforeach
                                             </select>
                                         </td>
                                     </tr>
