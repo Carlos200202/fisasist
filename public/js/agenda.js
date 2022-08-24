@@ -220,6 +220,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function sendData(url) {
         var paciente_id = document.getElementById("paciente_id").value;
         var fisioterapeuta_id = document.getElementById("fisioterapeuta_id").value;
+        var pat_medical = document.getElementById("pat_medical").value;
         var type_visit = document.getElementById("type_visit").value;
         var process = document.getElementById("process").value;
         var contact_name = document.getElementById("contact_name").value;
@@ -234,6 +235,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .post(url, {
                 paciente_id: paciente_id,
                 fisioterapeuta_id: fisioterapeuta_id,
+                pat_medical: pat_medical,
                 type_visit: type_visit,
                 process: process,
                 contact_name: contact_name,
@@ -291,16 +293,24 @@ input.addEventListener("keypress", function (event) {
                         form.pat_lastname.value = item.pat_lastname;
                         form.pat_second_lastname.value = item.pat_second_lastname;
                         form.pat_gender.value = item.pat_gender;
-                        // $('pat_birth_date').val('2020-05-05');
-                        // document.getElementById('pat_birth_date').value = '2020-05-05';
-                        // console.log(form.pat_birth_date.value)
-                        // console.log(moment(item.pat_birth_date).format('DD/MM/YYYY'))
+                        form.pat_birth_date.value = item.pat_birth_date;
                         form.pat_location.value = item.pat_location;
                         form.pat_cell_phone.value = item.pat_cell_phone;
                         form.pat_phone.value = item.pat_phone;
                         form.pat_email.value = item.pat_email;
-                        form.pat_entity_id.value = item.pat_entity_id;
+                        form.entity_name.value = item.entity_name;
                         form.pat_number_policy.value = item.pat_number_policy;
+
+                        var dateBorn = new Date(item.pat_birth_date);
+                        var dateCurrent = new Date();
+                        var month = dateCurrent.getMonth();
+                        var day = dateCurrent.getDate();
+                        var year = dateCurrent.getFullYear();
+                        dateCurrent.setDate(day);
+                        dateCurrent.setMonth(month);
+                        dateCurrent.setFullYear(year);
+                        ages = Math.floor(((dateCurrent - dateBorn) / (1000 * 60 * 60 * 24) / 365));
+                        form.pat_ages.value = ages;
                     });
                 },
             });

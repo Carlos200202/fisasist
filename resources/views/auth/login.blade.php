@@ -157,11 +157,11 @@ button span{
     <div class="contain">
         <div class="screen">
             <div class="screen__content">
-                <form class="login" method="POST" action="{{ route('login') }}">
+                <form class="login" method="POST" action="{{ route('login') }}" autocomplete="off">
                     @csrf
                     <div class="login__field">
                         <i class="login__icon fas fa-user"></i>
-                        <input id="email" name="email" type="email" class="login__input" placeholder="User name / Email">
+                        <input id="email" name="email" type="email" class="login__input" autocomplete="off" placeholder="User name / Email">
                         @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -170,7 +170,7 @@ button span{
                     </div>
                     <div class="login__field">
                         <i class="login__icon fas fa-lock"></i>
-                        <input type="password" id="password" name="password" type="password" class="login__input" placeholder="Password">
+                        <input type="password" id="password" name="password" type="password" class="login__input" autocomplete="off" placeholder="Password">
                         @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

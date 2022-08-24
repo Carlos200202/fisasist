@@ -23,6 +23,7 @@ return new class extends Migration
             $table->foreign('fisioterapeuta_id')
                 ->references('id')
                 ->on('fisioterapeutas');
+            $table->string("pat_medical");
             $table->string("type_visit");
             $table->string("process");
             $table->string("contact_name");

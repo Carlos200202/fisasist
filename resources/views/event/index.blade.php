@@ -190,8 +190,8 @@
                                             <h6>Edad</h6>
                                         </th>
                                         <td>
-                                            <input type="text" id="pat_birth_date" style="width: 40px;"
-                                                name="pat_birth_date" class="form-control form-control-sm " disabled />
+                                            <input type="number" id="pat_ages" style="width: 40px;"
+                                                name="pat_ages" class="form-control form-control-sm " disabled />
                                         </td>
                                     </tr>
 
@@ -243,7 +243,7 @@
                                             <h6>Entidad</h6>
                                         </th>
                                         <td>
-                                            <input type="text" name="pat_entity_id" id="pat_entity_id" class="form-control form-control-sm">
+                                            <input type="text" name="entity_name" id="entity_name" class="form-control form-control-sm">
                                         </td>
                                     </tr>
                                     <tr>
@@ -262,10 +262,10 @@
                                         <td>
                                             <select class="form-select form-select-sm" id="pat_medical"
                                                 name="pat_medical">
-                                                <option value="1" disabled selected>Seleccionar</option>
-                                                <option value="2">Doctor</option>
-                                                <option value="3">Doctora</option>
-                                                <option value="4">Other</option>
+                                                <option selected disabled>Seleccionar</option>
+                                                @foreach ($medicos as $med)
+                                                    <option value="{{ $med->id }}">{{ $med->med_name }}</option>
+                                                @endforeach
                                             </select>
                                         </td>
                                     </tr>

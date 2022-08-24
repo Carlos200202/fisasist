@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cita;
 use App\Models\Fisioterapeuta;
+use App\Models\Medico;
 use App\Models\Paciente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -19,15 +20,10 @@ class CitasController extends Controller
     public function index(Request $request)
     {
         //
-        $document = trim($request->get('pat_document'));
-        $paciente = Paciente::where('pat_document', '='. $document)->get();
-        // dd($paciente);
 
-        $fisioterapeutas = Fisioterapeuta::all();
-        $citas = Cita::all();
-        $fiste = DB::select('select `fisioterapeutas`.`id`, `fisioterapeutas`.`fiste_name`  from `citas` inner join `fisioterapeutas` on '.$citas[0]->fisioterapeuta_id.' = `fisioterapeutas`.`id`');
-        // dd($pacientes);
-        return view('event.index')->with(compact('fisioterapeutas', 'fiste', 'paciente', 'document'));
+        $fisioterapeutas = Fisioterapeuta::all('fiste_name', 'id');
+        $medicos = Medico::all('med_name', 'id');
+        return view('event.index')->with(compact('fisioterapeutas', 'medicos')); //, 'fiste', 'paciente', 'document'
     }
 
     /**
@@ -54,6 +50,7 @@ class CitasController extends Controller
                 'paciente_id' => "required",
                 'fisioterapeuta_id' => "required",
                 'observations' => "required",
+                'pat_medical' => "required",
                 'type_visit' => "required",
                 'contact_name' => "required",
                 'contact_relationship' => "required",
@@ -74,16 +71,16 @@ class CitasController extends Controller
      */
     public function show(Cita $cita)
     {
-        // $sql = 'SELECT * FROM citas';
         $sql = 'SELECT entidades.entity_name, pacientes.pat_firstname, pacientes.pat_secondname, pacientes.pat_lastname, 
         pacientes.pat_second_lastname, pacientes.pat_document, pacientes.pat_gender, pacientes.pat_birth_date, 
-        pacientes.pat_entity_id, pacientes.pat_number_policy, pacientes.pat_phone, pacientes.pat_cell_phone, 
-        pacientes.pat_email, fisioterapeutas.fiste_phone, fisioterapeutas.fiste_name, fisioterapeutas.fiste_hexcolor, 
+        pacientes.pat_number_policy, pacientes.pat_phone, pacientes.pat_cell_phone, pacientes.pat_email, 
+        fisioterapeutas.fiste_phone, fisioterapeutas.fiste_name, fisioterapeutas.fiste_hexcolor, 
         citas.id, citas.paciente_id, citas.fisioterapeuta_id, citas.type_visit, citas.process, citas.observations,
         citas.contact_name, citas.contact_relationship, citas.contact_cell_phone, citas.resourceId, 
-        citas.start, citas.end, citas.id as id_citas, citas.start as date_start FROM citas INNER JOIN pacientes 
-        ON citas.paciente_id = pacientes.id INNER JOIN fisioterapeutas ON citas.fisioterapeuta_id = fisioterapeutas.id 
-        INNER JOIN entidades ON pacientes.pat_entity_id = entidades.id';
+        citas.start, citas.end, citas.id AS id_citas, citas.start AS date_start 
+        FROM citas INNER JOIN pacientes ON citas.paciente_id = pacientes.id INNER JOIN fisioterapeutas 
+        ON citas.fisioterapeuta_id = fisioterapeutas.id INNER JOIN entidades 
+        ON pacientes.pat_entity_id = entidades.id';
         $citas = DB::select($sql);
         // dd($citas);
         return response()->json($citas);
@@ -100,7 +97,8 @@ class CitasController extends Controller
         //
         $citas = Cita::findOrFail($id);
         $fisioterapeutas = Fisioterapeuta::all();
-        $fiste = DB::select('`fisioterapeutas`.`id`, `fisioterapeutas`.`fiste_name`  from `citas` inner join `fisioterapeutas` on '.$citas->fisioterapeuta_id.' = `fisioterapeutas`.`id`');
+        $fiste = DB::select('SELECT `fisioterapeutas`.`id`, `fisioterapeutas`.`fiste_name`  FROM `citas` 
+        INNER JOIN `fisioterapeutas` ON '.$citas->fisioterapeuta_id.' = `fisioterapeutas`.`id`');
         // dd($fiste);
        
         return view('event.edit', compact('citas', 'fisioterapeutas', 'fiste'));
@@ -156,7 +154,15 @@ class CitasController extends Controller
     public function busqueda(Request $request)
     {
         $document = $request->pat_document;
-        $paciente = Paciente::where('pat_document', '=', $document)->get();
+        // $entity = DB::select('entity_name INNER JOIN entidades ON pacientes.pat_entity_id = entidades.id');
+        // SELECT * FROM entidades, pacientes WHERE (entidades.id = 1) AND ( pat_document = 1007230208)
+        // ('pat_document', '=', )
+        // $paciente = Paciente::where('pat_document', '=', $document)->get();
+        $sql = 'SELECT entidades.entity_name, pacientes.id, pacientes.pat_firstname, pacientes.pat_secondname, pacientes.pat_lastname, 
+        pacientes.pat_second_lastname, pacientes.pat_document, pacientes.pat_gender, pacientes.pat_birth_date, 
+        pacientes.pat_number_policy, pacientes.pat_phone, pacientes.pat_cell_phone, pacientes.pat_email, pacientes.pat_location 
+        FROM pacientes, entidades WHERE entidades.id = pacientes.pat_entity_id and pat_document = '.$document;
+        $paciente = DB::select($sql);
         $data = [
                 "paciente"=>$paciente,
             ];
