@@ -98,15 +98,40 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
         },
         eventClick: (info) => {
-            console.log(info.event.extendedProps);
+            formView.id.value = info.event.id;
             formView.pat_document.value = info.event.extendedProps.pat_document;
             formView.pat_firstname.value = info.event.extendedProps.pat_firstname;
+            formView.pat_secondname.value = info.event.extendedProps.pat_secondname;
             formView.pat_lastname.value = info.event.extendedProps.pat_lastname;
-
+            formView.pat_second_lastname.value = info.event.extendedProps.pat_second_lastname;
+            formView.pat_gender.value = info.event.extendedProps.pat_gender;
+            formView.pat_birth_date.value = info.event.extendedProps.pat_birth_date;
+            formView.pat_ages.value = info.event.extendedProps.pat_ages;
+            formView.pat_location.value = info.event.extendedProps.pat_location;
+            formView.pat_cell_phone.value = info.event.extendedProps.pat_cell_phone;
+            formView.pat_phone.value = info.event.extendedProps.pat_phone;
+            formView.pat_email.value = info.event.extendedProps.pat_email;
+            formView.pat_number_policy.value = info.event.extendedProps.pat_number_policy;
+            var dateBorn = new Date(info.event.extendedProps.pat_birth_date);
+            var dateCurrent = new Date();
+            var month = dateCurrent.getMonth();
+            var day = dateCurrent.getDate();
+            var year = dateCurrent.getFullYear();
+            dateCurrent.setDate(day);
+            dateCurrent.setMonth(month);
+            dateCurrent.setFullYear(year);
+            ages = Math.floor(((dateCurrent - dateBorn) / (1000 * 60 * 60 * 24) / 365));
+            formView.pat_ages.value = ages;
+            formView.med_name.value = info.event.extendedProps.med_name;
+            formView.entity_name.value = info.event.extendedProps.entity_name;
+            formView.type_visit.value = info.event.extendedProps.type_visit;
+            formView.process.value = info.event.extendedProps.process;
+            formView.contact_name.value = info.event.extendedProps.contact_name;
+            formView.contact_relationship.value = info.event.extendedProps.contact_relationship;
+            formView.contact_cell_phone.value = info.event.extendedProps.contact_cell_phone;
             formView.fiste_name.value = info.event.extendedProps.fiste_name;
-            formView.description.value = info.event.extendedProps.description;
-            formView.id.value = info.event.id;
-
+            formView.observations.value = info.event.extendedProps.observations;
+            
             document
                 .getElementById("btnEliminar")
                 .addEventListener("click", function () {
@@ -147,9 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                             console.log(error.response.data);
                                         }
                                     });
-                            } else if (
-                                result.dismiss === Swal.DismissReason.cancel
-                            ) {
+                            } else if (result.dismiss === Swal.DismissReason.cancel) {
                                 swalWithBootstrapButtons.fire(
                                     "Cancelado",
                                     "No eliminaste el registro",

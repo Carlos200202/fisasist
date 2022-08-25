@@ -189,9 +189,9 @@
                                         <th scope="row">
                                             <h6>Edad</h6>
                                         </th>
-                                        <td>
+                                        <td class="d-flex justify-content-between">
                                             <input type="number" id="pat_ages" style="width: 40px;"
-                                                name="pat_ages" class="form-control form-control-sm " disabled />
+                                                name="pat_ages" class="form-control form-control-sm " disabled /> <button type="button" id="btnEditUser" class="btn btn-primary btn-sm"><i class='bx bxs-user-account'></i></i></button>
                                         </td>
                                     </tr>
 
@@ -400,7 +400,7 @@
     <!-- Modal -->
     <div class="modal fade" id="eventView" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
         aria-hidden="false">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Cita</h5>
@@ -410,41 +410,239 @@
                 <div class="modal-body">
                     <form id="formView">
                         {!! csrf_field() !!}
-                        <div class="mb-1 inputId">
-                            <input type="hidden" class="form-control  form-select-sm" value="" name="id"
-                                id="id" aria-describedby="helpId" disabled>
-                        </div>
-                        <div class="">
-                            <div class="d-flex justify-content-between" style="margin: 0">
-                                <div class="mb-1 col-4">
-                                    <label for="pat_document" class="form-label">Documento</label>
-                                    <input type="text" class="form-control  form-select-sm" name="pat_document"
-                                        id="pat_document" aria-describedby="helpId" disabled>
-                                </div>
-                                <div class="mb-1 col-3">
-                                    <label for="pat_firstname" class="form-label">Nombre</label>
-                                    <input type="text" class="form-control  form-select-sm" name="pat_firstname"
-                                        id="pat_firstname" aria-describedby="helpId" disabled>
-                                </div>
-                                <div class="mb-1 col-3">
-                                    <label for="pat_lastname" class="form-label">Apellido</label>
-                                    <input type="text" class="form-control  form-select-sm" name="pat_lastname"
-                                        id="pat_lastname" aria-describedby="helpId" disabled>
-                                </div>
-                            </div>
-                            <button type="button" class="btn btn-primary btn-sm" id="btnEditarPaciente">editar <i
-                                    class='bx bxs-user-rectangle'></i></button>
-                        </div>
+                        <div class="content d-flex align-items-start">
+                            <table class="table" cellspacing="0">
+                                <input type="hidden" name="id" id="id">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            <h6>Documento</h6>
+                                        </th>
+                                        <td>
+                                            <input type="text" id="pat_document" name="pat_document"
+                                            class="form-control form-control-sm" disabled/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <h6>1er Nombre</h6>
+                                        </th>
+                                        <td>
+                                            <input type="text" id="pat_firstname" name="pat_firstname"
+                                                class="form-control form-control-sm" disabled/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <h6>2do Nombre</h6>
+                                        </th>
+                                        <td>
+                                            <input type="text" id="pat_secondname" name="pat_secondname"
+                                                class="form-control form-control-sm" disabled/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <h6>1er Apellido</h6>
+                                        </th>
+                                        <td>
+                                            <input type="text" id="pat_lastname" name="pat_lastname"
+                                                class="form-control form-control-sm" disabled/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <h6>2do Apellido</h6>
+                                        </th>
+                                        <td>
+                                            <input type="text" id="pat_second_lastname" name="pat_second_lastname"
+                                                class="form-control form-control-sm" disabled/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <h6>Sexo</h6>
+                                        </th>
+                                        <td>
+                                            <input type="text" name="pat_gender" id="pat_gender" class="form-control form-control-sm"disabled />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <h6>Nacimiento</h6>
+                                        </th>
+                                        <td>
+                                            <input type="date" id="pat_birth_date" name="pat_birth_date"
+                                                class="form-control form-control-sm" disabled/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <h6>Edad</h6>
+                                        </th>
+                                        <td>
+                                            <input type="number" id="pat_ages" style="width: 40px;"
+                                                name="pat_ages" class="form-control form-control-sm " disabled />
+                                        </td>
+                                    </tr>
 
 
-                        <div class="mb-1 col-3">
-                            <label for="fiste_name" class="form-label">Fisioterapeuta</label>
-                            <input type="text" class="form-control  form-select-sm" name="fiste_name" id="fiste_name"
-                                aria-describedby="helpId" disabled>
+                                </tbody>
+                            </table>
+                            <table class="table">
+                                <tbody>
+
+
+                                    <tr>
+                                        <th scope="row">
+                                            <h6>Direccion</h6>
+                                        </th>
+                                        <td>
+                                            <input type="text" id="pat_location" name="pat_location"
+                                                class="form-control form-control-sm" disabled/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <h6>Celular</h6>
+                                        </th>
+                                        <td>
+                                            <input type="text" id="pat_cell_phone" name="pat_cell_phone"
+                                                class="form-control form-control-sm" disabled/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <h6>Teléfono</h6>
+                                        </th>
+                                        <td>
+                                            <input type="text" id="pat_phone" name="pat_phone"
+                                                class="form-control form-control-sm" disabled/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <h6>E-mail</h6>
+                                        </th>
+                                        <td>
+                                            <input type="email" id="pat_email" name="pat_email"
+                                                class="form-control form-control-sm" disabled/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <h6>Entidad</h6>
+                                        </th>
+                                        <td>
+                                            <input type="text" name="entity_name" id="entity_name" class="form-control form-control-sm"disabled />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <h6>Nº Póliza</h6>
+                                        </th>
+                                        <td>
+                                            <input type="number" id="pat_number_policy" name="pat_number_policy"
+                                                class="form-control form-control-sm" disabled/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <h6>Remite</h6>
+                                        </th>
+                                        <td>
+                                            <input class="form-control form-control-sm" id="med_name" name="med_name" disabled/>
+                                        </td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="mb-1">
-                            <label for="description" class="form-label">Observaciones</label>
-                            <textarea class="form-control form-select-sm" name="description" id="description" rows="2" disabled></textarea>
+                        <div class="content d-flex align-items-start">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            <h6>Tipo Visita</h6>
+                                        </th>
+                                        <td>
+                                            <input type="text" id="type_visit" name="type_visit"
+                                                class="form-control form-control-sm" disabled/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <h6>Procedimiento</h6>
+                                        </th>
+                                        <td>
+                                            <input class="form-control form-control-sm" id="process" name="process" disabled/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <h6>Fisioterapeuta</h6>
+                                        </th>
+                                        <td>
+                                            <input class="form-control form-control-sm" id="fiste_name"
+                                                name="fisioterapeuta_id" disabled/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="table">
+                                <tbody>
+                                    <td>
+                                        <div class="form-floating">
+                                            <div>
+                                                <h6>Observaciones</h6>
+                                                <textarea class="form-control" style="resize: none;" name="observations" rows="2" cols="20"
+                                                    id="observations" disabled></textarea>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="content">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <h5>Contacto de Emergencia</h5>
+                                        <td>
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">
+                                                        <h6>Nombre</h6>
+                                                    </th>
+                                                    <th scope="col">
+                                                        <h6>Parentesco</h6>
+                                                    </th>
+                                                    <th scope="col">
+                                                        <h6>Teléfono</h6>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <input type="text" id="contact_name" name="contact_name"
+                                                            class="form-control form-control-sm" disabled/>
+                                                    </td>
+                                                    <td>
+                                                        <input class="form-control form-control-sm" id="contact_relationship"
+                                                            name="contact_relationship" disabled/>
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" id="contact_cell_phone" name="contact_cell_phone"
+                                                            class="form-control form-control-sm" disabled/>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </form>
                 </div>

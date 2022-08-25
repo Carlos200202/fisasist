@@ -39,6 +39,10 @@ class Cita extends Model
         'end',
     ];
     
+    public function medico(){
+        return $this->belongsToMany(Medico::class);
+    }
+
     public function fisioterapeuta(){
         return $this->belongsToMany(Fisioterapeuta::class);
     }

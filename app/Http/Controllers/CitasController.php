@@ -71,16 +71,17 @@ class CitasController extends Controller
      */
     public function show(Cita $cita)
     {
-        $sql = 'SELECT entidades.entity_name, pacientes.pat_firstname, pacientes.pat_secondname, pacientes.pat_lastname, 
+        $sql = 'SELECT medicos.med_name, entidades.entity_name, pacientes.pat_firstname, pacientes.pat_secondname, pacientes.pat_lastname, 
         pacientes.pat_second_lastname, pacientes.pat_document, pacientes.pat_gender, pacientes.pat_birth_date, 
         pacientes.pat_number_policy, pacientes.pat_phone, pacientes.pat_cell_phone, pacientes.pat_email, 
-        fisioterapeutas.fiste_phone, fisioterapeutas.fiste_name, fisioterapeutas.fiste_hexcolor, 
+        pacientes.pat_location, fisioterapeutas.fiste_phone, fisioterapeutas.fiste_name, fisioterapeutas.fiste_hexcolor, 
         citas.id, citas.paciente_id, citas.fisioterapeuta_id, citas.type_visit, citas.process, citas.observations,
         citas.contact_name, citas.contact_relationship, citas.contact_cell_phone, citas.resourceId, 
-        citas.start, citas.end, citas.id AS id_citas, citas.start AS date_start 
-        FROM citas INNER JOIN pacientes ON citas.paciente_id = pacientes.id INNER JOIN fisioterapeutas 
-        ON citas.fisioterapeuta_id = fisioterapeutas.id INNER JOIN entidades 
-        ON pacientes.pat_entity_id = entidades.id';
+        citas.start, citas.end, citas.id AS id_citas, citas.start AS date_start FROM citas 
+        INNER JOIN pacientes ON citas.paciente_id = pacientes.id 
+        INNER JOIN fisioterapeutas ON citas.fisioterapeuta_id = fisioterapeutas.id 
+        INNER JOIN entidades ON pacientes.pat_entity_id = entidades.id
+        INNER JOIN medicos ON citas.pat_medical = medicos.id';
         $citas = DB::select($sql);
         // dd($citas);
         return response()->json($citas);

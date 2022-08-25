@@ -11,4 +11,8 @@ class Medico extends Model
     protected $fillable = [
         'med_name',
     ];
+
+    public function cita(){
+        return $this->belongsToMany(Cita::class);
+    }
 }
