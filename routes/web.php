@@ -27,9 +27,16 @@ Route::get('/citas', [App\Http\Controllers\CitasController::class, 'index'])->na
 
 //url's pacientes
 
+Route::get('/paciente/crud', [App\Http\Controllers\PacientesController::class, 'index'])->name('pacientes.crud');
+
 Route::get('/paciente/{id}/editar-paciente', [App\Http\Controllers\PacientesController::class, 'edit'])->name('pacientes.edit-paciente');
 
 Route::post('/paciente/actualizar-paciente/{id}', [App\Http\Controllers\PacientesController::class, 'update'])->name('pacientes.update');
+
+//url's fisioterapeutas
+
+Route::get('/fisioterapeuta/crud', [App\Http\Controllers\FisioterapeutasController::class, 'index'])->name('fisioterapeutas.crud');
+
 
 //url's citas
 
@@ -48,5 +55,3 @@ Route::post('/citas/borrar-cita/{id}', [App\Http\Controllers\CitasController::cl
 Route::get('/citas/ver-cita', [App\Http\Controllers\CitasController::class, 'show']);
 
 // pruebas
-
-// Route::get('/citas/autocomplete', [App\Http\Controllers\PacientesController::class, 'autocompletePat'])->name('index.autocompletePat');

@@ -16,7 +16,8 @@ class PacientesController extends Controller
     public function index()
     {
         //
-        return view('event.index');
+        $pacientes = Paciente::orderBy('id','desc')->paginate(5);
+        return view('pacientes.pacientes-crud', compact('pacientes'));
     }
 
     /**
@@ -38,6 +39,26 @@ class PacientesController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'pat_firstname' => 'required',
+            'pat_secondname' => 'required',
+            'pat_lastname' => 'required',
+            'pat_second_lastname' => 'required',
+            'pat_document' => 'required',
+            'pat_gender' => 'required',
+            'pat_birth_date' => 'required',
+            'pat_location' => 'required',
+            'pat_entity_id' => 'required',
+            'pat_number_policy' => 'required',
+            'pat_phone' => 'required',
+            'pat_cell_phone' => 'required',
+            'pat_email' => 'required',
+        ]);
+      
+        Paciente::create($request->all());
+       
+        return redirect()->route('pacientes.crud')
+                        ->with('success','Product created successfully.');
     }
 
     /**

@@ -27,8 +27,11 @@
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/resource-timegrid@5.11.0/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@5.11.0/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    
     {{-- <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script> --}}
 
     <!-- Fonts -->
@@ -48,6 +51,9 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+
 </head>
 <body>
     <style>
@@ -97,21 +103,7 @@
                                     Fisioterapeutas
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" >
-                                        Hola
-                                    </a>
-                                    <a class="dropdown-item" >
-                                        Hola
-                                    </a>
-                                    <a class="dropdown-item" >
-                                        Hola
-                                    </a>
-                                    <a class="dropdown-item" >
-                                        Hola
-                                    </a>
-                                    <a class="dropdown-item" >
-                                        Hola
-                                    </a>
+                                    <a href="{{ route('fisioterapeutas.crud') }}" class="dropdown-item" >crud fisioterapeutas</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
@@ -119,21 +111,7 @@
                                     Pacientes
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" >
-                                        Hola
-                                    </a>
-                                    <a class="dropdown-item" >
-                                        Hola
-                                    </a>
-                                    <a class="dropdown-item" >
-                                        Hola
-                                    </a>
-                                    <a class="dropdown-item" >
-                                        Hola
-                                    </a>
-                                    <a class="dropdown-item" >
-                                        Hola
-                                    </a>
+                                    <a href="{{ route('pacientes.crud') }}" class="dropdown-item" >crud pacientes</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
@@ -141,18 +119,6 @@
                                     Medicos
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" >
-                                        Hola
-                                    </a>
-                                    <a class="dropdown-item" >
-                                        Hola
-                                    </a>
-                                    <a class="dropdown-item" >
-                                        Hola
-                                    </a>
-                                    <a class="dropdown-item" >
-                                        Hola
-                                    </a>
                                     <a class="dropdown-item" >
                                         Hola
                                     </a>
@@ -166,18 +132,6 @@
                                     <a class="dropdown-item" >
                                         Hola
                                     </a>
-                                    <a class="dropdown-item" >
-                                        Hola
-                                    </a>
-                                    <a class="dropdown-item" >
-                                        Hola
-                                    </a>
-                                    <a class="dropdown-item" >
-                                        Hola
-                                    </a>
-                                    <a class="dropdown-item" >
-                                        Hola
-                                    </a>
                                 </div>
                             </li>
                             @if (Auth::user()->role == "admin")
@@ -186,18 +140,6 @@
                                         Administrador
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" >
-                                            Hola
-                                        </a>
-                                        <a class="dropdown-item" >
-                                            Hola
-                                        </a>
-                                        <a class="dropdown-item" >
-                                            Hola
-                                        </a>
-                                        <a class="dropdown-item" >
-                                            Hola
-                                        </a>
                                         <a class="dropdown-item" >
                                             Hola
                                         </a>

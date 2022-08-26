@@ -15,6 +15,8 @@ class FisioterapeutasController extends Controller
     public function index()
     {
         //
+        $fisioterapeutas = Fisioterapeuta::orderBy('id','desc')->paginate(5);
+        return view('fisioterapeutas.fisioterapeutas-crud', compact('fisioterapeutas'));
     }
 
     /**
