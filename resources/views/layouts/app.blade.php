@@ -95,8 +95,13 @@
                     @else
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav me-auto">
-                            <li class="nav-item">
-                                <a href="{{ url('/citas') }}" class="nav-link">Citas</a>
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Citas
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a href="{{ route('citas') }}" class="dropdown-item" >Agendar Citas</a>
+                                </div>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -119,9 +124,7 @@
                                     Medicos
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" >
-                                        Hola
-                                    </a>
+                                    <a href="{{ route('medicos.crud') }}" class="dropdown-item" >crud medicos</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
@@ -175,7 +178,7 @@
                                             {{ __('Logout') }}
                                         </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        <form autocomplete="off" id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                             @csrf
                                         </form>
                                     </div>
@@ -195,5 +198,38 @@
             @yield('content')
         </main>
     </div>
+    <script>
+        $(document).ready(function() {
+            // Activate tooltip
+            $('[data-toggle="tooltip"]').tooltip();
+
+            // Select/Deselect checkboxes
+            var checkbox = $('table tbody input[type="checkbox"]');
+            $("#selectAll").click(function() {
+                if (this.checked) {
+                    checkbox.each(function() {
+                        this.checked = true;
+                    });
+                } else {
+                    checkbox.each(function() {
+                        this.checked = false;
+                    });
+                }
+            });
+            checkbox.click(function() {
+                if (!this.checked) {
+                    $("#selectAll").prop("checked", false);
+                }
+            });
+        });
+
+        document.getElementById('addEmployeeBtn').addEventListener('click', () => {
+            $('modalPaciente').modal('show');
+        })
+
+        $(document).ready(function () {
+            $('pacientes').DataTable();
+        });
+    </script>
 </body>
 </html>

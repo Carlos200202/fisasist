@@ -25,7 +25,7 @@
 
         .table-title {
             padding-bottom: 15px;
-            background: #435d7d;
+            background: #437d5b;
             color: #fff;
             padding: 16px 30px;
             min-width: 100%;
@@ -258,10 +258,10 @@
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Administrador de <b>Pacientes</b></h2>
+                            <h2>Administrador de <b>Medicos</b></h2>
                         </div>
                         <div class="col-sm-6">
-                            <a id="addEmployeeBtn" class="btn btn-success" data-toggle="modal"><i class='bx bx-folder-plus' ></i><span>Nuevo Paciente</span></a>
+                            <a id="addEmployeeBtn" class="btn btn-success" data-toggle="modal"><i class='bx bx-folder-plus' ></i><span>Nuevo Medico</span></a>
                         </div>
                     </div>
                 </div>
@@ -275,15 +275,11 @@
                                 </span>
                             </th>
                             <th>Nombres</th>
-                            <th>Apellidos</th>
-                            <th>Email</th>
-                            <th>direccion</th>
-                            <th>Celular</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($pacientes as $paciente)
+                        @foreach ($medicos as $medico)
                         <tr>
                             <td>
                                 <span class="custom-checkbox">
@@ -291,11 +287,7 @@
                                     <label for="checkbox1"></label>
                                 </span>
                             </td>
-                            <td>{{ $paciente->pat_firstname }} {{ $paciente->pat_secondname }}</td>
-                            <td>{{ $paciente->pat_lastname }} {{ $paciente->pat_second_lastname }}</td>
-                            <td>{{ $paciente->pat_email }}</td>
-                            <td>{{ $paciente->pat_location }}</td>
-                            <td>{{ $paciente->pat_cell_phone }}</td>
+                            <td>{{ $medico->med_name }}</td>
                             <td>
                                 <a  class="view" data-toggle="modal"><i data-toggle="tooltip" title="Ver" class='bx bx-face'></i></a>
                                 <a  class="edit" data-toggle="modal"><i data-toggle="tooltip" title="Editar" class='bx bx-edit-alt'></i></a>

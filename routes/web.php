@@ -37,6 +37,10 @@ Route::post('/paciente/actualizar-paciente/{id}', [App\Http\Controllers\Paciente
 
 Route::get('/fisioterapeuta/crud', [App\Http\Controllers\FisioterapeutasController::class, 'index'])->name('fisioterapeutas.crud');
 
+//url's medicos
+
+Route::get('/medicos/crud', [App\Http\Controllers\MedicosController::class, 'index'])->name('medicos.crud');
+
 
 //url's citas
 

@@ -258,10 +258,10 @@
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Administrador de <b>Pacientes</b></h2>
+                            <h2>Administrador de <b>Empresas</b></h2>
                         </div>
                         <div class="col-sm-6">
-                            <a id="addEmployeeBtn" class="btn btn-success" data-toggle="modal"><i class='bx bx-folder-plus' ></i><span>Nuevo Paciente</span></a>
+                            <a id="addEmployeeBtn" class="btn btn-success" data-toggle="modal"><i class='bx bx-folder-plus' ></i><span>Nueva Empresa</span></a>
                         </div>
                     </div>
                 </div>
@@ -283,7 +283,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($pacientes as $paciente)
+                        {{-- @foreach ($empresas as $empresa)
                         <tr>
                             <td>
                                 <span class="custom-checkbox">
@@ -302,7 +302,7 @@
                                 <a  class="delete" data-toggle="modal"><i data-toggle="tooltip" title="Borrar" class='bx bx-trash' ></i></a>
                             </td>
                         </tr>
-                        @endforeach
+                        @endforeach --}}
                     </tbody>
                 </table>
             </div>

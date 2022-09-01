@@ -4,7 +4,7 @@
 <div class="content" style="display: flex; align-items: center; flex-direction: column;">
     <div class="card" style="width: 50%; margin-top: 5%;">
         <div class="card-body">
-            <form  action="{{ route('pacientes.update', $paciente->id) }}" method="POST"> 
+            <form autocomplete="off"  action="{{ route('pacientes.update', $paciente->id) }}" method="POST"> 
                 {!! csrf_field() !!}
                 <div class="mb-1">
                     <input type="text" class="form-control form-control-sm" name="pat_firstname" id="pat_firstname"

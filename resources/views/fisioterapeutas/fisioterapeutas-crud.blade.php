@@ -6,40 +6,49 @@
             color: #566787;
             background: #f5f5f5;
             font-family: 'Varela Round', sans-serif;
+            box-sizing: border-box;
+        }
+        .table-responsive::-webkit-scrollbar {
+            width: 7px;
         }
 
+        .table-responsive::-webkit-scrollbar-track {
+            background: #7d5a43;
+        }
+
+        .table-responsive::-webkit-scrollbar-thumb {
+            background: white;
+        }
+
+        .navbar-nav {
+            align-items: center
+        }
         .table-responsive {
             margin: 10px 0;
-        }
-
-        .table-wrapper {
+            border-radius: 10px 0 0 10px;
             background: #fff;
-            position: absolute;
-            padding: 20px 25px;
-            border-radius: 3px;
-            min-width: 1100px;
-            box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
         }
-
+        .table-wrapper {
+            padding: 20px 25px;
+            width: 100%;
+            height: 85vh;
+        }
         .table-title {
             padding-bottom: 15px;
             background: #7d5a43;
             color: #fff;
             padding: 16px 30px;
-            min-width: 100%;
             margin: -20px -25px 10px;
             border-radius: 3px 3px 0 0;
+            position: sticky;
         }
-
         .table-title h2 {
             margin: 5px 0 0;
             font-size: 24px;
         }
-
         .table-title .btn-group {
             float: right;
         }
-
         .table-title .btn {
             color: #fff;
             float: right;
@@ -51,167 +60,26 @@
             outline: none !important;
             margin-left: 10px;
         }
-
-        .table-title .btn i {
-            float: left;
-            font-size: 21px;
-            margin-right: 5px;
-        }
-
-        .table-title .btn span {
-            float: left;
-            margin-top: 2px;
-        }
-
-        table.table tr th,
-        table.table tr td {
-            border-color: #e9e9e9;
-            padding: 12px 15px;
-            vertical-align: middle;
-        }
-
-        table.table tr th:first-child {
-            width: 60px;
-        }
-
-        table.table tr th:last-child {
-            width: 100px;
-        }
-
-        table.table-striped tbody tr:nth-of-type(odd) {
-            background-color: #fcfcfc;
-        }
-
-        table.table-striped.table-hover tbody tr:hover {
-            background: #f5f5f5;
-        }
-
-        table.table th i {
-            font-size: 13px;
-            margin: 0 5px;
-            cursor: pointer;
-        }
-
-        table.table td:last-child i {
-            opacity: 0.9;
-            font-size: 22px;
-            margin: 0 5px;
-        }
-
-        table.table td a {
-            font-weight: bold;
-            color: #566787;
-            display: inline-block;
-            text-decoration: none;
-            outline: none !important;
-        }
-
-        table.table td a:hover {
-            color: #2196F3;
-        }
-
-        table.table td a.edit {
-            color: #FFC107;
-        }
-
-        table.table td a.delete {
-            color: #F44336;
-        }
-
-        table.table td i {
-            font-size: 19px;
-        }
-
-        table.table .avatar {
-            border-radius: 50%;
-            vertical-align: middle;
-            margin-right: 10px;
-        }
-
-        /* Custom checkbox */
-        .custom-checkbox {
-            position: relative;
-        }
-
-        .custom-checkbox input[type="checkbox"] {
-            opacity: 0;
-            position: absolute;
-            margin: 5px 0 0 3px;
-            z-index: 9;
-        }
-
-        .custom-checkbox label:before {
-            width: 18px;
-            height: 18px;
-        }
-
-        .custom-checkbox label:before {
-            content: '';
-            margin-right: 10px;
-            display: inline-block;
-            vertical-align: text-top;
-            background: white;
-            border: 1px solid #bbb;
-            border-radius: 2px;
-            box-sizing: border-box;
-            z-index: 2;
-        }
-
-        .custom-checkbox input[type="checkbox"]:checked+label:after {
-            content: '';
-            position: absolute;
-            left: 6px;
-            top: 3px;
-            width: 6px;
-            height: 11px;
-            border: solid #000;
-            border-width: 0 3px 3px 0;
-            transform: inherit;
-            z-index: 3;
-            transform: rotateZ(45deg);
-        }
-
-        .custom-checkbox input[type="checkbox"]:checked+label:before {
-            border-color: #03A9F4;
-            background: #03A9F4;
-        }
-
-        .custom-checkbox input[type="checkbox"]:checked+label:after {
-            border-color: #fff;
-        }
-
-        .custom-checkbox input[type="checkbox"]:disabled+label:before {
-            color: #b8b8b8;
-            cursor: auto;
-            box-shadow: none;
-            background: #ddd;
-        }
-
         /* Modal styles */
         .modal .modal-dialog {
             max-width: 400px;
         }
-
         .modal .modal-header,
         .modal .modal-body,
         .modal .modal-footer {
             padding: 20px 30px;
         }
-
         .modal .modal-content {
             border-radius: 3px;
             font-size: 14px;
         }
-
         .modal .modal-footer {
             background: #ecf0f1;
             border-radius: 0 0 3px 3px;
         }
-
         .modal .modal-title {
             display: inline-block;
         }
-
         .modal .form-control {
             border-radius: 2px;
             box-shadow: none;
@@ -221,43 +89,111 @@
         .modal textarea.form-control {
             resize: vertical;
         }
-
         .modal .btn {
             border-radius: 2px;
             min-width: 100px;
         }
-
         .modal form label {
             font-weight: normal;
         }
+        .container-fiste {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
+        .card-fiste {
+            width: 320px;
+            height: 390px;
+            background: #fff;
+            border-radius: 10px;
+            position: relative;
+            display: flex;
+            cursor: pointer;
+            margin-top: 15px;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.13);
+        }
+        .card-fiste::before {
+            content: "";
+            position: absolute;
+            top: 2%;
+            width: 95%;
+            height: 120px;
+            z-index: 1;
+            background: var(--hex-color-fiste);
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.13);
+        }
+        .card-fiste .img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            z-index: 10;
+            transform: translateY(50px);
+            border: 5px solid #fff;
+            overflow: hidden;
+            position: absolute;
+            background: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.13);
+        }
+        .card-fiste .img img {
+            width: 120%;
+            height: 120%;
+            transform: translate(-8%, -8%);
+        }
+        .content-fiste {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: flex-end;
+            flex-direction: column;
+            z-index: 20;
+            align-items: center;
+        }
+        .content-fiste p {
+            margin: 0 0;
+        }
+        .center-fiste {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .box-fiste {
+            padding: 10px 25px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .box-fiste h1 {
+            font-size: 20px;
+        }
+        .box-fiste:hover {
+            background-color: rgba(128, 128, 128, 0.137);
+        }
+        .btn-option {
+            width: 80%;
+            margin: 0 5px;
+            padding: 10px;
+            border-radius: 10px;
+            outline: none;
+            border: none;
+            transform: translateY(10px);
+            color: #fff;
+            font-weight: 600;
+            font-size: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.13);
+            cursor: pointer;
+        }
+        .btn-option:hover {
+            background: rgb(255, 159, 130);
+        }
+        .buttons-options {
+            display: flex;
+            justify-content: space-between;
+        }
     </style>
-    <script>
-        $(document).ready(function() {
-            // Activate tooltip
-            $('[data-toggle="tooltip"]').tooltip();
-
-            // Select/Deselect checkboxes
-            var checkbox = $('table tbody input[type="checkbox"]');
-            $("#selectAll").click(function() {
-                if (this.checked) {
-                    checkbox.each(function() {
-                        this.checked = true;
-                    });
-                } else {
-                    checkbox.each(function() {
-                        this.checked = false;
-                    });
-                }
-            });
-            checkbox.click(function() {
-                if (!this.checked) {
-                    $("#selectAll").prop("checked", false);
-                }
-            });
-        });
-
-
-    </script>
     <div class="container">
         <div class="table-responsive">
             <div class="table-wrapper">
@@ -267,47 +203,43 @@
                             <h2>Administrador de <b>Fisioterapeutas</b></h2>
                         </div>
                         <div class="col-sm-6">
-                            <a id="addEmployeeBtn" class="btn btn-success" data-toggle="modal"><i class='bx bx-folder-plus' ></i><span>Nuevo Fisioterapeuta</span></a>
+                            <a id="addEmployeeBtn" class="btn btn-success" data-toggle="modal"><i
+                                    class='bx bx-folder-plus'></i><span> Nuevo Fisioterapeuta</span></a>
                         </div>
                     </div>
                 </div>
-                <table id="fisioterapeutas" class="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>
-                                <span class="custom-checkbox">
-                                    <input type="checkbox" id="selectAll">
-                                    <label for="selectAll"></label>
-                                </span>
-                            </th>
-                            <th>Nombres y Apellidos</th>
-                            <th>Email</th>
-                            <th>Color</th>
-                            <th>Celular</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($fisioterapeutas as $fisioterapeuta)
-                        <tr>
-                            <td>
-                                <span class="custom-checkbox">
-                                    <input type="checkbox" id="checkbox1" name="options[]" value="1">
-                                    <label for="checkbox1"></label>
-                                </span>
-                            </td>
-                            <td>{{ $fisioterapeuta->fiste_name }}</td>
-                            <td>{{ $fisioterapeuta->fiste_email }}</td>
-                            <td><input type="color" value="{{ $fisioterapeuta->fiste_hexcolor }}" disabled /></td>
-                            <td>{{ $fisioterapeuta->fiste_cell_phone }}</td>
-                            <td>
-                                <a  class="edit" data-toggle="modal"><i data-toggle="tooltip" title="Editar" class='bx bx-edit-alt'></i></a>
-                                <a  class="delete" data-toggle="modal"><i data-toggle="tooltip" title="Borrar" class='bx bx-trash' ></i></a>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                <div class="container-fiste">
+                    @foreach ($fisioterapeutas as $fisioterapeuta)
+                        <div class="card-fiste" style="--hex-color-fiste: {{ $fisioterapeuta->fiste_hexcolor }}">
+                            <div class="img">
+                                <img src="https://tse3.mm.bing.net/th?id=OIP.zc3XRPZxUt4Xt7zDZYLa_wHaHa&pid=Api&P=0"
+                                    alt="">
+                            </div>
+                            <div class="content-fiste">
+                                <h2>{{ $fisioterapeuta->fiste_name }}</h2>
+                                <p>Fiste</p>
+                                <div class="center-fiste">
+                                    <div class="box-fiste">
+                                        <h1>Email</h1>
+                                        <p>{{ $fisioterapeuta->fiste_email }}</p>
+                                    </div>
+                                    <div class="box-fiste">
+                                        <h1>Phone</h1>
+                                        <p>{{ $fisioterapeuta->fiste_cell_phone }}</p>
+                                    </div>
+                                </div>
+                                <div class="buttons-options">
+                                    <button class="btn-option" style="
+                                    background: #728cff;">View</button>
+                                    <button class="btn-option" style="
+                                    background: #fdff72;">Edit</button>
+                                    <button class="btn-option" style="
+                                    background: #ff9472;">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
@@ -315,7 +247,7 @@
     <div id="modalPaciente" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form>
+                <form autocomplete="off">
                     <div class="modal-header">
                         <h4 class="modal-title">Agregar paciente</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -350,7 +282,7 @@
     <div id="editEmployeeModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form>
+                <form autocomplete="off">
                     <div class="modal-header">
                         <h4 class="modal-title">Edit Employee</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -385,7 +317,7 @@
     <div id="deleteEmployeeModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form>
+                <form autocomplete="off">
                     <div class="modal-header">
                         <h4 class="modal-title">Delete Employee</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

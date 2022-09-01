@@ -107,7 +107,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form class="px-md-2" id="form" method="POST">
+                    <form autocomplete="off" class="px-md-2" id="form" method="POST">
                         {!! csrf_field() !!}
                         <div class="content d-flex align-items-start">
                             <table class="table" cellspacing="0">
@@ -191,17 +191,14 @@
                                         </th>
                                         <td class="d-flex justify-content-between">
                                             <input type="number" id="pat_ages" style="width: 40px;"
-                                                name="pat_ages" class="form-control form-control-sm " disabled /> <button type="button" id="btnEditUser" class="btn btn-primary btn-sm"><i class='bx bxs-user-account'></i></i></button>
+                                                name="pat_ages" class="form-control form-control-sm " disabled />
+                                                <a id="btnCreateUser" ><i data-toggle="tooltip" title="Crear Paciente" class='bx bx-folder-plus' style="font-size: 30px;"></i></a>
                                         </td>
                                     </tr>
-
-
                                 </tbody>
                             </table>
                             <table class="table">
                                 <tbody>
-
-
                                     <tr>
                                         <th scope="row">
                                             <h6>Direccion</h6>
@@ -408,7 +405,7 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="formView">
+                    <form autocomplete="off" id="formView">
                         {!! csrf_field() !!}
                         <div class="content d-flex align-items-start">
                             <table class="table" cellspacing="0">
@@ -491,8 +488,6 @@
                             </table>
                             <table class="table">
                                 <tbody>
-
-
                                     <tr>
                                         <th scope="row">
                                             <h6>Direccion</h6>
@@ -647,9 +642,9 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary btn-sm" id="btnEditar" aria-label="editar"><i
-                            class='bx bx-edit'></i></button>
-                    <button type="button" class="btn btn-danger btn-sm" id="btnEliminar"><i
+                    <a type="button" class="btn btn-primary btn-sm" id="btnEditar" data-toggle="tooltip" title="Editar Cita"><i
+                            class='bx bx-edit'></i></a>
+                    <button type="button" class="btn btn-danger btn-sm" id="btnEliminar" data-toggle="tooltip" title="Eliminar Cita"><i
                             class='bx bxs-trash'></i></button>
                 </div>
             </div>

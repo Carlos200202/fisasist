@@ -157,7 +157,7 @@ button span{
     <div class="contain">
         <div class="screen">
             <div class="screen__content">
-                <form class="login" method="POST" action="{{ route('login') }}" autocomplete="off">
+                <form autocomplete="off" class="login" method="POST" action="{{ route('login') }}" autocomplete="off">
                     @csrf
                     <div class="login__field">
                         <i class="login__icon fas fa-user"></i>

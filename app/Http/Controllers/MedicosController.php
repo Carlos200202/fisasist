@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Medicos;
+use App\Models\Medico;
 use Illuminate\Http\Request;
 
 class MedicosController extends Controller
@@ -15,6 +15,8 @@ class MedicosController extends Controller
     public function index()
     {
         //
+        $medicos = Medico::orderBy('id','desc')->paginate(5);
+        return view('medicos.medicos-crud', compact('medicos'));
     }
 
     /**
@@ -41,10 +43,10 @@ class MedicosController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Medicos  $medicos
+     * @param  \App\Models\Medico  $medico
      * @return \Illuminate\Http\Response
      */
-    public function show(Medicos $medicos)
+    public function show(Medico $medico)
     {
         //
     }
@@ -52,10 +54,10 @@ class MedicosController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Medicos  $medicos
+     * @param  \App\Models\Medico  $medico
      * @return \Illuminate\Http\Response
      */
-    public function edit(Medicos $medicos)
+    public function edit(Medico $medico)
     {
         //
     }
@@ -64,10 +66,10 @@ class MedicosController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Medicos  $medicos
+     * @param  \App\Models\Medico  $medico
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Medicos $medicos)
+    public function update(Request $request, Medico $medico)
     {
         //
     }
@@ -75,10 +77,10 @@ class MedicosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Medicos  $medicos
+     * @param  \App\Models\Medico  $medico
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Medicos $medicos)
+    public function destroy(Medico $medico)
     {
         //
     }
