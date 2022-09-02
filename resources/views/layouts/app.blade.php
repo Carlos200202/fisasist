@@ -40,7 +40,7 @@
 
     <!-- Styles -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/autocomplete.js') }}" defer></script>
+    <script src="{{ asset('js/calendario.js') }}" defer></script>
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet'>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -61,7 +61,7 @@
             width: 7px;
         }
         html::-webkit-scrollbar-track{  
-            background: #0D6EFD;
+            background: #0d6dfd4d;
         }
         html::-webkit-scrollbar-thumb{
             background: white;
@@ -100,7 +100,8 @@
                                     Citas
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a href="{{ route('citas') }}" class="dropdown-item" >Agendar Citas</a>
+                                    <a href="{{ route('citas') }}" class="dropdown-item" >Agendar</a>
+                                    <a href="{{ route('calendario') }}" class="dropdown-item" >Calendario</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
@@ -156,13 +157,13 @@
                             @guest
                                 @if (Route::has('login'))
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                        <a class="" href="{{ route('login') }}">{{ __('Login') }}</a>
                                     </li>
                                 @endif
 
                                 @if (Route::has('register'))
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                        <a class="" href="{{ route('register') }}">{{ __('Register') }}</a>
                                     </li>
                                 @endif
                             @else

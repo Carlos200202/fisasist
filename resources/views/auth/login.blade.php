@@ -17,11 +17,11 @@
 }
 
 .screen {		
-	background: linear-gradient(90deg, #5D54A4, #7C78B8);		
+	background: linear-gradient(90deg, #a45454, #b87878);		
 	position: relative;	
 	height: 600px;
 	width: 340px;	
-	box-shadow: 0px 0px 24px #5C5696;
+	box-shadow: 0px 0px 24px #965656;
     border-radius: 0 20px 0 20px
 }
 
@@ -58,7 +58,7 @@
 .screen__background__shape2 {
 	height: 220px;
 	width: 220px;
-	background: #6C63AC;	
+	background: #ac6363;	
 	top: -172px;
 	right: 0;	
 	border-radius: 32px;
@@ -67,7 +67,7 @@
 .screen__background__shape3 {
 	height: 540px;
 	width: 190px;
-	background: linear-gradient(270deg, #5D54A4, #6A679E);
+	background: linear-gradient(270deg, #a45454, #9e6767);
 	top: -24px;
 	right: 0;	
 	border-radius: 32px;
@@ -76,7 +76,7 @@
 .screen__background__shape4 {
 	height: 400px;
 	width: 200px;
-	background: #7E7BB9;	
+	background: #b97b7b;	
 	top: 420px;
 	right: 50px;	
 	border-radius: 60px;
@@ -98,7 +98,7 @@
 .login__icon {
 	position: absolute;
 	left: 5px;
-	color: #7875B5;
+	color: #b57575;
 }
 
 .login__input {
@@ -117,7 +117,7 @@
 .login__input:focus,
 .login__input:hover {
 	outline: none;
-	border-bottom-color: #6A679E;
+	border-bottom-color: #9e6767;
 }
 
 .login__submit {
@@ -132,8 +132,8 @@
 	display: flex;
 	align-items: center;
 	width: 100%;
-	color: #4C489D;
-	box-shadow: 0px 2px 2px #5C5696;
+	color: #9d4848;
+	box-shadow: 0px 2px 2px #965656;
 	cursor: pointer;
 	transition: .2s;
 }
@@ -141,14 +141,14 @@
 .login__submit:active,
 .login__submit:focus,
 .login__submit:hover {
-	border-color: #6A679E;
+	border-color: #9e6767;
 	outline: none;
 }
 
 .button__icon {
 	font-size: 24px;
 	margin-left: auto;
-	color: #7875B5;
+	color: #b57575;
 }
 button span{
     font-weight: 700;
@@ -161,22 +161,21 @@ button span{
                     @csrf
                     <div class="login__field">
                         <i class="login__icon fas fa-user"></i>
-                        <input id="email" name="email" type="email" class="login__input" autocomplete="off" placeholder="User name / Email">
-                        @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+                        <input id="email" name="email" type="email" class="login__input" autocomplete="off" value="{{ old('email') }}" placeholder="User name / Email">
                     </div>
                     <div class="login__field">
                         <i class="login__icon fas fa-lock"></i>
-                        <input type="password" id="password" name="password" type="password" class="login__input" autocomplete="off" placeholder="Password">
-                        @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+                        <input type="password" id="password" name="password" type="password" class="login__input" autocomplete="off" value="{{ old('password') }}" placeholder="Password">
                     </div>
+					@if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <div>
+                                @foreach ($errors->all() as $error)
+                                    <p><i class='bx bx-error-alt'></i> {{ $error }}</p>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
                     <button class="button login__submit" type="submit" data-mdb-ripple="true" data-mdb-ripple-color="light">
                         <span class="button__text">{{ __('Login') }}</span>
                         <i class="button__icon fas fa-chevron-right"></i>

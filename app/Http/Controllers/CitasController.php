@@ -26,6 +26,12 @@ class CitasController extends Controller
         return view('event.index')->with(compact('fisioterapeutas', 'medicos')); //, 'fiste', 'paciente', 'document'
     }
 
+    public function calendar(Request $request)
+    {
+        //
+        return view('event.calendar');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

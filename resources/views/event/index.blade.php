@@ -119,7 +119,7 @@
                                         </th>
                                         <td>
                                             <input type="text" id="pat_document" name="pat_document"
-                                            class="form-control form-control-sm" />
+                                            class="form-control form-control-sm" required/>
                                         </td>
                                     </tr>
 
@@ -266,8 +266,6 @@
                                             </select>
                                         </td>
                                     </tr>
-
-
                                 </tbody>
                             </table>
                         </div>
@@ -387,9 +385,19 @@
                                 rows="2">
                         </div>
                     </form>
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <p>error</p>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success btn-sm" id="btnGuardar">Guardar</button>
+                    <button type="submit" class="btn btn-success btn-sm" id="btnGuardar">Guardar</button>
                 </div>
             </div>
         </div>

@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
         headerToolbar: {
             left: "title",
             center: "",
-            right: "prev,next today,resourceTimeGrid,dayGridMonth,listDay",
+            right: "prev,next today,resourceTimeGrid",
         }, //modifica el header del resource
         slotLabelFormat: {
             hour: "2-digit",
@@ -284,7 +284,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     Swal.fire({
                         icon: "error",
                         title: "Error",
-                        text: "No se puedo agendar la cita",
+                        text: "No se puedo agendar la cita, faltan campos por llenar",
                     });
                 }
             });

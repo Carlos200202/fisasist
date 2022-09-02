@@ -46,6 +46,8 @@ Route::get('/medicos/crud', [App\Http\Controllers\MedicosController::class, 'ind
 
 Route::post('/citas/agendar', [App\Http\Controllers\CitasController::class, 'store']);
 
+Route::get('/citas/calendario', [App\Http\Controllers\CitasController::class, 'calendar'])->name('calendario');
+
 Route::get('/citas/buscar-documento', [App\Http\Controllers\CitasController::class, 'busqueda'])->name('busqueda');
 
 Route::get('/citas/editar-cita/{id}', [App\Http\Controllers\CitasController::class, 'edit'])->name('event.edit');
