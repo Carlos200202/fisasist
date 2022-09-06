@@ -193,22 +193,16 @@ document.addEventListener("DOMContentLoaded", function () {
                     window.location = `/paciente/${info.event.extendedProps.paciente_id}/editar-paciente`;
                 });
         },
-        // eventMouseEnter: ( info, mouseEnterInfo, evento ) => {
-        //     $(".fc-event-main").tooltip({
-        //         title: `paciente: ${info.event.extendedProps.pat_firstname} ${info.event.extendedProps.pat_lastname}
-        //         fisioterapeuta: ${info.event.extendedProps.fiste_name}`,
-        //         container: 'body',
-        //         delay: { "show": 50, "hide": 50 }
-        //     });
-        //     console.log(info)
-        // },
+        eventDidMount: function(info) {
+            console.log(info.el)
+            $(info.el).tooltip({
+              title: info.event.extendedProps.pat_firstname + ' ' + info.event.extendedProps.pat_lastname,
+              placement: 'top',
+              trigger: 'hover',
+              container: 'body'
+            });
+        },
         eventContent: (info) => {
-            // $(".fc-event-main").tooltip({
-            //     title: `paciente: ${info.event.extendedProps.pat_firstname} ${info.event.extendedProps.pat_lastname}
-            //     fisioterapeuta: ${info.event.extendedProps.fiste_name}`,
-            //     container: 'body',
-            //     delay: { "show": 50, "hide": 50 }
-            // });
             return {
                 html: `
                 <div class="content-event" data-bs-toggle="tooltip" data-bs-placement="top"

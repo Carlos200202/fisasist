@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Fisasist @if (Auth::check())
-        - {{ Auth::user()->role }}: {{ Auth::user()->name }}
+        {{ Auth::user()->role }}: {{ Auth::user()->name }}
     @else
         
     @endif
