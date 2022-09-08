@@ -109,7 +109,7 @@
                                     Fisioterapeutas
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a href="{{ route('fisioterapeutas.crud') }}" class="dropdown-item" >crud fisioterapeutas</a>
+                                    <a href="#" class="dropdown-item" >Hola Mundo</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
@@ -117,7 +117,7 @@
                                     Pacientes
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a href="{{ route('pacientes.crud') }}" class="dropdown-item" >crud pacientes</a>
+                                    <a href="#" class="dropdown-item" >Hola Mundo</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
@@ -125,7 +125,7 @@
                                     Medicos
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a href="{{ route('medicos.crud') }}" class="dropdown-item" >crud medicos</a>
+                                    <a href="#" class="dropdown-item" >Hola Mundo</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
@@ -133,20 +133,18 @@
                                     Empresas
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" >
-                                        Hola
-                                    </a>
+                                    <a href="#" class="dropdown-item" >Hola Mundo</a>
                                 </div>
                             </li>
-                            @if (Auth::user()->role == "admin")
+                            @if (Auth::user()->role == 0)
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         Administrador
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" >
-                                            Hola
-                                        </a>
+                                        <a href="{{ route('fisioterapeutas.crud') }}" class="dropdown-item" >crud fisioterapeutas</a>
+                                        <a href="{{ route('pacientes.crud') }}" class="dropdown-item" >crud pacientes</a>
+                                        <a href="{{ route('medicos.crud') }}" class="dropdown-item" >crud medicos</a>
                                     </div>
                                 </li>
                             @endif

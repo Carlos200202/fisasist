@@ -23,7 +23,8 @@ return new class extends Migration
             $table->foreign('fisioterapeuta_id')
                 ->references('id')
                 ->on('fisioterapeutas');
-            $table->foreign('pat_medical')
+            $table->unsignedBigInteger('medico_id');
+            $table->foreign('medico_id')
                 ->references('id')
                 ->on('medicos');
             $table->string("type_visit");

@@ -203,6 +203,9 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         },
         eventContent: (info) => {
+
+
+
             return {
                 html: `
                 <div class="content-event" data-bs-toggle="tooltip" data-bs-placement="top"
@@ -275,10 +278,11 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch((error) => {
                 if (error.response) {
                     calendar.refetchEvents();
+                    console.log(error.response)
                     Swal.fire({
                         icon: "error",
                         title: "Error",
-                        text: "No se puedo agendar la cita, faltan campos por llenar",
+                        text: "No se puedo agendar la cita, faltan campos por llenar " + error,
                     });
                 }
             });

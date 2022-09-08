@@ -258,7 +258,7 @@
                                         </th>
                                         <td>
                                             <select class="form-select form-select-sm" id="pat_medical"
-                                                name="pat_medical">
+                                                name="pat_medical" required>
                                                 <option selected disabled>Seleccionar</option>
                                                 @foreach ($medicos as $med)
                                                     <option value="{{ $med->id }}">{{ $med->med_name }}</option>
@@ -278,7 +278,7 @@
                                         </th>
                                         <td>
                                             <input type="text" id="type_visit" name="type_visit"
-                                                class="form-control form-control-sm" />
+                                                class="form-control form-control-sm" required/>
                                         </td>
                                     </tr>
                                     <tr>
@@ -286,7 +286,7 @@
                                             <h6>Procedimiento</h6>
                                         </th>
                                         <td>
-                                            <select class="form-select form-select-sm" id="process" name="process">
+                                            <select class="form-select form-select-sm" id="process" name="process" required>
                                                 <option value="1" disabled selected>...</option>
                                                 <option value="2">COLUMNA CERVICAL</option>
                                                 <option value="3">PIERNA</option>
@@ -300,7 +300,7 @@
                                         </th>
                                         <td>
                                             <select class="form-select form-select-sm" id="fisioterapeuta_id"
-                                                name="fisioterapeuta_id">
+                                                name="fisioterapeuta_id" required>
                                                 <option selected disabled>Seleccionar</option>
                                                 @foreach ($fisioterapeutas as $fiste)
                                                     <option value="{{ $fiste->id }}">{{ $fiste->fiste_name }}</option>
@@ -317,7 +317,7 @@
                                             <div>
                                                 <h6>Observaciones</h6>
                                                 <textarea class="form-control" style="resize: none;" name="observations" rows="2" cols="20"
-                                                    id="observations"></textarea>
+                                                    id="observations" required></textarea>
                                             </div>
                                         </div>
                                     </td>
@@ -347,11 +347,11 @@
                                                 <tr>
                                                     <td>
                                                         <input type="text" id="contact_name" name="contact_name"
-                                                            class="form-control form-control-sm" />
+                                                            class="form-control form-control-sm" required/>
                                                     </td>
                                                     <td>
                                                         <select class="form-select form-select-sm" id="contact_relationship"
-                                                            name="contact_relationship">
+                                                            name="contact_relationship" required>
                                                             <option value="1" disabled selected>Seleccionar</option>
                                                             <option value="2">Esposa</option>
                                                             <option value="3">Hijo</option>
@@ -360,7 +360,7 @@
                                                     </td>
                                                     <td>
                                                         <input type="number" id="contact_cell_phone" name="contact_cell_phone"
-                                                            class="form-control form-control-sm" />
+                                                            class="form-control form-control-sm" required/>
                                                     </td>
                                                 </tr>
                                             </tbody>
