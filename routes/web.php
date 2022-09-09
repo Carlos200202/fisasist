@@ -2,6 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RolesController;
+use App\Http\Controllers\PacientesController;
+use App\Http\Controllers\FisioterapeutasController;
+use App\Http\Controllers\CitasController;
+use GuzzleHttp\Middleware;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,16 +24,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// url's principales
+
 Auth::routes();
 
-// url's principales
- 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/citas', [App\Http\Controllers\CitasController::class, 'index'])->name('citas');
 
 //url's pacientes
-
 Route::get('/paciente/crud', [App\Http\Controllers\PacientesController::class, 'index'])->name('pacientes.crud');
 
 Route::get('/paciente/{id}/editar-paciente', [App\Http\Controllers\PacientesController::class, 'edit'])->name('pacientes.edit-paciente');
@@ -34,16 +40,13 @@ Route::get('/paciente/{id}/editar-paciente', [App\Http\Controllers\PacientesCont
 Route::post('/paciente/actualizar-paciente/{id}', [App\Http\Controllers\PacientesController::class, 'update'])->name('pacientes.update');
 
 //url's fisioterapeutas
-
 Route::get('/fisioterapeuta/crud', [App\Http\Controllers\FisioterapeutasController::class, 'index'])->name('fisioterapeutas.crud');
 
 //url's medicos
-
 Route::get('/medicos/crud', [App\Http\Controllers\MedicosController::class, 'index'])->name('medicos.crud');
 
 
 //url's citas
-
 Route::post('/citas/agendar', [App\Http\Controllers\CitasController::class, 'store']);
 
 Route::get('/citas/calendario', [App\Http\Controllers\CitasController::class, 'calendar'])->name('calendario');
@@ -60,4 +63,8 @@ Route::post('/citas/borrar-cita/{id}', [App\Http\Controllers\CitasController::cl
 
 Route::get('/citas/ver-cita', [App\Http\Controllers\CitasController::class, 'show']);
 
-// pruebas
+// route roles
+
+Route::group(['middleware' => ['auth']], function(){
+    Route::resource('roles', RolesController::class);
+});

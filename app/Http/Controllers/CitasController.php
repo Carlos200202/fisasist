@@ -87,7 +87,7 @@ class CitasController extends Controller
         INNER JOIN pacientes ON citas.paciente_id = pacientes.id 
         INNER JOIN fisioterapeutas ON citas.fisioterapeuta_id = fisioterapeutas.id 
         INNER JOIN entidades ON pacientes.pat_entity_id = entidades.id
-        INNER JOIN medicos ON citas.pat_medical = medicos.id';
+        INNER JOIN medicos ON citas.medico_id = medicos.id';
         $citas = DB::select($sql);
         // dd($citas);
         return response()->json($citas);
