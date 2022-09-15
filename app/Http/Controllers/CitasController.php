@@ -12,6 +12,13 @@ use Carbon\Carbon;
 
 class CitasController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission: ver-cita | crear-cita | editar-cita | borrar-cita', ['only' => ['index'] ]);
+        $this->middleware('permission: crear-cita', ['only' => ['create', 'store']]);
+        $this->middleware('permission: editar-cita', ['only' => ['edit', 'update']]);
+        $this->middleware('permission: borrar-cita', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +26,8 @@ class CitasController extends Controller
      */
     public function index(Request $request)
     {
-        //
-
+        // SELECT count(fisioterapeuta_id) as citasFiste, fisioterapeutas.id FROM citas, fisioterapeutas WHERE fisioterapeutas.id = citas.fisioterapeuta_id AND citas.start = citas.end GROUP BY fisioterapeuta_id HAVING COUNT(*)<5
+        //SELECT count(fisioterapeuta_id), fisioterapeutas.id FROM citas, fisioterapeutas WHERE fisioterapeutas.id = citas.fisioterapeuta_id GROUP BY fisioterapeuta_id HAVING COUNT(*)<5
         $fisioterapeutas = Fisioterapeuta::all('fiste_name', 'id');
         $medicos = Medico::all('med_name', 'id');
         return view('event.index')->with(compact('fisioterapeutas', 'medicos')); //, 'fiste', 'paciente', 'document'
@@ -56,12 +63,13 @@ class CitasController extends Controller
                 'paciente_id' => "required",
                 'fisioterapeuta_id' => "required",
                 'observations' => "required",
-                'pat_medical' => "required",
+                'medico_id' => "required",
                 'type_visit' => "required",
                 'contact_name' => "required",
                 'contact_relationship' => "required",
                 'contact_cell_phone' => "required",
                 'process' => "required",
+                'complexity' => "required",
                 'resourceId' => "required",
                 'start' => "required",
                 'end' => "required",
@@ -81,7 +89,7 @@ class CitasController extends Controller
         pacientes.pat_second_lastname, pacientes.pat_document, pacientes.pat_gender, pacientes.pat_birth_date, 
         pacientes.pat_number_policy, pacientes.pat_phone, pacientes.pat_cell_phone, pacientes.pat_email, 
         pacientes.pat_location, fisioterapeutas.fiste_phone, fisioterapeutas.fiste_name, fisioterapeutas.fiste_hexcolor, 
-        citas.id, citas.paciente_id, citas.fisioterapeuta_id, citas.type_visit, citas.process, citas.observations,
+        citas.id, citas.paciente_id, citas.fisioterapeuta_id, citas.type_visit, citas.process, citas.complexity, citas.observations,
         citas.contact_name, citas.contact_relationship, citas.contact_cell_phone, citas.resourceId, 
         citas.start, citas.end, citas.id AS id_citas, citas.start AS date_start FROM citas 
         INNER JOIN pacientes ON citas.paciente_id = pacientes.id 

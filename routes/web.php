@@ -32,7 +32,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/citas', [App\Http\Controllers\CitasController::class, 'index'])->name('citas');
 
-//url's pacientes
+// url's pacientes
 Route::get('/paciente/crud', [App\Http\Controllers\PacientesController::class, 'index'])->name('pacientes.crud');
 
 Route::get('/paciente/{id}/editar-paciente', [App\Http\Controllers\PacientesController::class, 'edit'])->name('pacientes.edit-paciente');
@@ -45,13 +45,15 @@ Route::get('/fisioterapeuta/crud', [App\Http\Controllers\FisioterapeutasControll
 //url's medicos
 Route::get('/medicos/crud', [App\Http\Controllers\MedicosController::class, 'index'])->name('medicos.crud');
 
+//url's medicos
+Route::get('/usuarios/crud', [App\Http\Controllers\UsuariosController::class, 'index'])->name('usuarios.crud');
 
 //url's citas
 Route::post('/citas/agendar', [App\Http\Controllers\CitasController::class, 'store']);
 
 Route::get('/citas/calendario', [App\Http\Controllers\CitasController::class, 'calendar'])->name('calendario');
 
-Route::get('/citas/buscar-documento', [App\Http\Controllers\CitasController::class, 'busqueda'])->name('busqueda');
+Route::get('/citas/buscar-documento', [App\Http\Controllers\CitasController::class, 'busqueda'])->name('busqueda'); 
 
 Route::get('/citas/editar-cita/{id}', [App\Http\Controllers\CitasController::class, 'edit'])->name('event.edit');
 
@@ -65,6 +67,10 @@ Route::get('/citas/ver-cita', [App\Http\Controllers\CitasController::class, 'sho
 
 // route roles
 
-Route::group(['middleware' => ['auth']], function(){
-    Route::resource('roles', RolesController::class);
-});
+// Route::group(['middleware' => ['auth']], function(){
+//     Route::resource('roles', RolesController::class);
+//     Route::resource('pacientes', PacientesController::class);
+//     Route::resource('home', HomeController::class);
+//     Route::resource('fisioterapeutas', FisioterapeutasController::class);
+//     Route::resource('citas', CitasController::class);
+// });

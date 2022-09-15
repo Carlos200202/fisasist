@@ -12,9 +12,10 @@ class Cita extends Model
     static $rules = [
         'paciente_id',
         'fisioterapeuta_id',
-        'pat_medical',
+        'medico_id',
         'type_visit',
         'process',
+        'complexity',
         'contact_name',
         'contact_relationship',
         'contact_cell_phone',
@@ -27,9 +28,10 @@ class Cita extends Model
     protected $fillable = [
         'paciente_id',
         'fisioterapeuta_id',
-        'pat_medical',
+        'medico_id',
         'type_visit',
         'process',
+        'complexity',
         'contact_name',
         'contact_relationship',
         'contact_cell_phone',

@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     themeSystem: "bootstrap5",
     editable: true,
     dayMaxEventRows: 1,
+    navLinks: true,
     timeZone: "local",
     slotLabelFormat: {
       hour: "2-digit",

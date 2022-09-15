@@ -25,7 +25,8 @@
         }
         .table-responsive {
             margin: 10px 0;
-            border-radius: 10px 0 0 10px;
+            border: #9c9c9c solid 1px;
+            border-radius: 10px;
             background: #fff;
         }
         .table-wrapper {

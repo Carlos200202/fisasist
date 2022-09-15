@@ -126,6 +126,7 @@ document.addEventListener("DOMContentLoaded", function () {
             formView.entity_name.value = info.event.extendedProps.entity_name;
             formView.type_visit.value = info.event.extendedProps.type_visit;
             formView.process.value = info.event.extendedProps.process;
+            formView.complexity.value = info.event.extendedProps.complexity;
             formView.contact_name.value = info.event.extendedProps.contact_name;
             formView.contact_relationship.value = info.event.extendedProps.contact_relationship;
             formView.contact_cell_phone.value = info.event.extendedProps.contact_cell_phone;
@@ -203,8 +204,20 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         },
         eventContent: (info) => {
+            image = 0;
+            var complexity = info.event.extendedProps.complexity
 
-
+            switch (complexity) {
+                case 'ALTA':
+                    image = 'img/paciente_calta.png'
+                    break;
+                case 'MEDIA':
+                    image = 'img/paciente_cmedia.png'
+                    break;
+                case 'BAJA':
+                    image = 'img/paciente_cbaja.png'
+                    break;
+            }
 
             return {
                 html: `
@@ -212,9 +225,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 data-bs-custom-class="custom-tooltip"
                 data-bs-title="${info.event.extendedProps.pat_firstname}">
                     
-                    <input type="image"
+                    <img
                     class="image-event" 
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/OOjs_UI_icon_userAvatar-progressive.svg/1200px-OOjs_UI_icon_userAvatar-progressive.svg.png"
+                    src="http://127.0.0.1:8000/${image}"
                     alt=""
                     />
                     <div
@@ -240,9 +253,10 @@ document.addEventListener("DOMContentLoaded", function () {
     function sendData(url) {
         var paciente_id = document.getElementById("paciente_id").value;
         var fisioterapeuta_id = document.getElementById("fisioterapeuta_id").value;
-        var pat_medical = document.getElementById("pat_medical").value;
+        var medico_id = document.getElementById("medico_id").value;
         var type_visit = document.getElementById("type_visit").value;
         var process = document.getElementById("process").value;
+        var complexity = document.getElementById("complexity").value;
         var contact_name = document.getElementById("contact_name").value;
         var contact_relationship = document.getElementById("contact_relationship").value;
         var contact_cell_phone = document.getElementById("contact_cell_phone").value;
@@ -255,9 +269,10 @@ document.addEventListener("DOMContentLoaded", function () {
             .post(url, {
                 paciente_id: paciente_id,
                 fisioterapeuta_id: fisioterapeuta_id,
-                pat_medical: pat_medical,
+                medico_id: medico_id,
                 type_visit: type_visit,
                 process: process,
+                complexity: complexity,
                 contact_name: contact_name,
                 contact_relationship: contact_relationship,
                 contact_cell_phone: contact_cell_phone,
@@ -532,3 +547,4 @@ let resource = [
         title: "COM5",
     },
 ];
+

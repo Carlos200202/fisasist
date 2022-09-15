@@ -14,7 +14,7 @@
                                         <h6>Remite</h6>
                                     </th>
                                     <td>
-                                        <input class="form-control form-control-sm" id="med_name" name="med_name" value="{{ $citas->pat_medical }}"/>
+                                        <input class="form-control form-control-sm" id="medico_id" name="medico_id" value="{{ $citas->medico_id }}"/>
                                     </td>
                                 </tr>
                                 <tr>

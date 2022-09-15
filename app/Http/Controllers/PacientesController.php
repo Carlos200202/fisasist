@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\Redirect;
 
 class PacientesController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission: ver-paciente | crear-paciente | editar-paciente | borrar-paciente', ['only' => ['index'] ]);
+        $this->middleware('permission: crear-paciente', ['only' => ['create', 'store']]);
+        $this->middleware('permission: editar-paciente', ['only' => ['edit', 'update']]);
+        $this->middleware('permission: borrar-paciente', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *

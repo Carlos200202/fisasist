@@ -161,11 +161,11 @@ button span{
                     @csrf
                     <div class="login__field">
                         <i class="login__icon fas fa-user"></i>
-                        <input id="email" name="email" type="email" class="login__input" autocomplete="off" value="{{ old('email') }}" placeholder="User name / Email">
+                        <input id="email" name="email" type="email" class="login__input" autocomplete="off" value="{{ old('email') }}" placeholder="Correo / Email">
                     </div>
                     <div class="login__field">
                         <i class="login__icon fas fa-lock"></i>
-                        <input type="password" id="password" name="password" type="password" class="login__input" autocomplete="off" value="{{ old('password') }}" placeholder="Password">
+                        <input type="password" id="password" name="password" type="password" class="login__input" autocomplete="off" value="{{ old('password') }}" placeholder="Contraseña / Password">
                     </div>
 					@if (count($errors) > 0)
                         <div class="alert alert-danger">
@@ -177,13 +177,13 @@ button span{
                         </div>
                     @endif
                     <button class="button login__submit" type="submit" data-mdb-ripple="true" data-mdb-ripple-color="light">
-                        <span class="button__text">{{ __('Login') }}</span>
+                        <span class="button__text">{{ __('Entrar') }}</span>
                         <i class="button__icon fas fa-chevron-right"></i>
                     </button>	
                     
                     @if (Route::has('password.request'))
                         <a class="btn btn-link" href="{{ route('password.request') }}">
-                            {{ __('Forgot Your Password?') }}
+                            {{ __('Olvidaste tu contraseña?') }}
                         </a>
                     @endif			
                 </form>

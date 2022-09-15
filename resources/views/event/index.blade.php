@@ -257,8 +257,8 @@
                                             <h6>Remite</h6>
                                         </th>
                                         <td>
-                                            <select class="form-select form-select-sm" id="pat_medical"
-                                                name="pat_medical" required>
+                                            <select class="form-select form-select-sm" id="medico_id"
+                                                name="medico_id" required>
                                                 <option selected disabled>Seleccionar</option>
                                                 @foreach ($medicos as $med)
                                                     <option value="{{ $med->id }}">{{ $med->med_name }}</option>
@@ -287,10 +287,27 @@
                                         </th>
                                         <td>
                                             <select class="form-select form-select-sm" id="process" name="process" required>
-                                                <option value="1" disabled selected>...</option>
-                                                <option value="2">COLUMNA CERVICAL</option>
-                                                <option value="3">PIERNA</option>
-                                                <option value="4">Other</option>
+                                                <option value="0" disabled selected>Seleccionar</option>
+                                                <option value="ACONDICIONAMIENTO FISICO">ACONDICIONAMIENTO FISICO</option>
+                                                <option value="CODO Y ANTEBRAZO">CODO Y ANTEBRAZO</option>
+                                                <option value="COLUMNA CERVICAL">COLUMNA CERVICAL</option>
+                                                <option value="COLUMNA DORSAL Y LUMBAR">COLUMNA DORSAL Y LUMBAR</option>
+                                                <option value="HOMBRO Y BRAZO">HOMBRO Y BRAZO</option>
+                                                <option value="MUÑECA Y MANO">MUÑECA Y MANO</option>
+                                                <option value="RODILLA, PIERNA, TOBILLO Y PIE">RODILLA, PIERNA, TOBILLO Y PIE</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <h6>Complejidad</h6>
+                                        </th>
+                                        <td>
+                                            <select class="form-select form-select-sm" id="complexity" name="complexity" required>
+                                                <option value="0" disabled selected>Seleccionar</option>
+                                                <option value="ALTA">ALTA</option>
+                                                <option value="MEDIA">MEDIA</option>
+                                                <option value="BAJA">BAJA</option>
                                             </select>
                                         </td>
                                     </tr>
@@ -316,7 +333,7 @@
                                         <div class="form-floating">
                                             <div>
                                                 <h6>Observaciones</h6>
-                                                <textarea class="form-control" style="resize: none;" name="observations" rows="2" cols="20"
+                                                <textarea class="form-control" style="resize: none;" name="observations" rows="4" cols="20"
                                                     id="observations" required></textarea>
                                             </div>
                                         </div>
@@ -352,10 +369,13 @@
                                                     <td>
                                                         <select class="form-select form-select-sm" id="contact_relationship"
                                                             name="contact_relationship" required>
-                                                            <option value="1" disabled selected>Seleccionar</option>
-                                                            <option value="2">Esposa</option>
-                                                            <option value="3">Hijo</option>
-                                                            <option value="4">Other</option>
+                                                            <option value="0" disabled selected>Seleccionar</option>
+                                                            <option value="CONYUGE/PAREJA">CONYUGE/PAREJA</option>
+                                                            <option value="PADRE/MADRE">PADRE/MADRE</option>
+                                                            <option value="HIJO/A">HIJO/A</option>
+                                                            <option value="HERMANO/A">HERMANO/A</option>
+                                                            <option value="AMIGO/A">AMIGO/A</option>
+                                                            <option value="OTRO">OTRO</option>
                                                         </select>
                                                     </td>
                                                     <td>
@@ -580,6 +600,14 @@
                                         </th>
                                         <td>
                                             <input class="form-control form-control-sm" id="process" name="process" disabled/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <h6>Complejidad</h6>
+                                        </th>
+                                        <td>
+                                            <input class="form-control form-control-sm" id="complexity" name="complexity" disabled />
                                         </td>
                                     </tr>
                                     <tr>

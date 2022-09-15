@@ -145,6 +145,7 @@
                                         <a href="{{ route('fisioterapeutas.crud') }}" class="dropdown-item" >crud fisioterapeutas</a>
                                         <a href="{{ route('pacientes.crud') }}" class="dropdown-item" >crud pacientes</a>
                                         <a href="{{ route('medicos.crud') }}" class="dropdown-item" >crud medicos</a>
+                                        <a href="{{ route('usuarios.crud') }}" class="dropdown-item" >crud usuarios</a>
                                     </div>
                                 </li>
                             @endif

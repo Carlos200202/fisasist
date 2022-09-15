@@ -289,9 +289,11 @@
                             </td>
                             <td>{{ $medico->med_name }}</td>
                             <td>
-                                <a  class="view" data-toggle="modal"><i data-toggle="tooltip" title="Ver" class='bx bx-face'></i></a>
-                                <a  class="edit" data-toggle="modal"><i data-toggle="tooltip" title="Editar" class='bx bx-edit-alt'></i></a>
-                                <a  class="delete" data-toggle="modal"><i data-toggle="tooltip" title="Borrar" class='bx bx-trash' ></i></a>
+                                <div class="d-flex">
+                                    <a  class="view" data-toggle="modal"><i data-toggle="tooltip" title="Ver" class='bx bx-face'></i></a>
+                                    <a  class="edit" data-toggle="modal"><i data-toggle="tooltip" title="Editar" class='bx bx-edit-alt'></i></a>
+                                    <a  class="delete" data-toggle="modal"><i data-toggle="tooltip" title="Borrar" class='bx bx-trash' ></i></a>
+                                </div>
                             </td>
                         </tr>
                         @endforeach

@@ -29,6 +29,7 @@ return new class extends Migration
                 ->on('medicos');
             $table->string("type_visit");
             $table->string("process");
+            $table->string("complexity");
             $table->string("contact_name");
             $table->string("contact_relationship");
             $table->string("contact_cell_phone");

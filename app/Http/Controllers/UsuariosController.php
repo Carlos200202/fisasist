@@ -2,18 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Fisioterapeuta;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Contracts\Role;
 
-class FisioterapeutasController extends Controller
+class UsuariosController extends Controller
 {
-    function __construct()
-    {
-        $this->middleware('permission: ver-fisioterapeita | crear-fisioterapeita | editar-fisioterapeita | borrar-fisioterapeita', ['only' => ['index'] ]);
-        $this->middleware('permission: crear-fisioterapeita', ['only' => ['create', 'store']]);
-        $this->middleware('permission: editar-fisioterapeita', ['only' => ['edit', 'update']]);
-        $this->middleware('permission: borrar-fisioterapeita', ['only' => ['destroy']]);
-    }
     /**
      * Display a listing of the resource.
      *
@@ -22,8 +16,8 @@ class FisioterapeutasController extends Controller
     public function index()
     {
         //
-        $fisioterapeutas = Fisioterapeuta::orderBy('id','desc')->paginate(5);
-        return view('fisioterapeutas.fisioterapeutas-crud', compact('fisioterapeutas'));
+        $users = User::orderBy('id','desc')->paginate(5);
+        return view('usuarios.usuarios-crud', compact('users'));
     }
 
     /**
@@ -50,10 +44,10 @@ class FisioterapeutasController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Fisioterapeuta  $fisioterapeuta
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Fisioterapeuta $fisioterapeuta)
+    public function show($id)
     {
         //
     }
@@ -61,22 +55,26 @@ class FisioterapeutasController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Fisioterapeuta  $fisioterapeuta
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Fisioterapeuta $fisioterapeutas)
+    public function edit($id)
     {
         //
+        $user = User::find($id);
+        $userRole = $user->roles->pluck('name', 'name')->all();
+
+
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Fisioterapeuta  $fisioterapeuta
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Fisioterapeuta $fisioterapeuta)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -84,10 +82,10 @@ class FisioterapeutasController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Fisioterapeuta  $fisioterapeuta
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Fisioterapeuta $fisioterapeuta)
+    public function destroy($id)
     {
         //
     }
