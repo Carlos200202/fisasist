@@ -181,11 +181,11 @@ button span{
                         <i class="button__icon fas fa-chevron-right"></i>
                     </button>	
                     
-                    @if (Route::has('password.request'))
+                    {{-- @if (Route::has('password.request'))
                         <a class="btn btn-link" href="{{ route('password.request') }}">
                             {{ __('Olvidaste tu contraseña?') }}
                         </a>
-                    @endif			
+                    @endif			 --}}
                 </form>
             </div>
             <div class="screen__background">

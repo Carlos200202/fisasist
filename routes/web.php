@@ -53,6 +53,8 @@ Route::post('/citas/agendar', [App\Http\Controllers\CitasController::class, 'sto
 
 Route::get('/citas/calendario', [App\Http\Controllers\CitasController::class, 'calendar'])->name('calendario');
 
+Route::get('/citas/lista', [App\Http\Controllers\CitasController::class, 'list'])->name('lista');
+
 Route::get('/citas/buscar-documento', [App\Http\Controllers\CitasController::class, 'busqueda'])->name('busqueda'); 
 
 Route::get('/citas/editar-cita/{id}', [App\Http\Controllers\CitasController::class, 'edit'])->name('event.edit');

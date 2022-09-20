@@ -41,6 +41,7 @@
     <!-- Styles -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/calendario.js') }}" defer></script>
+    <script src="{{ asset('js/lista.js') }}" defer></script>
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet'>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -78,6 +79,14 @@
         margin: 0; 
         }
         input[type=number] { -moz-appearance:textfield; }
+
+        .dropdown-menu{
+            padding: 4px;
+        }
+
+        .dropdown-menu .dropdown-item{
+            border-radius: 5px
+        }
     </style>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -102,6 +111,7 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a href="{{ route('citas') }}" class="dropdown-item" >Agendar</a>
                                     <a href="{{ route('calendario') }}" class="dropdown-item" >Calendario</a>
+                                    <a href="{{ route('lista') }}" class="dropdown-item" >Lista</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">

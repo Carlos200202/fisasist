@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     themeSystem: "bootstrap5",
     editable: true,
     dayMaxEventRows: 1,
-    navLinks: true,
+    // navLinks: true,
     timeZone: "local",
     slotLabelFormat: {
       hour: "2-digit",
@@ -25,6 +25,11 @@ document.addEventListener('DOMContentLoaded', function() {
         hour24: true,
     }, //este se visualizara de la misma manera pero en el titulo del evento creado en fullcalendar
     // eventContent: renderEventContent, //permite agregar una imagen o icono
+    header: {
+        left:   '',
+        center: 'title',
+        right:  'today'
+    },
     events: "/citas/ver-cita",
     eventDidMount: function(info) {
       console.log(info.el)

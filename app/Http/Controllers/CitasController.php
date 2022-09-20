@@ -39,6 +39,12 @@ class CitasController extends Controller
         return view('event.calendar');
     }
 
+    public function list(Request $request)
+    {
+        //
+        return view('event.list');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
